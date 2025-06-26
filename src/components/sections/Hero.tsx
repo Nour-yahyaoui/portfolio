@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="home" className="relative py-20 pt-[200px] min-h-[calc(100vh-100px)] overflow-hidden">
+    <section id="home" className="relative py-20 lg:pt-[200px] min-h-[calc(100vh-100px)] overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary-400 rounded-full opacity-10 blur-3xl"></div>
