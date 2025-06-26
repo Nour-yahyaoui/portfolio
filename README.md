@@ -6,9 +6,10 @@
 
 ## ⚙️ Built With
 
--next js
--react
--typescript
--tailwindcss
+- **Next.js** – React framework for server-side rendering and routing  
+- **React** – Front-end library for building user interfaces  
+- **TypeScript** – Strongly typed JavaScript for better development experience  
+- **Tailwind CSS** – Utility-first CSS framework for fast UI styling
 
 ---
+
