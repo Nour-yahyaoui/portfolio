@@ -7,13 +7,13 @@ interface SkillLevel {
   level: string;
   percentage: number;
 }
-
 const Skills: React.FC = () => {
   const skillLevels: SkillLevel[] = [
-    { name: 'HTML/CSS/JS', level: 'Expert', percentage: 95 },
-    { name: 'Python', level: 'Advanced', percentage: 85 },
-    { name: 'Django', level: 'Advanced', percentage: 80 },
+    { name: 'HTML/CSS/JavaScript', level: 'Expert', percentage: 95 },
+    { name: 'Python', level: 'Advanced', percentage: 75 },
     { name: 'React', level: 'Intermediate', percentage: 70 },
+    { name: 'Next.js', level: 'Advanced', percentage: 85 },
+    { name: 'TypeScript', level: 'Intermediate', percentage: 70 },
   ];
 
   return (
