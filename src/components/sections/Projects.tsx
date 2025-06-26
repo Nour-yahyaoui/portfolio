@@ -15,6 +15,7 @@ interface Project {
   loginInstructions?: string;
   isPrivate?: boolean;
 }
+
 const Projects: React.FC = () => {
  const projects: Project[] = [
     {
