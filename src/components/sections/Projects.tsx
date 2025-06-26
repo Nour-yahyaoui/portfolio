@@ -11,10 +11,22 @@ interface Project {
   code?: string;
   underConstruction?: boolean;
   privateCode?: boolean;
+  note?: string;
+  loginInstructions?: string;
+  isPrivate?: boolean;
 }
-
 const Projects: React.FC = () => {
-  const projects: Project[] = [
+ const projects: Project[] = [
+    {
+      title: "NF-Team",
+      description: "A collaborative web development team project featuring modern UI/UX design and full-stack functionality.",
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      tags: ["React", "Next.js", "Team Project", "Full-stack"],
+      mainTag: "Team Project",
+      liveDemo: "https://nf-team-pi.vercel.app/",
+      privateCode: true,
+      note: "Code repository is private as it's a team project"
+    },
     {
       title: "Musify",
       description: "A modern music player application with playlist functionality built with React and Vite.",
@@ -25,14 +37,16 @@ const Projects: React.FC = () => {
       code: "https://github.com/nour-yahyaoui/musify"
     },
     {
-      title: "Portfolio Templates",
-      description: "A collection of modern, responsive portfolio templates for developers, featuring dark mode support and customizable components.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      tags: ["React", "Tailwind CSS", "Framer Motion", "Responsive", "Only frontend"],
-      mainTag: "React",
-      liveDemo: "https://nour-yahyaoui.github.io/templates/",
-      underConstruction: true,
-      privateCode: true
+      title: "Ultra-Vuk",
+      description: "A comprehensive personal dashboard featuring news, weather, calendar, AI tools, school and gym tracking (Private access only).",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80",
+      tags: ["Next.js", "API Integration", "AI", "Dashboard", "Authentication"],
+      mainTag: "Next js",
+      liveDemo: "https://ultra-vuk.vercel.app/",
+      privateCode: true,
+      loginInstructions: "Contact me for demo access credentials",
+      isPrivate: true,
+      note: "Personal project with sensitive data - demo access available upon request"
     },
     {
       title: "Password Generator",
@@ -51,7 +65,7 @@ const Projects: React.FC = () => {
       mainTag: "Django",
       code: "https://github.com/nour-yahyaoui/chat-app/"
     }
-  ];
+];
 
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800">

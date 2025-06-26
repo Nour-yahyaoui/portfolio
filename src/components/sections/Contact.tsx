@@ -15,6 +15,11 @@ const Contact: React.FC = () => {
       content: '+216 25739896'
     },
     { 
+      icon: 'fab fa-whatsapp', 
+      title: 'whatsapp', 
+      content: '+21625739896'
+    },
+    { 
       icon: 'fab fa-github', 
       title: 'GitHub', 
       content: 'github.com/nour-yahyaoui', 
@@ -36,6 +41,7 @@ const Contact: React.FC = () => {
   const socialLinks = [
     { icon: 'fab fa-facebook-f', link: '#' },
     { icon: 'fab fa-instagram', link: '#' },
+    { icon: 'fab fa-whatsapp', link: '#' },
     { icon: 'fab fa-github', link: 'https://github.com/nour-yahyaoui/' },
     { icon: 'fas fa-briefcase', link: 'https://www.fiverr.com/s/42d04wd' }
   ];

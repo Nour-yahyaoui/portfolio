@@ -28,13 +28,15 @@ const Skills: React.FC = () => {
           <SkillCard
             icon={<Code size={32} className="text-primary-500" />}
             title="Frontend"
-            skills={[
-              { name: 'HTML5', icon: 'fab fa-html5 text-orange-500' },
-              { name: 'CSS3', icon: 'fab fa-css3-alt text-blue-500' },
-              { name: 'JavaScript', icon: 'fab fa-js-square text-yellow-400' },
-              { name: 'React + Vite', icon: 'fab fa-react text-blue-400' },
-              { name: 'Tailwind CSS', icon: 'fas fa-wind text-teal-400' },
-            ]}
+           skills={[
+                { name: 'Next.js', icon: 'fas fa-server text-black dark:text-white' }, 
+                { name: 'Tailwind CSS', icon: 'fas fa-wind text-teal-400' },
+                { name: 'React + Vite', icon: 'fab fa-react text-blue-400' },
+                { name: 'TypeScript', icon: 'fas fa-code text-blue-600' },  
+                { name: 'JavaScript', icon: 'fab fa-js-square text-yellow-400' },
+                { name: 'CSS3', icon: 'fab fa-css3-alt text-blue-500' },
+                { name: 'HTML5', icon: 'fab fa-html5 text-orange-500' },
+              ]}
           />
 
           {/* Backend Skills */}
@@ -43,12 +45,12 @@ const Skills: React.FC = () => {
             title="Backend"
             skills={[
               { name: 'Python', icon: 'fab fa-python text-blue-600' },
-              { name: 'Django', icon: 'fas fa-database text-green-500' },
               { name: 'SQL', icon: 'fas fa-database text-emerald-500' },
+              { name: 'Supabase', icon: 'fas fa-database text-purple-500' }, 
+              { name: 'Neon DB', icon: 'fas fa-bolt text-cyan-500' },
             ]}
           />
 
-          {/* Tools & Other */}
           <SkillCard
             icon={<Wrench size={32} className="text-primary-500" />}
             title="Tools & Other"
@@ -58,6 +60,8 @@ const Skills: React.FC = () => {
               { name: 'CLI', icon: 'fas fa-terminal text-gray-500' },
               { name: 'AI Integration', icon: 'fas fa-robot text-purple-500' },
               { name: 'Responsive Design', icon: 'fas fa-mobile-alt text-blue-400' },
+              { name: 'Basic SEO', icon: 'fas fa-search-dollar text-amber-500' },
+              { name: 'Fast Website Best Practices', icon: 'fas fa-tachometer-alt text-red-500' },
             ]}
           />
 

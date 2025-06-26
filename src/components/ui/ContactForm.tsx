@@ -14,7 +14,7 @@ const ContactForm: React.FC = () => {
       <input type="hidden" name="_captcha" value="false" />
       
       {/* Success Redirect */}
-      <input type="hidden" name="_next" value="https://nour-yahyaoui.github.io/official/" />
+      <input type="hidden" name="_next" value="" />
       
       {/* Email Subject */}
       <input type="hidden" name="_subject" value="New Message from Your Website!" />
