@@ -80,7 +80,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </a>
           ) : (
             <span className="flex-1 text-center px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-lg cursor-not-allowed">
-              Code Private
+              Private
             </span>
           )}
         </div>
