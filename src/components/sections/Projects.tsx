@@ -79,16 +79,23 @@ const Projects: React.FC = () => {
       isPrivate: true,
       note: "Personal project with sensitive data - demo access available upon request",
     },
-    {
-      title: "Password Generator",
+   {
+      title: "Free Portfolio Templates",
       description:
-        "A secure password generator with customizable options for length and character types.",
+        "A collection of 5 professional portfolio templates with modern designs, animations, and responsive layouts.",
       image:
-        "https://media.istockphoto.com/id/2172249278/photo/lock-sign-on-abstract-program-code-digital-security-concept-protect-data.webp?a=1&b=1&s=612x612&w=0&k=20&c=hm7XMFfObrdUu1xHN3ca69b0yp8mFr2gSVtwT7Sj9dY=",
-      tags: ["JavaScript", "HTML5", "CSS3", "Security"],
-      mainTag: "JavaScript",
-      liveDemo: "https://generator-one-ecru.vercel.app/",
-      code: "https://github.com/Nour-yahyaoui/generator",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      tags: [
+        "Next.js",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Templates",
+        "TypeScript",
+        "source code"
+      ],
+      mainTag: "Next.js",
+      liveDemo: "https://portfolio-templates-store.vercel.app/",
+      code: "https://portfolio-templates-store.vercel.app/",
     },
     {
       title: "Django Chat Application",
