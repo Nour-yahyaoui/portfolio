@@ -95,7 +95,7 @@ const Projects: React.FC = () => {
       ],
       mainTag: "Next.js",
       liveDemo: "https://portfolio-templates-store.vercel.app/",
-      code: "https://portfolio-templates-store.vercel.app/",
+      code: "https://github.com/nour-yahyaoui/portfolio-templates/",
     },
     {
       title: "Django Chat Application",
