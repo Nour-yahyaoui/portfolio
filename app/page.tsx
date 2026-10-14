@@ -3,7 +3,7 @@ import HomeClient from "./HomeClient";
 import { SITE_URL, DEFAULT_DESCRIPTION } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Nour Yahyaoui | Full-Stack Developer (React, Next.js, Node.js)",
+  title: "Nour Yahyaoui | Full-Stack Developer, AI & Linux Tools",
   description: DEFAULT_DESCRIPTION,
   alternates: {
     canonical: "/",

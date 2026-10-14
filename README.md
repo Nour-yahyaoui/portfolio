@@ -51,6 +51,8 @@ This repo is my personal portfolio site, built with **Next.js** (App Router) and
 
 ### 📌 What I've Actually Shipped
 
+- **[VexOS Desktop](https://github.com/Nour-yahyaoui/vexos)** — Debian trixie live desktop for development, with XFCE, a preinstalled toolchain, and VexOS DevStudio. [Website](https://vexos-omega.vercel.app) · [Docs](https://vexos-omega.vercel.app/docs/) · [Releases](https://github.com/Nour-yahyaoui/vexos/releases)
+- **[nour-code](https://github.com/Nour-yahyaoui/nour-code)** — local AI coding agent powered by Qwen3 8B and Ollama, with permission-checked tools, hot-reloadable skills, and a 265-test offline suite.
 - **[Matjari](https://matjari-dashboard.vercel.app/)** — full-stack store management platform (web + mobile) covering sales, stock/inventory, and employee management for retail businesses.
 - **[Grafspee](https://github.com/nour-yahyaoui/grafspee)** — free open-source React/Next.js component library with 60+ ready-to-use components.
 - **[env-sentry](https://github.com/nour-yahyaoui/env-sentry)** — Python library that catches `.env` drift and hardcoded secrets before they ship.

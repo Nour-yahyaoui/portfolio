@@ -13,6 +13,7 @@ import {
   XCircle
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 
 function ContactClient() {
   const [showAlert, setShowAlert] = useState(false);
@@ -29,14 +30,14 @@ function ContactClient() {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.currentTarget;
+    setFormData((previous) => ({ ...previous, [name]: value }));
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     try {
@@ -73,7 +74,7 @@ function ContactClient() {
       } else {
         throw new Error('Failed to send message');
       }
-    } catch (error) {
+    } catch {
       setAlertMessage("Failed to send message. Please try again later.");
       setAlertType("error");
       setShowAlert(true);

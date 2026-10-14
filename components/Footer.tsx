@@ -1,47 +1,43 @@
-"use client";
+import Link from "next/link";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 
-import { motion } from "framer-motion";
-import { Github, Instagram, Mail } from "lucide-react";
+const socials = [
+  { label: "GitHub", href: "https://github.com/Nour-yahyaoui", icon: Github },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/nourr-yahyaoui-86987b36b", icon: Linkedin },
+  { label: "Email", href: "mailto:nourryahyaoui@gmail.com", icon: Mail },
+];
 
-const Footer = () => {
-  const socialIcons = [
-    { icon: <Github size={16} />, href: "https://github.com/nour-yahyaoui" },
-    { icon: <Instagram size={16} />, href: "https://instagram.com/nourr_yahyaouiii" },
-    { icon: <Mail size={16} />, href: "mailto:nourryahyaoui@gmail.com" }
-  ];
-
+export default function Footer() {
   return (
-    <motion.footer 
-      className="bg-black/50 backdrop-blur-sm border-t border-white/10 py-6"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-sm text-gray-400">
-            © {new Date().getFullYear()} Nour Yahyaoui. All rights reserved.
+    <footer className="border-t border-white/[0.07] bg-[#080a0f]">
+      <div className="mx-auto max-w-7xl px-5 py-9 sm:px-8 lg:px-12">
+        <div className="flex flex-col gap-7 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <Link href="/" className="text-sm font-semibold tracking-tight text-white">Nour Yahyaoui<span className="text-sky-300">.</span></Link>
+            <p className="mt-1.5 text-xs text-white/35">Full-stack developer · Tunisia</p>
           </div>
-          
-          <div className="flex items-center gap-4">
-            {socialIcons.map((social, index) => (
-              <motion.a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.9 }}
+          <div className="flex flex-wrap items-center gap-2">
+            {socials.map(({ label, href, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                aria-label={label}
+                className="inline-flex h-9 items-center gap-2 rounded-full border border-white/[0.08] px-3 text-xs text-white/50 transition hover:border-white/20 hover:text-white/85"
               >
-                {social.icon}
-              </motion.a>
+                <Icon size={14} />
+                {label}
+                {label !== "Email" && <ArrowUpRight size={11} className="text-white/25" />}
+              </a>
             ))}
           </div>
         </div>
+        <div className="mt-7 flex flex-col gap-2 border-t border-white/[0.07] pt-4 text-[10px] text-white/30 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Nour Yahyaoui. Built with care.</p>
+          <p className="font-mono uppercase tracking-[0.13em]">Ideas → reliable software</p>
+        </div>
       </div>
-    </motion.footer>
+    </footer>
   );
-};
-
-export default Footer;
+}

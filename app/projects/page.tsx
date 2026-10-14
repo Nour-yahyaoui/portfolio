@@ -5,14 +5,14 @@ import { projects } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Projects | Nour Yahyaoui - Full-Stack Developer Portfolio",
   description:
-    "A collection of full-stack, e-commerce, and open-source projects built by Nour Yahyaoui with React, Next.js, React Native, PostgreSQL and more.",
+    "Explore VexOS Desktop, nour-code, and other products and open-source projects by Nour Yahyaoui across web, local AI, Linux, and developer tooling.",
   alternates: {
     canonical: "/projects",
   },
   openGraph: {
     title: "Projects | Nour Yahyaoui",
     description:
-      "A collection of full-stack, e-commerce, and open-source projects built by Nour Yahyaoui with React, Next.js, React Native, PostgreSQL and more.",
+      "Explore VexOS Desktop, nour-code, and other products and open-source projects by Nour Yahyaoui across web, local AI, Linux, and developer tooling.",
     url: "/projects",
     type: "website",
   },

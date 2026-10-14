@@ -1,289 +1,135 @@
-"use client";
-
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-import { 
-  Code, Cpu, Database, GitBranch, Github, Rocket, Sparkles, Terminal,
-  Smartphone, Server, Zap, Shield, Palette, Globe, Figma
-} from "lucide-react";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Code2, Cpu, ShieldCheck, TerminalSquare } from "lucide-react";
+
+const buildStatus = [
+  { name: "VexOS Desktop", detail: "Debian trixie · developer desktop", status: "v2.2.1", tint: "orange" },
+  { name: "nour-code", detail: "Qwen3 8B · local AI agent", status: "v1.0.0", tint: "blue" },
+];
 
 export default function Hero() {
-  const ref = useRef(null);
-  const [showAllSkills, setShowAllSkills] = useState(false);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  });
-
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacityBg = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  // Coding meme phrases
-  const memes = [
-    "// TODO: Add more memes",
-    "async await my coffee",
-    "git commit -m 'fix previous commit'",
-    "NaN hours of debugging",
-    "hacking microsoft",
-    "10/0 bugs fixed",
-    "console.log('why is this not working?')",
-    "margin: 0 auto; /* magic */",
-    "npm install --save sanity",
-    "// This is fine 🔥",
-  ];
-
-  // All skills with matching icons
-  const skills = [
-    { name: "React", icon: <Code className="h-4 w-4 text-blue-400" /> },
-    { name: "React Native", icon: <Smartphone className="h-4 w-4 text-blue-300" /> },
-    { name: "Next.js", icon: <Cpu className="h-4 w-4 text-white" /> },
-    { name: "TypeScript", icon: <Terminal className="h-4 w-4 text-cyan-400" /> },
-    { name: "TailwindCSS", icon: <Sparkles className="h-4 w-4 text-cyan-300" /> },
-    { name: "Vite", icon: <Rocket className="h-4 w-4 text-purple-400" /> },
-    { name: "Node.js", icon: <Server className="h-4 w-4 text-green-400" /> },
-    { name: "Express", icon: <Server className="h-4 w-4 text-gray-400" /> },
-    { name: "PostgreSQL", icon: <Database className="h-4 w-4 text-blue-500" /> },
-    { name: "Neon DB", icon: <Database className="h-4 w-4 text-emerald-400" /> },
-    { name: "Zustand", icon: <Zap className="h-4 w-4 text-yellow-400" /> },
-    { name: "Redux", icon: <Zap className="h-4 w-4 text-purple-400" /> },
-    { name: "TanStack Query", icon: <Database className="h-4 w-4 text-orange-400" /> },
-    { name: "Git", icon: <GitBranch className="h-4 w-4 text-orange-400" /> },
-    { name: "GitHub", icon: <Github className="h-4 w-4 text-gray-100" /> },
-    { name: "Figma", icon: <Figma className="h-4 w-4 text-pink-400" /> },
-    { name: "UI/UX Design", icon: <Palette className="h-4 w-4 text-rose-400" /> },
-    { name: "REST APIs", icon: <Globe className="h-4 w-4 text-green-300" /> },
-    { name: "JWT Auth", icon: <Shield className="h-4 w-4 text-red-400" /> },
-    { name: "Python", icon: <Code className="h-4 w-4 text-yellow-500" /> },
-    { name: "PHP", icon: <Code className="h-4 w-4 text-indigo-400" /> },
-  ];
-
-  // Primary skills (always visible)
-  const primarySkills = skills.filter(skill => 
-    ["React", "React Native", "Next.js", "TypeScript", "TailwindCSS", "Vite", "PostgreSQL"].includes(skill.name)
-  );
-
-  // Secondary skills (shown on "Show More")
-  const secondarySkills = skills.filter(skill => 
-    !["React", "React Native", "Next.js", "TypeScript", "TailwindCSS", "Vite", "PostgreSQL"].includes(skill.name)
-  );
-
   return (
-    <section 
-      ref={ref}
-      className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-transparent"
-    >
-      {/* Parallax background elements */}
-      <motion.div 
-        style={{ y: yBg, opacity: opacityBg }}
-        className="absolute inset-0 z-0 pointer-events-none"
-      >
-        <div className="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 blur-xl opacity-20" />
-        <div className="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 blur-xl opacity-20" />
-        <div className="absolute top-1/3 right-1/3 w-32 h-32 rounded-full bg-gradient-to-r from-emerald-400 to-teal-500 blur-xl opacity-20" />
-        <div className="absolute bottom-1/4 left-1/3 w-20 h-20 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 blur-xl opacity-20" />
-      </motion.div>
+    <section className="relative isolate flex min-h-[760px] items-center overflow-hidden border-b border-white/[0.06] lg:min-h-[820px]">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div className="hero-grid absolute inset-0 opacity-[0.42]" />
+        <div className="absolute -left-36 top-16 h-[460px] w-[460px] rounded-full bg-sky-500/[0.09] blur-[130px]" />
+        <div className="absolute -right-24 top-12 h-[520px] w-[520px] rounded-full bg-indigo-500/[0.10] blur-[150px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_58%,#090b10_100%)]" />
+      </div>
 
-      {/* Main content */}
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center">
-          {/* Animated greeting */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6"
-          >
-            <span className="text-lg md:text-xl font-mono text-cyan-400">
-              {"<NourYahyaouiiiiii />"}
-            </span>
-          </motion.div>
-
-          {/* Name/title with tech stack animation */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-          >
-            <span className="inline-block">
-              I build{" "}
-              <motion.span 
-                className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500"
-                animate={{ 
-                  rotate: [0, 0.5, -0.5, 0],
-                }}
-                transition={{ 
-                  repeat: Infinity, 
-                  repeatType: "reverse", 
-                  duration: 4 
-                }}
-              >
-                pixel-perfect
-              </motion.span>
-            </span>
-            <br />
-            <span className="inline-flex items-center gap-2">
-              web & mobile experiences
-              <motion.span
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 15, -15, 0]
-                }}
-                transition={{ 
-                  repeat: Infinity, 
-                  repeatType: "reverse", 
-                  duration: 3 
-                }}
-              >
-                <Rocket className="text-yellow-400" size={32} />
-              </motion.span>
-            </span>
-          </motion.h1>
-
-          {/* Tech stack badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-3 mb-8 max-w-2xl mx-auto"
-          >
-            {/* Always show primary skills */}
-            {primarySkills.map((skill) => (
-              <motion.div
-                key={skill.name}
-                whileHover={{ y: -3 }}
-                className="px-3 py-1.5 rounded-full bg-black bg-opacity-40 backdrop-blur-sm border border-gray-700 flex items-center gap-2 min-w-[100px]"
-              >
-                {skill.icon}
-                <span className="text-sm font-medium text-gray-100">{skill.name}</span>
-              </motion.div>
-            ))}
-
-            {/* Show secondary skills conditionally */}
-            <AnimatePresence>
-              {showAllSkills && secondarySkills.map((skill) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.5 }}
-                  whileHover={{ y: -3 }}
-                  className="px-3 py-1.5 rounded-full bg-black bg-opacity-40 backdrop-blur-sm border border-gray-700 flex items-center gap-2 min-w-[100px]"
-                >
-                  {skill.icon}
-                  <span className="text-sm font-medium text-gray-100">{skill.name}</span>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-
-            {/* Show more/less toggle on mobile */}
-            <div className="w-full flex justify-center mt-3">
-              <motion.button
-                onClick={() => setShowAllSkills(!showAllSkills)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-4 py-1.5 rounded-full bg-black bg-opacity-60 backdrop-blur-sm border border-gray-700 text-sm text-gray-300 flex items-center gap-1"
-              >
-                {showAllSkills ? (
-                  <>
-                    <span>Show Less</span>
-                    <motion.span
-                      animate={{ rotate: 180 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      ↑
-                    </motion.span>
-                  </>
-                ) : (
-                  <>
-                    <span>Show More</span>
-                    <motion.span
-                      animate={{ rotate: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      ↓
-                    </motion.span>
-                  </>
-                )}
-              </motion.button>
-            </div>
-          </motion.div>
-
-          {/* Floating coding memes */}
-          <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
-            {memes.map((meme, i) => (
-              <motion.div
-                key={i}
-                initial={{
-                  opacity: 0,
-                  x: Math.random() > 0.5 ? -100 : 100,
-                  y: Math.random() * 100 - 50
-                }}
-                animate={{
-                  opacity: [0, 0.7, 0],
-                  x: Math.random() > 0.5 ? [-100, 0, 100] : [100, 0, -100],
-                  y: Math.random() * 100 - 50
-                }}
-                transition={{
-                  duration: 15 + Math.random() * 20,
-                  repeat: Infinity,
-                  delay: Math.random() * 5
-                }}
-                className="absolute font-mono text-xs text-gray-400 whitespace-nowrap"
-                style={{
-                  left: `${10 + Math.random() * 80}%`,
-                  top: `${10 + Math.random() * 80}%`
-                }}
-              >
-                {meme}
-              </motion.div>
-            ))}
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-5 pb-24 pt-36 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:px-12 lg:pb-32 lg:pt-40">
+        <div className="relative z-10 max-w-2xl">
+          <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.035] px-3.5 py-2 text-[10px] font-medium uppercase tracking-[0.2em] text-slate-300/75 sm:text-[11px]">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.8)]" />
+            Independent developer · Tunisia
           </div>
 
-          {/* CTA button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="relative group"
-          >
-            <Link href={'/about'}>
-              <motion.button
-                whileHover={{ 
-                  scale: 1.05,
-                  backgroundPosition: "100% 0%"
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium relative overflow-hidden z-10"
-                style={{
-                  backgroundSize: "200% 100%",
-                  transition: "background-position 0.5s"
-                }}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Let's go
-                  <motion.span
-                    animate={{ 
-                      x: [0, 4, -4, 0],
-                    }}
-                    transition={{ 
-                      repeat: Infinity,
-                      duration: 2
-                    }}
-                  >
-                    <Rocket size={18} />
-                  </motion.span>
-                </span>
-                <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 opacity-0"
-                  animate={{ opacity: [0, 0.5, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-              </motion.button>
+          <p className="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-sky-300/80">
+            Nour Yahyaoui <span className="px-1.5 text-white/20">/</span> Software, thoughtfully built
+          </p>
+          <h1 className="max-w-3xl text-[clamp(3rem,5.1vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.07em] text-white">
+            Thoughtful software,
+            <br />
+            <span className="hero-title-gradient">built end to end.</span>
+          </h1>
+          <p className="mt-7 max-w-xl text-base leading-7 text-slate-300/75 sm:text-lg sm:leading-8">
+            I build secure web products, local AI tools, and developer-focused systems — from the first sketch to deployment. Practical engineering, with care in the details.
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <Link
+              href="/projects"
+              className="group inline-flex min-h-12 items-center gap-2.5 rounded-full bg-white px-5 text-sm font-semibold text-[#0a0d13] transition hover:bg-sky-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090b10]"
+            >
+              Explore selected work
+              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
-          </motion.div>
+            <Link
+              href="/contact"
+              className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/12 bg-white/[0.025] px-5 text-sm font-medium text-white/75 transition hover:border-white/25 hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+            >
+              Let&apos;s talk <ArrowRight size={15} />
+            </Link>
+          </div>
+
+          <div className="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-white/[0.09] pt-5 sm:gap-7">
+            <div>
+              <p className="text-xl font-semibold tracking-tight text-white sm:text-2xl">3<span className="text-sky-300">+</span></p>
+              <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-slate-400 sm:text-[11px]">Years with clients</p>
+            </div>
+            <div>
+              <p className="text-xl font-semibold tracking-tight text-white sm:text-2xl">Full-stack</p>
+              <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-slate-400 sm:text-[11px]">Build to deployment</p>
+            </div>
+            <div>
+              <p className="text-xl font-semibold tracking-tight text-white sm:text-2xl">Security</p>
+              <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-slate-400 sm:text-[11px]">Built in, not bolted on</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative mx-auto w-full max-w-[570px] lg:ml-auto lg:mr-0">
+          <div className="pointer-events-none absolute -inset-10 -z-10 rounded-full bg-blue-500/[0.12] blur-[90px]" />
+          <div className="absolute -right-3 -top-5 z-10 hidden items-center gap-2 rounded-full border border-white/10 bg-[#11151d]/85 px-3 py-2 text-[10px] text-white/60 shadow-2xl backdrop-blur-xl sm:flex">
+            <Code2 size={13} className="text-sky-300" />
+            BUILD LOG <span className="text-white/20">·</span> 2026
+          </div>
+          <div className="overflow-hidden rounded-[26px] border border-white/[0.11] bg-[#0e1118]/85 shadow-[0_32px_100px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+            <div className="flex h-12 items-center justify-between border-b border-white/[0.08] px-4 sm:px-5">
+              <div className="flex items-center gap-1.5" aria-hidden="true">
+                <span className="h-2 w-2 rounded-full bg-white/20" />
+                <span className="h-2 w-2 rounded-full bg-white/20" />
+                <span className="h-2 w-2 rounded-full bg-white/20" />
+              </div>
+              <div className="flex items-center gap-2 font-mono text-[10px] text-white/35 sm:text-[11px]">
+                <TerminalSquare size={13} />
+                ~/nour/selected-work
+              </div>
+              <span className="text-[9px] text-white/20">⌘ K</span>
+            </div>
+
+            <div className="p-5 sm:p-7">
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/35">Featured work</p>
+                  <h2 className="mt-1.5 text-lg font-medium tracking-tight text-white">Tools with a point of view.</h2>
+                </div>
+                <div className="grid h-10 w-10 place-items-center rounded-xl border border-sky-300/15 bg-sky-300/[0.08] text-sky-200">
+                  <Cpu size={18} />
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {buildStatus.map((build, index) => (
+                  <div key={build.name} className="group flex items-center gap-3.5 rounded-2xl border border-white/[0.08] bg-white/[0.025] p-3.5 transition hover:border-white/[0.15] hover:bg-white/[0.045] sm:gap-4 sm:p-4">
+                    <div className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl border ${build.tint === "orange" ? "border-orange-300/20 bg-orange-300/[0.09] text-orange-200" : "border-sky-300/20 bg-sky-300/[0.09] text-sky-200"}`}>
+                      {index === 0 ? <TerminalSquare size={19} /> : <Cpu size={19} />}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="text-sm font-medium text-white">{build.name}</p>
+                        <span className={`rounded-md border px-1.5 py-0.5 font-mono text-[9px] ${build.tint === "orange" ? "border-orange-300/15 text-orange-200/65" : "border-sky-300/15 text-sky-200/65"}`}>
+                          {build.status}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-xs text-slate-400">{build.detail}</p>
+                    </div>
+                    <ArrowUpRight size={15} className="mr-1 shrink-0 text-white/25 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/60" />
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 flex items-center justify-between border-t border-white/[0.08] pt-4">
+                <div className="flex items-center gap-2 text-[10px] text-white/40 sm:text-[11px]">
+                  <ShieldCheck size={14} className="text-emerald-300/75" />
+                  Privacy & security, by design
+                </div>
+                <span className="font-mono text-[9px] text-white/25">02 FEATURED PROJECTS</span>
+              </div>
+            </div>
+          </div>
+          <a href="#selected-work" className="mx-auto mt-7 flex w-fit items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-white/35 transition hover:text-white/70 sm:text-[11px]">
+            Scroll to selected work <ArrowDown size={13} />
+          </a>
         </div>
       </div>
     </section>
