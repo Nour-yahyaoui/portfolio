@@ -2,9 +2,9 @@ import type { Project } from "./types";
 
 export const projects: Project[] = [
   {
-    title: "VexOS Desktop",
+    title: "VexOS Linux Distribution",
     description:
-      "A Debian trixie live desktop made for web and software development. Boot one ISO into XFCE, Firefox ESR, Python, Node.js with npm, Rust with cargo, gcc, git, and VexOS DevStudio — a browser-based IDE with a Run button, live preview, and an AI assistant powered by your own Groq key. The live session runs in RAM and resets on reboot.",
+      "A Debian trixie-based Linux distribution built for web and software development. Boot the live ISO into XFCE with Firefox ESR, Python, Node.js with npm, Rust with cargo, gcc, git, and VexOS DevStudio — a browser-based IDE with a Run button, live preview, and an AI assistant powered by your own Groq key. The live session runs in RAM and resets on reboot.",
     artwork: "vexos",
     accent: "orange",
     featured: true,
@@ -12,20 +12,20 @@ export const projects: Project[] = [
     version: "v2.2.1",
     tags: [
       "Debian trixie",
+      "Linux distribution",
       "live-build",
       "XFCE",
-      "Linux",
       "Rust",
       "Python",
       "Node.js",
       "DevStudio",
     ],
     highlights: [
-      "Bootable development desktop",
+      "Bootable developer Linux distribution",
       "Clean RAM-only live session",
       "DevStudio with live preview + AI",
     ],
-    mainTag: "Linux desktop",
+    mainTag: "Linux distribution",
     liveDemo: "https://vexos-omega.vercel.app",
     code: "https://github.com/Nour-yahyaoui/vexos",
     links: [

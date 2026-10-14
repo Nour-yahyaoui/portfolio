@@ -11,7 +11,7 @@ export const AUTHOR_EMAIL = "nourryahyaoui@gmail.com";
 export const TWITTER_HANDLE = ""; // add if/when a Twitter/X handle exists
 
 export const DEFAULT_DESCRIPTION =
-  "Nour Yahyaoui is a full-stack developer from Tunisia with 3+ years of client experience, building secure web products, local AI tooling, and Linux desktop systems.";
+  "Nour Yahyaoui is a full-stack developer from Tunisia building secure web products, local AI tools, and VexOS, a Debian-based Linux distribution for developers.";
 
 export const DEFAULT_KEYWORDS = [
   "Nour Yahyaoui",
@@ -29,7 +29,9 @@ export const DEFAULT_KEYWORDS = [
   "local AI coding agent",
   "Ollama developer",
   "FastAPI developer",
-  "Linux desktop development",
+  "Linux distribution development",
+  "Debian-based Linux distro",
+  "VexOS Linux",
   "Debian live-build",
   "developer tooling",
 ];
@@ -63,7 +65,7 @@ export function personJsonLd() {
       "FastAPI",
       "Ollama",
       "Local AI Agents",
-      "Linux Desktop Development",
+      "Linux Distribution Engineering",
       "Debian live-build",
       "Developer Tooling",
     ],

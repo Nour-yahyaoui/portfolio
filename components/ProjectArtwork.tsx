@@ -64,7 +64,7 @@ function VexOSPreview() {
         </div>
       </div>
       <div className="absolute bottom-3 left-4 rounded-full border border-white/10 bg-black/40 px-2.5 py-1 font-mono text-[7px] tracking-[0.14em] text-orange-100/80 backdrop-blur sm:bottom-4 sm:left-8 sm:text-[8px]">
-        DEBIAN TRIXIE · LIVE-BUILD
+        LINUX DISTRO · DEBIAN TRIXIE
       </div>
     </div>
   );
