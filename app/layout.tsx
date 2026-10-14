@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: SITE_NAME,
+    default: "Nour Yahyaoui | Full-Stack Developer",
     template: "%s | Nour Yahyaoui",
   },
   description: DEFAULT_DESCRIPTION,
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#090b10",
   width: "device-width",
   initialScale: 1,
 };
@@ -87,7 +87,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-[#121212]">
+      <body className="site-shell min-h-screen">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}

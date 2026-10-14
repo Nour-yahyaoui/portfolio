@@ -4,14 +4,14 @@ import AboutClient from "./AboutClient";
 export const metadata: Metadata = {
   title: "About Nour Yahyaoui | Full-Stack Developer from Tunisia",
   description:
-    "19-year-old full-stack developer from Tunisia with 3+ years of freelance experience in React, Next.js, Node.js and PostgreSQL, now expanding into Rust (Actix Web / Axum).",
+    "Meet Nour Yahyaoui, a full-stack developer from Tunisia with 3+ years of client experience building secure web products, local AI tooling, and Linux systems.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
     title: "About Nour Yahyaoui | Full-Stack Developer",
     description:
-      "19-year-old full-stack developer from Tunisia with 3+ years of freelance experience in React, Next.js, Node.js and PostgreSQL, now expanding into Rust.",
+      "Nour Yahyaoui builds secure web products, local AI tooling, and Linux systems from Tunisia.",
     url: "/about",
     type: "profile",
   },

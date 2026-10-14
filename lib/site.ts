@@ -11,7 +11,7 @@ export const AUTHOR_EMAIL = "nourryahyaoui@gmail.com";
 export const TWITTER_HANDLE = ""; // add if/when a Twitter/X handle exists
 
 export const DEFAULT_DESCRIPTION =
-  "Nour Yahyaoui is a full-stack developer from Tunisia specializing in React, Next.js, Node.js and PostgreSQL, with 3+ years of freelance experience building production web, mobile and desktop applications.";
+  "Nour Yahyaoui is a full-stack developer from Tunisia with 3+ years of client experience, building secure web products, local AI tooling, and Linux desktop systems.";
 
 export const DEFAULT_KEYWORDS = [
   "Nour Yahyaoui",
@@ -26,6 +26,12 @@ export const DEFAULT_KEYWORDS = [
   "web developer Tunisia",
   "software engineer Tunisia",
   "Rust developer",
+  "local AI coding agent",
+  "Ollama developer",
+  "FastAPI developer",
+  "Linux desktop development",
+  "Debian live-build",
+  "developer tooling",
 ];
 
 // Person structured data (JSON-LD) reused across pages.
@@ -54,6 +60,12 @@ export function personJsonLd() {
       "React Native",
       "Rust",
       "Full-Stack Development",
+      "FastAPI",
+      "Ollama",
+      "Local AI Agents",
+      "Linux Desktop Development",
+      "Debian live-build",
+      "Developer Tooling",
     ],
     sameAs: [
       "https://github.com/nour-yahyaoui",

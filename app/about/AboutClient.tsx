@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code, Terminal, ArrowDown, Shield, Zap, Layers, Server, Smartphone, Palette, Lock } from "lucide-react";
+import Image from "next/image";
+import { Code, Terminal, ArrowDown, Shield, Zap, Layers, Server, Smartphone, Palette, Lock, Cpu } from "lucide-react";
 import { useEffect, useRef } from "react";
 import SmallUniverse from "@/components/SmallUniverse";
 import Link from "next/link";
@@ -33,6 +34,15 @@ function AboutClient() {
       description: "Scalable serverless APIs and database architecture"
     },
     {
+      name: "AI & Agents",
+      technologies: [
+        "Ollama", "Qwen3 8B", "FastAPI", "SSE Streaming",
+        "Prometheus", "pytest"
+      ],
+      icon: <Cpu className="w-5 h-5" />,
+      description: "Local inference, tool-using agents, and the guardrails around them"
+    },
+    {
       name: "Mobile",
       technologies: [
         "React Native", "Expo", "Android (Java)", 
@@ -44,7 +54,8 @@ function AboutClient() {
     {
       name: "Desktop",
       technologies: [
-        "Python (Tkinter/PyQt)", "Java (Swing/JavaFX)"
+        "Linux (Debian)", "live-build", "XFCE",
+        "VexOS DevStudio", "Python (Tkinter/PyQt)", "Java (Swing/JavaFX)"
       ],
       icon: <Layers className="w-5 h-5" />,
       description: "Cross-platform desktop applications"
@@ -80,8 +91,8 @@ function AboutClient() {
     {
       name: "DevOps & Tools",
       technologies: [
-        "Git/GitHub", "Vercel", "CI/CD",
-        "Postman", "VS Code", "Webpack"
+        "Git/GitHub", "Docker", "Debian", "live-build",
+        "Vercel", "CI/CD", "Postman", "VS Code"
       ],
       icon: <Terminal className="w-5 h-5" />,
       description: "Streamlined development and deployment workflows"
@@ -112,10 +123,10 @@ function AboutClient() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
-      {/* SmallUniverse Foreground - On top of everything */}
+      {/* Subtle ambient background */}
       <div 
         ref={universeRef}
-        className="fixed inset-0 z-50 pointer-events-none"
+        className="fixed inset-0 z-0 pointer-events-none"
         style={{ 
           width: '100vw', 
           height: '100vh',
@@ -148,10 +159,12 @@ function AboutClient() {
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 to-blue-600/30 mix-blend-overlay" />
-                  <img 
-                    src="/port.png" 
+                  <Image
+                    src="/port.png"
                     alt="Nour Yahyaoui"
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 1024px) 80vw, 40vw"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 </motion.div>
@@ -166,7 +179,7 @@ function AboutClient() {
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <span className="text-white drop-shadow-lg">Hi, I'm </span>
+                  <span className="text-white drop-shadow-lg">Hi, I&apos;m </span>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-lg">
                     Nour
                   </span>
@@ -264,17 +277,18 @@ function AboutClient() {
                     My Journey
                   </h3>
                   <p className="text-gray-200 mb-3 sm:mb-4 leading-relaxed text-base sm:text-lg drop-shadow">
-                    I'm a 19-year-old full-stack developer from Tunisia with 3 years
+                    I&apos;m a 19-year-old full-stack developer from Tunisia with 3 years
                     of freelance and client experience. I began my coding journey with
-                    Python and web development fundamentals, and I've since progressed
+                    Python and web development fundamentals, and I&apos;ve since progressed
                     through JavaScript, React, and modern full-stack development with
                     Next.js, React Native, and serverless architectures.
                   </p>
                   <p className="text-gray-200 leading-relaxed text-base sm:text-lg drop-shadow">
-                    I build production web apps end-to-end &mdash; frontend, backend, and
-                    deployment &mdash; and I'm currently expanding into Rust (Actix Web /
-                    Axum) to work on performance-critical backend services. What drives
-                    me is creating secure, scalable applications that solve real problems.
+                    I build production apps end-to-end and am expanding into Rust for
+                    performance-critical services. Recently, that has also meant making
+                    my own tools: <strong className="font-semibold text-white">nour-code</strong>,
+                    a local AI coding agent with audited, permission-checked tools, and
+                    <strong className="font-semibold text-white"> VexOS</strong>, a Debian live desktop ready for development.
                   </p>
                 </motion.div>
               </motion.div>
@@ -331,9 +345,7 @@ function AboutClient() {
                 <h3 className="text-xl sm:text-2xl font-bold text-white">Security-First Development</h3>
               </div>
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                I prioritize security in every project. From implementing rate limiting and CSRF protection 
-                to preventing XSS and SQL injection attacks. My code follows SOLID principles and clean 
-                architecture patterns, ensuring maintainable, scalable, and secure applications.
+                I prioritize security in every project: from rate limiting, CSRF protection, and input validation to guarding local developer tools with path checks, shell allowlists, and audit logs. I pair those practical controls with clean architecture to keep applications maintainable as they scale.
               </p>
               <div className="flex flex-wrap gap-2 sm:gap-3 mt-4">
                 <span className="px-2 sm:px-3 py-1 text-[10px] sm:text-sm rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
@@ -350,6 +362,12 @@ function AboutClient() {
                 </span>
                 <span className="px-2 sm:px-3 py-1 text-[10px] sm:text-sm rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                   🛡️ JWT Authentication
+                </span>
+                <span className="px-2 sm:px-3 py-1 text-[10px] sm:text-sm rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                  🛡️ Path Traversal Protection
+                </span>
+                <span className="px-2 sm:px-3 py-1 text-[10px] sm:text-sm rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                  🛡️ Secret Scanning
                 </span>
               </div>
             </motion.div>
