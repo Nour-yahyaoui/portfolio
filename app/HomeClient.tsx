@@ -36,7 +36,7 @@ export default function HomeClient() {
                 Built to be used. <span className="text-white/40">Made to last.</span>
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-                Two recent projects at the intersection of desktop engineering, local AI, and secure developer tooling.
+                Two recent projects at the intersection of Linux distribution engineering, local AI, and secure developer tooling.
               </p>
             </div>
             <Link href="/projects" className="group inline-flex w-fit items-center gap-2 border-b border-white/20 pb-1.5 text-sm text-white/70 transition hover:border-sky-200/60 hover:text-white">

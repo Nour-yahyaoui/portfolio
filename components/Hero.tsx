@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight, Code2, Cpu, ShieldCheck, TerminalSquare } from "lucide-react";
+import VexOSArtifact from "@/components/VexOSArtifact";
 
 const buildStatus = [
-  { name: "VexOS Desktop", detail: "Debian trixie · developer desktop", status: "v2.2.1", tint: "orange" },
+  { name: "VexOS Linux", detail: "Debian-based · bootable distro", status: "v2.2.1", tint: "orange" },
   { name: "nour-code", detail: "Qwen3 8B · local AI agent", status: "v1.0.0", tint: "blue" },
 ];
 
@@ -32,7 +33,7 @@ export default function Hero() {
             <span className="hero-title-gradient">built end to end.</span>
           </h1>
           <p className="mt-7 max-w-xl text-base leading-7 text-slate-300/75 sm:text-lg sm:leading-8">
-            I build secure web products, local AI tools, and developer-focused systems — from the first sketch to deployment. Practical engineering, with care in the details.
+            I build secure web products, local AI tools, and VexOS — my Debian-based Linux distribution for developers. Practical engineering, from the first sketch to deployment.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -69,11 +70,12 @@ export default function Hero() {
 
         <div className="relative mx-auto w-full max-w-[570px] lg:ml-auto lg:mr-0">
           <div className="pointer-events-none absolute -inset-10 -z-10 rounded-full bg-blue-500/[0.12] blur-[90px]" />
-          <div className="absolute -right-3 -top-5 z-10 hidden items-center gap-2 rounded-full border border-white/10 bg-[#11151d]/85 px-3 py-2 text-[10px] text-white/60 shadow-2xl backdrop-blur-xl sm:flex">
-            <Code2 size={13} className="text-sky-300" />
-            BUILD LOG <span className="text-white/20">·</span> 2026
+          <VexOSArtifact />
+          <div className="absolute -left-3 -top-5 z-20 hidden items-center gap-2 rounded-full border border-white/10 bg-[#11151d]/85 px-3 py-2 text-[10px] text-white/60 shadow-2xl backdrop-blur-xl sm:flex">
+            <Code2 size={13} className="text-orange-300" />
+            DISTRO BUILD <span className="text-white/20">·</span> 2026
           </div>
-          <div className="overflow-hidden rounded-[26px] border border-white/[0.11] bg-[#0e1118]/85 shadow-[0_32px_100px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+          <div className="relative z-10 overflow-hidden rounded-[26px] border border-white/[0.11] bg-[#0e1118]/85 shadow-[0_32px_100px_rgba(0,0,0,0.45)] backdrop-blur-xl">
             <div className="flex h-12 items-center justify-between border-b border-white/[0.08] px-4 sm:px-5">
               <div className="flex items-center gap-1.5" aria-hidden="true">
                 <span className="h-2 w-2 rounded-full bg-white/20" />

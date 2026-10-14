@@ -36,13 +36,15 @@ a {
   background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 54px 54px;
-  mask-image: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.55) 58%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.55) 58%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.55) 58%, transparent 100%);
 }
 
 .hero-title-gradient {
   background: linear-gradient(108deg, #f8fafc 3%, #cbdcf5 36%, #8bdaf6 76%, #a5b4fc 100%);
   background-clip: text;
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
 }
 
@@ -59,6 +61,335 @@ a {
 .section-kicker span {
   color: rgba(125, 211, 252, 0.68);
   padding: 0 0.45rem;
+}
+
+/* A lightweight CSS-only 3D artifact for the VexOS Linux distribution. */
+.vexos-artifact {
+  --cube-size: 126px;
+  --cube-half: 63px;
+  position: absolute;
+  z-index: 15;
+  top: -190px;
+  right: 30px;
+  width: 190px;
+  height: 190px;
+  perspective: 900px;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.vexos-artifact-aura {
+  position: absolute;
+  inset: 14%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.22), rgba(56, 189, 248, 0.08) 44%, transparent 72%);
+  filter: blur(15px);
+}
+
+.vexos-artifact-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.19);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+
+.vexos-artifact-orbit--outer {
+  width: 196px;
+  height: 70px;
+  border-color: rgba(251, 146, 60, 0.42);
+  animation: vexos-orbit-spin 28s linear infinite;
+}
+
+.vexos-artifact-orbit--inner {
+  width: 156px;
+  height: 94px;
+  border-color: rgba(125, 211, 252, 0.28);
+  animation: vexos-orbit-spin-reverse 34s linear infinite;
+}
+
+.vexos-artifact-orbit-node {
+  position: absolute;
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.vexos-artifact-orbit-node--one {
+  top: 50%;
+  left: 12%;
+  background: #fdba74;
+  box-shadow: 0 0 13px rgba(251, 146, 60, 0.9);
+}
+
+.vexos-artifact-orbit-node--two {
+  top: 15%;
+  right: 15%;
+  width: 5px;
+  height: 5px;
+  background: #bae6fd;
+  box-shadow: 0 0 12px rgba(125, 211, 252, 0.9);
+}
+
+.vexos-artifact-float {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  animation: vexos-artifact-float 5.5s ease-in-out infinite;
+}
+
+.vexos-cube {
+  position: relative;
+  width: var(--cube-size);
+  height: var(--cube-size);
+  transform-style: preserve-3d;
+  animation: vexos-cube-turn 26s linear infinite;
+  will-change: transform;
+}
+
+.vexos-cube-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #fff7ed;
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.08), 0 0 22px rgba(249, 115, 22, 0.08);
+}
+
+.vexos-cube-face--front {
+  gap: 3px;
+  background: linear-gradient(145deg, rgba(249, 115, 22, 0.62), rgba(64, 34, 25, 0.97) 44%, #10131a 100%);
+  transform: translateZ(var(--cube-half));
+}
+
+.vexos-cube-face--back {
+  gap: 11px;
+  background: linear-gradient(145deg, #242735, #11131b 72%);
+  transform: rotateY(180deg) translateZ(var(--cube-half));
+}
+
+.vexos-cube-face--right {
+  gap: 9px;
+  background: linear-gradient(145deg, #c05c2e, #5a3028 52%, #17151a);
+  transform: rotateY(90deg) translateZ(var(--cube-half));
+}
+
+.vexos-cube-face--left {
+  gap: 9px;
+  background: linear-gradient(145deg, #293341, #10141b 70%);
+  transform: rotateY(-90deg) translateZ(var(--cube-half));
+}
+
+.vexos-cube-face--top {
+  border-color: rgba(255, 212, 170, 0.4);
+  background: linear-gradient(145deg, #514039, #28232a);
+  transform: rotateX(90deg) translateZ(var(--cube-half));
+}
+
+.vexos-cube-face--bottom {
+  background: linear-gradient(145deg, #131922, #25202a);
+  transform: rotateX(-90deg) translateZ(var(--cube-half));
+}
+
+.vexos-cube-mark {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.14em;
+  line-height: 0.9;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.4);
+}
+
+.vexos-cube-mark span {
+  color: #fdba74;
+}
+
+.vexos-cube-name,
+.vexos-cube-side-mark {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.vexos-cube-caption,
+.vexos-cube-version,
+.vexos-cube-side-version,
+.vexos-cube-top-label {
+  color: rgba(255, 247, 237, 0.68);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 6px;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+.vexos-cube-caption {
+  font-size: 5px;
+  letter-spacing: 0.12em;
+}
+
+.vexos-cube-rule,
+.vexos-cube-side-rule {
+  width: 48px;
+  height: 1px;
+  margin: 2px 0;
+  background: linear-gradient(90deg, transparent, rgba(253, 186, 116, 0.85), transparent);
+}
+
+.vexos-cube-version {
+  color: rgba(255, 237, 213, 0.78);
+  font-size: 5px;
+}
+
+.vexos-cube-terminal {
+  color: #86efac;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 27px;
+  font-weight: 700;
+  text-shadow: 0 0 18px rgba(134, 239, 172, 0.6);
+}
+
+.vexos-cube-side-mark {
+  writing-mode: vertical-rl;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
+
+.vexos-cube-side-rule {
+  width: 24px;
+}
+
+.vexos-cube-side-version {
+  font-size: 5px;
+}
+
+.vexos-cube-top-label {
+  position: relative;
+  z-index: 1;
+  padding: 4px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(20, 18, 18, 0.58);
+  font-size: 5px;
+}
+
+.vexos-cube-top-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.vexos-artifact-chip {
+  position: absolute;
+  right: -13px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  background: rgba(14, 17, 24, 0.82);
+  color: rgba(255, 255, 255, 0.72);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: 0.11em;
+  white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+.vexos-artifact-chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fb923c;
+  box-shadow: 0 0 10px rgba(251, 146, 60, 0.8);
+}
+
+@keyframes vexos-cube-turn {
+  from { transform: rotateX(-18deg) rotateY(-28deg); }
+  to { transform: rotateX(-18deg) rotateY(332deg); }
+}
+
+@keyframes vexos-artifact-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes vexos-orbit-spin {
+  from { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(-24deg); }
+  to { transform: translate(-50%, -50%) rotateX(68deg) rotateZ(336deg); }
+}
+
+@keyframes vexos-orbit-spin-reverse {
+  from { transform: translate(-50%, -50%) rotateX(63deg) rotateZ(30deg); }
+  to { transform: translate(-50%, -50%) rotateX(63deg) rotateZ(-330deg); }
+}
+
+@media (max-width: 640px) {
+  .vexos-artifact {
+    --cube-size: 110px;
+    --cube-half: 55px;
+    top: -166px;
+    right: -5px;
+    width: 166px;
+    height: 166px;
+  }
+
+  .vexos-artifact-orbit--outer {
+    width: 174px;
+    height: 62px;
+  }
+
+  .vexos-artifact-orbit--inner {
+    width: 142px;
+    height: 82px;
+  }
+
+  .vexos-artifact-chip {
+    right: -8px;
+    bottom: 1px;
+    padding: 6px 8px;
+    font-size: 7px;
+  }
+
+  .vexos-cube-mark {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 380px) {
+  .vexos-artifact {
+    right: -10px;
+    transform: scale(0.88);
+    transform-origin: top right;
+  }
+
+  .vexos-artifact-chip {
+    right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vexos-artifact-orbit,
+  .vexos-artifact-float,
+  .vexos-cube {
+    animation: none !important;
+  }
+
+  .vexos-cube {
+    transform: rotateX(-18deg) rotateY(-28deg);
+  }
 }
 
 @media (max-width: 640px) {

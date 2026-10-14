@@ -5,14 +5,14 @@ import { projects } from "@/lib/projects";
 export const metadata: Metadata = {
   title: "Projects | Nour Yahyaoui - Full-Stack Developer Portfolio",
   description:
-    "Explore VexOS Desktop, nour-code, and other products and open-source projects by Nour Yahyaoui across web, local AI, Linux, and developer tooling.",
+    "Explore VexOS, a Debian-based Linux distribution, nour-code, and other projects by Nour Yahyaoui across web, local AI, Linux, and developer tooling.",
   alternates: {
     canonical: "/projects",
   },
   openGraph: {
     title: "Projects | Nour Yahyaoui",
     description:
-      "Explore VexOS Desktop, nour-code, and other products and open-source projects by Nour Yahyaoui across web, local AI, Linux, and developer tooling.",
+      "Explore VexOS, a Debian-based Linux distribution, nour-code, and other projects by Nour Yahyaoui across web, local AI, Linux, and developer tooling.",
     url: "/projects",
     type: "website",
   },

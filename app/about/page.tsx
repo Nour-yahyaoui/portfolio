@@ -4,7 +4,7 @@ import AboutClient from "./AboutClient";
 export const metadata: Metadata = {
   title: "About Nour Yahyaoui | Full-Stack Developer from Tunisia",
   description:
-    "Meet Nour Yahyaoui, a full-stack developer from Tunisia with 3+ years of client experience building secure web products, local AI tooling, and Linux systems.",
+    "Meet Nour Yahyaoui, a full-stack developer from Tunisia building secure web products, local AI tools, and VexOS, a Debian-based Linux distribution.",
   alternates: {
     canonical: "/about",
   },

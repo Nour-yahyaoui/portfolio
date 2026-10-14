@@ -288,7 +288,7 @@ function AboutClient() {
                     performance-critical services. Recently, that has also meant making
                     my own tools: <strong className="font-semibold text-white">nour-code</strong>,
                     a local AI coding agent with audited, permission-checked tools, and
-                    <strong className="font-semibold text-white"> VexOS</strong>, a Debian live desktop ready for development.
+                    <strong className="font-semibold text-white"> VexOS</strong>, my Debian-based Linux distribution, packaged as a development-ready live ISO.
                   </p>
                 </motion.div>
               </motion.div>

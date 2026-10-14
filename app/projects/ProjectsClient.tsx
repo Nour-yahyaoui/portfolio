@@ -19,7 +19,7 @@ export default function ProjectsClient() {
           </h1>
           <div className="mt-6 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <p className="max-w-xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-              A selection of products, tools, and experiments — from a Debian-based development desktop to a local AI coding agent.
+              A selection of products, tools, and experiments — from VexOS, a Debian-based Linux distribution, to a local AI coding agent.
             </p>
             <Link href="#more-work" className="group inline-flex w-fit shrink-0 items-center gap-2 text-xs uppercase tracking-[0.15em] text-white/45 transition hover:text-white/80">
               More work <ArrowDownRight size={15} className="transition-transform group-hover:translate-y-0.5 group-hover:translate-x-0.5" />
