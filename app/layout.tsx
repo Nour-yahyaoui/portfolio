@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import {
   SITE_URL,
   SITE_NAME,
@@ -75,10 +77,18 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#090b10",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f3ee" },
+    { media: "(prefers-color-scheme: dark)", color: "#12110f" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
+
+// Runs before first paint (beforeInteractive): picks the stored theme, else
+// the system preference, and sets [data-theme] so there is no flash of the
+// wrong theme. Per global-ui-reformat — never do this in useEffect.
+const THEME_INIT_SCRIPT = `try{var m=localStorage.getItem('theme');var s=(m==='dark'||m==='light')?m:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',s);}catch(e){document.documentElement.setAttribute('data-theme','light');}`;
 
 export default function RootLayout({
   children,
@@ -86,8 +96,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="site-shell min-h-screen">
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen bg-paper text-ink">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {THEME_INIT_SCRIPT}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
@@ -98,9 +111,14 @@ export default function RootLayout({
             __html: JSON.stringify(websiteJsonLd()),
           }}
         />
-        <Header />
-        {children}
-        <Footer />
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <ThemeProvider>
+          <Header />
+          <div id="main">{children}</div>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -54,12 +54,12 @@ export const projects: Project[] = [
   {
     title: "nour-code",
     description:
-      "A local-first AI coding agent that serves Qwen3 8B through Ollama and FastAPI. It gives the model controlled access to real files, a shell, and hot-reloadable Python skills while keeping sensitive work on your machine. Production-Ready Mode hardens touched files and returns a readiness checklist; SSE streaming, restart-safe sessions, rotating logs, optional Prometheus metrics, and 265 offline tests make it a service rather than a one-off script.",
+      "A local-first AI coding agent that serves Qwen3 8B through Ollama and FastAPI. It gives the model controlled access to real files, a shell, and hot-reloadable Python skills while keeping sensitive work on your machine. Production-Ready Mode hardens touched files and returns a readiness checklist; SSE streaming, restart-safe sessions, rotating logs, optional Prometheus metrics, and 345 offline tests make it a service rather than a one-off script.",
     artwork: "nour-code",
     accent: "blue",
     featured: true,
     status: "Local-first AI agent",
-    version: "v1.0.0",
+    version: "v1.4.0",
     tags: [
       "Python 3.11+",
       "FastAPI",
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     highlights: [
       "Path + symlink checks, shell allow/deny, JSONL audit",
       "Hot-reloadable security + production skills",
-      "265 offline tests · SSE · restart-safe sessions",
+      "345 offline tests · SSE · restart-safe sessions",
     ],
     mainTag: "AI coding agent",
     code: "https://github.com/Nour-yahyaoui/nour-code",
@@ -88,6 +88,22 @@ export const projects: Project[] = [
         variant: "quiet",
       },
     ],
+  },
+  {
+    title: "Campus — University Community Platform",
+    description:
+      "A free, open-source university community platform: clubs with real mini-sites, student projects with a review workflow, events with capacity-safe registration and check-in, and an operations console that reports what it can actually measure — including what it cannot.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Open Source",
+      "Community",
+      "Events",
+    ],
+    mainTag: "Full Stack",
+    code: "https://github.com/Nour-yahyaoui/Campus",
+    note: "Pinned on GitHub — clubs, projects, and events for student communities",
   },
   {
     title: "bacplus - Plateforme d'entraide pour le Bac Tunisien",

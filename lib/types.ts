@@ -20,7 +20,8 @@ export interface ProjectLink {
 export interface Project {
   title: string;
   description: string;
-  artwork: ProjectArtwork;
+  /** Legacy v1 artwork key — v2 (Paper & Ink) renders projects typographically. */
+  artwork?: ProjectArtwork;
   accent?: ProjectAccent;
   featured?: boolean;
   status?: string;
