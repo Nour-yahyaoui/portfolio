@@ -59,4 +59,4 @@ BANNED:     gradients · gradient text · emoji as icons · centred body copy ·
 | Project data (single source) | `lib/projects.ts` |
 | Case-study prose per project | `lib/projectDetails.ts` |
 | Skills data (single source) | `lib/skills.ts` |
-| Skills Universe (3D sphere) | `components/SkillUniverse.tsx` — the ONE gradient/glow exception in the brief: a night-sky panel, dark in both themes, framed by the paper. Nowhere else. |
+| Skills marquee (horizontal showcase) | `components/SkillMarquee.tsx` — pure CSS transform animation, zero client JS; pauses on hover/focus, scrollable under reduced motion |

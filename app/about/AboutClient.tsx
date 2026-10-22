@@ -182,10 +182,10 @@ export default function AboutClient() {
           </p>
         </div>
         <p className="mt-5 max-w-2xl text-[15px] leading-7 text-mute">
-          Prefer it alive? The same skills exist as an interactive 3D universe —
-          44 of them in orbit, each linked to the project that proves it.{" "}
+          Prefer it in motion? The same skills scroll past as an animated
+          showcase — 44 of them, each linked to the project that proves it.{" "}
           <Link href="/skills" className="inline-flex items-center gap-1.5 whitespace-nowrap font-semibold text-accent underline decoration-accent underline-offset-4">
-            Enter the Skills Universe <ArrowRight size={14} aria-hidden="true" />
+            See the skills showcase <ArrowRight size={14} aria-hidden="true" />
           </Link>
         </p>
 

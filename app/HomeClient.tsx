@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Hero from "@/components/Hero";
-import SkillUniverse from "@/components/SkillUniverse";
+import SkillMarquee from "@/components/SkillMarquee";
 import ProjectCard from "@/components/ProjectCard";
 import { featuredProjects, projects } from "@/lib/projects";
 
@@ -219,26 +219,26 @@ export default function HomeClient() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8" aria-labelledby="universe-title">
+      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8" aria-labelledby="skills-marquee-title">
         <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-b-2 border-ink pb-4">
           <div>
-            <p className="label-mono">06 · The skills universe</p>
-            <h2 id="universe-title" className="h-title mt-3 text-ink">
-              All of it, in one orbit.
+            <p className="label-mono">06 · Skills in motion</p>
+            <h2 id="skills-marquee-title" className="h-title mt-3 text-ink">
+              All of it, scrolling past.
             </h2>
           </div>
           <Link href="/skills" className="link-rule">
-            Open the full universe
+            See all skills
             <ArrowUpRight size={14} aria-hidden="true" />
           </Link>
         </div>
         <p className="mt-5 max-w-2xl text-[15px] leading-7 text-mute">
-          Forty-four skills as planets — React and Rust, Actix and Ollama,
-          Postgres and Python — around the person who answers for them. Drag
-          to spin; tap a planet to meet it.
+          Forty-four skills in motion — React and Rust, Actix and Ollama,
+          Postgres and Python. Hover to pause the strip; click any skill to
+          open the project that proves it.
         </p>
         <div className="mt-8">
-          <SkillUniverse variant="compact" />
+          <SkillMarquee variant="compact" />
         </div>
       </section>
 
