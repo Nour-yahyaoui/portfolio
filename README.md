@@ -11,7 +11,7 @@
 🎓 19-year-old full-stack developer from Tunisia, **3 years of freelance/client experience**.
 💻 I build production web apps end-to-end — frontend, backend, and deployment — and I'm currently expanding into **Rust (Actix Web / Axum)** to work on performance-critical backend services.
 
-This repo is my personal portfolio site, built with **Next.js** (App Router) and Tailwind CSS. **v2 — "Paper & Ink"**: an editorial spec-sheet design with a numbered project index, a full case study per project, light/dark themes that follow your system, and an interactive 3D **Skills Universe** at `/skills` — 44 skills in orbit, each linked to its proof. Design brief: [`docs/STYLE.md`](docs/STYLE.md).
+This repo is my personal portfolio site, built with **Next.js** (App Router) and Tailwind CSS. **v2 — "Paper & Ink"**: an editorial spec-sheet design with a numbered project index, a full case study per project, light/dark themes that follow your system, and an animated **skills showcase** at `/skills` — 44 skills in motion, each linked to its proof. Design brief: [`docs/STYLE.md`](docs/STYLE.md).
 
 ---
 

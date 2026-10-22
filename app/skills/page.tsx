@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import SkillUniverse from "@/components/SkillUniverse";
-import { constellations, skillGroups, universeSkills } from "@/lib/skills";
+import SkillMarquee from "@/components/SkillMarquee";
+import { showcaseSkills, skillAreas, skillGroups } from "@/lib/skills";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Skills Universe — React, Next.js, Rust, Python & Local AI",
+  title: "Skills — React, Next.js, Rust, Python & Local AI",
   description:
-    "Every skill of full-stack developer Nour Yahyaoui in one interactive 3D universe: React, Next.js, TypeScript, Node.js, Python, Rust with Actix Web and Axum, PostgreSQL, Ollama local AI, React Native, Docker — each planet linked to the project that proves it.",
+    "Every skill of full-stack developer Nour Yahyaoui in one animated showcase: React, Next.js, TypeScript, Node.js, Python, Rust with Actix Web and Axum, PostgreSQL, Ollama local AI, React Native, Docker — each skill linked to the project that proves it.",
   alternates: { canonical: "/skills" },
   openGraph: {
-    title: "The Skills Universe | Nour Yahyaoui",
+    title: "Skills | Nour Yahyaoui",
     description:
-      "44 skills in orbit — drag the universe, tap a planet, read the proof. React · Next.js · Rust · Python · Local AI.",
+      "44 skills in motion — every icon linked to the project that proves it. React · Next.js · Rust · Python · Local AI.",
     url: "/skills",
     type: "website",
   },
@@ -27,7 +27,7 @@ export default function SkillsPage() {
     "@type": "ItemList",
     name: "Skills of Nour Yahyaoui",
     url: `${SITE_URL}/skills`,
-    itemListElement: universeSkills.map((skill, index) => ({
+    itemListElement: showcaseSkills.map((skill, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: skill.name,
@@ -44,42 +44,42 @@ export default function SkillsPage() {
 
       <header className="border-b-2 border-ink pb-8">
         <p className="label-mono">
-          Skills <span className="px-1 text-accent">·</span> {universeSkills.length} in orbit ·{" "}
+          Skills <span className="px-1 text-accent">·</span> {showcaseSkills.length} showcased ·{" "}
           {totalTechnologies} itemised below
         </p>
-        <h1 className="h-display mt-5 text-ink">My skills, as a small universe.</h1>
+        <h1 className="h-display mt-5 text-ink">Every skill, in one place.</h1>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-mute">
-          Every technology I work with, in one place — orbiting the person who
-          has to answer for all of them. Drag to spin it, tap any planet to
-          see what I do with it and which project proves it. Prefer a ledger
-          to a galaxy? The complete inventory is itemised underneath.
+          Every technology I work with, scrolling past in plain sight — React
+          and Rust, Actix and Axum, Python and Postgres, local AI and Linux.
+          Click any skill to open the project that proves it. The complete
+          inventory is itemised underneath.
         </p>
       </header>
 
       <div className="pt-10">
-        <SkillUniverse />
+        <SkillMarquee />
       </div>
 
-      <section className="pt-16" aria-labelledby="constellations-title">
+      <section className="pt-16" aria-labelledby="groups-title">
         <div className="border-b-2 border-ink pb-4">
-          <p className="label-mono">Chart</p>
-          <h2 id="constellations-title" className="h-title mt-3 text-ink">
-            Six constellations.
+          <p className="label-mono">Areas</p>
+          <h2 id="groups-title" className="h-title mt-3 text-ink">
+            Six areas.
           </h2>
         </div>
         <div className="grid gap-x-10 md:grid-cols-2 lg:grid-cols-3">
-          {constellations.map((constellation, i) => {
-            const count = universeSkills.filter((s) => s.constellation === constellation.name).length;
+          {skillAreas.map((area, i) => {
+            const count = showcaseSkills.filter((s) => s.area === area.name).length;
             return (
-              <article key={constellation.name} className="border-b border-line py-6">
+              <article key={area.name} className="border-b border-line py-6">
                 <p className="tnum font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                   {String(i + 1).padStart(2, "0")} · {count} skills
                 </p>
-                <h3 className="h-section mt-2.5 text-ink">{constellation.name}</h3>
-                <p className="mt-2 text-[15px] leading-7 text-mute">{constellation.description}</p>
+                <h3 className="h-section mt-2.5 text-ink">{area.name}</h3>
+                <p className="mt-2 text-[15px] leading-7 text-mute">{area.description}</p>
                 <p className="mt-3 font-mono text-[11px] leading-5 tracking-[0.04em] text-mute">
-                  {universeSkills
-                    .filter((s) => s.constellation === constellation.name)
+                  {showcaseSkills
+                    .filter((s) => s.area === area.name)
                     .map((s) => s.name)
                     .join(" · ")}
                 </p>
@@ -88,10 +88,10 @@ export default function SkillsPage() {
           })}
         </div>
         <p className="mt-6 max-w-2xl text-sm leading-6 text-mute">
-          Planet size is honest, not decorative: <strong className="font-semibold text-ink">Core</strong> skills
+          The dot on each chip is honest, not decorative: <strong className="font-semibold text-ink">Core</strong> skills
           are daily drivers, <strong className="font-semibold text-ink">Strong</strong> ones have shipped to
           production, and <strong className="font-semibold text-ink">Toolkit</strong> skills are in regular
-          rotation. Every planet links to its proof.
+          rotation. Every chip links to its proof.
         </p>
       </section>
 
@@ -137,10 +137,10 @@ export default function SkillsPage() {
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-2xl">
             <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-oninvmute">
-              Need one of these planets?
+              Need one of these skills?
             </p>
             <h2 id="skills-cta" className="h-title mt-3">
-              Skills are only interesting in orbit around a problem.
+              Skills are only interesting around a problem.
             </h2>
             <p className="mt-3 text-[15px] leading-7 text-oninvmute">
               Tell me what you&apos;re building — I&apos;ll tell you honestly
