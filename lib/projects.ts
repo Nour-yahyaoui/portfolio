@@ -46,9 +46,11 @@ export const projects: Project[] = [
       "345 offline tests · SSE · restart-safe sessions",
     ],
     mainTag: "AI coding agent",
+    liveDemo: "https://nour-code-agent.vercel.app",
     code: "https://github.com/Nour-yahyaoui/nour-code",
     links: [
-      { label: "Source code", href: "https://github.com/Nour-yahyaoui/nour-code", variant: "primary" },
+      { label: "Website", href: "https://nour-code-agent.vercel.app", variant: "primary" },
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/nour-code", variant: "secondary" },
       { label: "Documentation", href: "https://github.com/Nour-yahyaoui/nour-code#readme", variant: "quiet" },
     ],
   },
