@@ -1,41 +1,58 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ArrowUpRight, Github, Menu, X } from "lucide-react";
+import { Github, Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Projects", href: "/projects" },
+  { name: "Contact", href: "/contact" },
 ];
 
+/**
+ * Masthead, like the top of a printed manual: solid paper, one hairline,
+ * serif name, mono navigation. Sticky (not floating, no glass, no shadow).
+ */
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
 
+  // Escape closes the mobile menu and returns focus to the button.
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [isMenuOpen]);
+
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
-      <div className="mx-auto flex h-[62px] max-w-7xl items-center justify-between rounded-2xl border border-white/[0.085] bg-[#0c0f15]/80 px-4 shadow-[0_10px_40px_rgba(0,0,0,0.22)] backdrop-blur-2xl sm:px-6">
-        <Link href="/" className="group flex items-center gap-3" aria-label="Nour Yahyaoui home">
-          <span className="grid h-9 w-9 place-items-center rounded-xl border border-sky-300/15 bg-sky-300/[0.07] font-mono text-sm font-semibold tracking-[-0.08em] text-sky-200 transition group-hover:border-sky-300/30 group-hover:bg-sky-300/10">
-            NY
+    <header className="sticky top-0 z-50 border-b border-line bg-paper">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex min-h-11 items-center gap-3" aria-label="Nour Yahyaoui — home">
+          <span className="font-display text-lg leading-none tracking-[-0.01em] text-ink">
+            Nour Yahyaoui<span className="text-accent">.</span>
           </span>
-          <span className="hidden sm:block">
-            <span className="block text-[13px] font-semibold tracking-tight text-white">Nour Yahyaoui</span>
-            <span className="mt-0.5 block font-mono text-[9px] uppercase tracking-[0.16em] text-white/35">Software developer</span>
-          </span>
+          <span className="label-mono hidden lg:block">Full-stack developer</span>
         </Link>
 
-        <nav aria-label="Main navigation" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Main navigation" className="hidden items-center md:flex">
           {navItems.map((item) => {
             const active = isActive(item.href);
             return (
@@ -43,43 +60,44 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`relative rounded-full px-3.5 py-2 text-xs font-medium transition ${active ? "bg-white/[0.07] text-white" : "text-white/50 hover:bg-white/[0.04] hover:text-white/85"}`}
+                className={`flex min-h-11 items-center px-3 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors ${
+                  active ? "text-accent" : "text-mute hover:text-ink"
+                }`}
               >
                 {item.name}
-                {active && <span className="absolute inset-x-3.5 -bottom-[1px] h-px bg-sky-200/70" />}
+                {active && <span className="ml-1.5 inline-block h-1 w-1 rounded-full bg-accent" aria-hidden="true" />}
               </Link>
             );
           })}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="flex items-center gap-2">
           <a
             href="https://github.com/Nour-yahyaoui"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Nour Yahyaoui on GitHub"
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/[0.08] text-white/55 transition hover:border-white/20 hover:text-white"
+            className="grid h-11 w-11 place-items-center rounded-[2px] border border-line text-mute transition-colors hover:border-linestrong hover:text-ink"
           >
-            <Github size={15} />
+            <Github size={17} aria-hidden="true" />
           </a>
-          <Link href="/contact" className="group inline-flex h-9 items-center gap-2 rounded-full bg-white px-4 text-xs font-semibold text-[#090b10] transition hover:bg-sky-100">
-            Let&apos;s talk <ArrowUpRight size={13} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </Link>
+          <ThemeToggle />
+          <button
+            ref={menuButtonRef}
+            type="button"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav"
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="grid h-11 w-11 place-items-center rounded-[2px] border border-line text-mute transition-colors hover:border-linestrong hover:text-ink md:hidden"
+          >
+            {isMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+          </button>
         </div>
-
-        <button
-          type="button"
-          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={isMenuOpen}
-          onClick={() => setIsMenuOpen((open) => !open)}
-          className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-white/75 transition hover:bg-white/[0.06] md:hidden"
-        >
-          {isMenuOpen ? <X size={17} /> : <Menu size={17} />}
-        </button>
       </div>
 
       {isMenuOpen && (
-        <nav aria-label="Mobile navigation" className="mx-3 mt-2 rounded-2xl border border-white/10 bg-[#0c0f15]/95 p-2 shadow-2xl backdrop-blur-2xl sm:mx-5 md:hidden">
+        <nav id="mobile-nav" aria-label="Mobile navigation" className="border-t border-linesoft md:hidden">
           {navItems.map((item) => {
             const active = isActive(item.href);
             return (
@@ -88,16 +106,15 @@ export default function Header() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 onClick={() => setIsMenuOpen(false)}
-                className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm ${active ? "bg-white/[0.07] text-white" : "text-white/60 hover:bg-white/[0.04] hover:text-white"}`}
+                className={`flex min-h-12 items-center justify-between border-b border-linesoft px-4 font-mono text-xs uppercase tracking-[0.14em] last:border-b-0 ${
+                  active ? "text-accent" : "text-mute"
+                }`}
               >
                 {item.name}
-                {active && <span className="h-1.5 w-1.5 rounded-full bg-sky-200" />}
+                {active && <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />}
               </Link>
             );
           })}
-          <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-white py-3 text-sm font-semibold text-[#090b10]">
-            Contact me <ArrowUpRight size={15} />
-          </Link>
         </nav>
       )}
     </header>

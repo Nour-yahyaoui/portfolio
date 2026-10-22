@@ -1,41 +1,49 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const socials = [
-  { label: "GitHub", href: "https://github.com/Nour-yahyaoui", icon: Github },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/nourr-yahyaoui-86987b36b", icon: Linkedin },
-  { label: "Email", href: "mailto:nourryahyaoui@gmail.com", icon: Mail },
+  { label: "GitHub", href: "https://github.com/Nour-yahyaoui" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/nourr-yahyaoui-86987b36b" },
+  { label: "Instagram", href: "https://instagram.com/nourr_yahyaouiii" },
+  { label: "Email", href: "mailto:nourryahyaoui@gmail.com" },
 ];
 
+/** Colophon — like the last page of a printed document. */
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.07] bg-[#080a0f]">
-      <div className="mx-auto max-w-7xl px-5 py-9 sm:px-8 lg:px-12">
-        <div className="flex flex-col gap-7 sm:flex-row sm:items-center sm:justify-between">
+    <footer className="border-t border-line">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <Link href="/" className="text-sm font-semibold tracking-tight text-white">Nour Yahyaoui<span className="text-sky-300">.</span></Link>
-            <p className="mt-1.5 text-xs text-white/35">Full-stack developer · Tunisia</p>
+            <Link href="/" className="font-display text-xl tracking-[-0.01em] text-ink">
+              Nour Yahyaoui<span className="text-accent">.</span>
+            </Link>
+            <p className="mt-2 max-w-sm text-sm leading-6 text-mute">
+              Full-stack developer in Tunisia. Secure web products, local AI
+              tools, and a Linux distribution — built end to end.
+            </p>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {socials.map(({ label, href, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                aria-label={label}
-                className="inline-flex h-9 items-center gap-2 rounded-full border border-white/[0.08] px-3 text-xs text-white/50 transition hover:border-white/20 hover:text-white/85"
-              >
-                <Icon size={14} />
-                {label}
-                {label !== "Email" && <ArrowUpRight size={11} className="text-white/25" />}
-              </a>
-            ))}
-          </div>
+          <nav aria-label="Social links">
+            <ul className="flex flex-wrap gap-x-1 gap-y-1">
+              {socials.map(({ label, href }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target={href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                    className="inline-flex min-h-11 items-center gap-1 px-2 font-mono text-[11px] uppercase tracking-[0.14em] text-mute transition-colors hover:text-accent"
+                  >
+                    {label}
+                    {label !== "Email" && <ArrowUpRight size={12} aria-hidden="true" />}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
-        <div className="mt-7 flex flex-col gap-2 border-t border-white/[0.07] pt-4 text-[10px] text-white/30 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Nour Yahyaoui. Built with care.</p>
-          <p className="font-mono uppercase tracking-[0.13em]">Ideas → reliable software</p>
+        <div className="mt-8 flex flex-col gap-2 border-t border-linesoft pt-4 text-xs text-mute sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Nour Yahyaoui. Set in a serif, a system sans, and one mono.</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em]">Ideas → reliable software</p>
         </div>
       </div>
     </footer>
