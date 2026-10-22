@@ -6,6 +6,7 @@ import { featuredProjects, otherProjects, projects } from "@/lib/projects";
 /**
  * The complete index — the site's signature element (Recipe R1):
  * every project numbered and set densely in type, like a spec sheet.
+ * Every entry opens a full case study at /projects/[slug].
  */
 export default function ProjectsClient() {
   const archiveStart = featuredProjects.length;
@@ -19,8 +20,9 @@ export default function ProjectsClient() {
         <h1 className="h-display mt-5 text-ink">Everything, in order.</h1>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-mute">
           Products, tools, and experiments — from a bootable Linux distribution
-          to a local AI coding agent. Featured work first, then the full
-          numbered index. Every entry links to something real.
+          to a Rust till that runs a shop offline. Featured work first, then the
+          full numbered index. Every entry links to its case study: what it is,
+          how it works, and the stack behind it.
         </p>
       </header>
 
@@ -35,7 +37,16 @@ export default function ProjectsClient() {
         </div>
         <div className="mt-6 grid gap-5 lg:grid-cols-2">
           {featuredProjects.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} />
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              index={i}
+              className={
+                featuredProjects.length % 2 === 1 && i === featuredProjects.length - 1
+                  ? "lg:col-span-2"
+                  : ""
+              }
+            />
           ))}
         </div>
       </section>
@@ -55,7 +66,7 @@ export default function ProjectsClient() {
         <div className="mt-4 border-t border-line">
           {otherProjects.map((project, i) => (
             <ProjectCard
-              key={project.title}
+              key={project.slug}
               project={project}
               index={archiveStart + i}
               variant="row"

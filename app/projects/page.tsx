@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ProjectsClient from "./ProjectsClient";
 import { projects } from "@/lib/projects";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Projects | Nour Yahyaoui - Full-Stack Developer Portfolio",
@@ -31,7 +32,7 @@ export default function Page() {
         "@type": "CreativeWork",
         name: project.title,
         description: project.description,
-        url: project.liveDemo || project.code || undefined,
+        url: `${SITE_URL}/projects/${project.slug}`,
         creator: {
           "@type": "Person",
           name: "Nour Yahyaoui",

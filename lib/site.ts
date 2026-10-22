@@ -44,7 +44,7 @@ export function personJsonLd() {
     name: AUTHOR_NAME,
     alternateName: "nour-yahyaoui",
     url: SITE_URL,
-    image: `${SITE_URL}/port.png`,
+    image: `${SITE_URL}/nour-portrait.jpg`,
     email: `mailto:${AUTHOR_EMAIL}`,
     jobTitle: "Full-Stack Developer",
     description: DEFAULT_DESCRIPTION,

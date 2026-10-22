@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: "/port.png",
-        width: 1200,
-        height: 1200,
+        url: "/nour-portrait.jpg",
+        width: 722,
+        height: 722,
         alt: AUTHOR_NAME,
       },
     ],
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description: DEFAULT_DESCRIPTION,
-    images: ["/port.png"],
+    images: ["/nour-portrait.jpg"],
   },
   robots: {
     index: true,
