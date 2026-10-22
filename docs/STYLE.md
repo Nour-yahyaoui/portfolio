@@ -57,3 +57,6 @@ BANNED:     gradients · gradient text · emoji as icons · centred body copy ·
 | Masthead / colophon | `components/Header.tsx`, `components/Footer.tsx` |
 | Signature index entries | `components/ProjectCard.tsx` |
 | Project data (single source) | `lib/projects.ts` |
+| Case-study prose per project | `lib/projectDetails.ts` |
+| Skills data (single source) | `lib/skills.ts` |
+| Skills Universe (3D sphere) | `components/SkillUniverse.tsx` — the ONE gradient/glow exception in the brief: a night-sky panel, dark in both themes, framed by the paper. Nowhere else. |

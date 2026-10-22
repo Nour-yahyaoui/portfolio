@@ -11,7 +11,7 @@
 🎓 19-year-old full-stack developer from Tunisia, **3 years of freelance/client experience**.
 💻 I build production web apps end-to-end — frontend, backend, and deployment — and I'm currently expanding into **Rust (Actix Web / Axum)** to work on performance-critical backend services.
 
-This repo is my personal portfolio site, built with **Next.js** (App Router) and Tailwind CSS.
+This repo is my personal portfolio site, built with **Next.js** (App Router) and Tailwind CSS. **v2 — "Paper & Ink"**: an editorial spec-sheet design with a numbered project index, a full case study per project, light/dark themes that follow your system, and an interactive 3D **Skills Universe** at `/skills` — 44 skills in orbit, each linked to its proof. Design brief: [`docs/STYLE.md`](docs/STYLE.md).
 
 ---
 
@@ -53,6 +53,7 @@ This repo is my personal portfolio site, built with **Next.js** (App Router) and
 
 - **[VexOS Linux Distribution](https://github.com/Nour-yahyaoui/vexos)** — a Debian trixie-based developer distro with an XFCE live environment, preinstalled toolchain, and VexOS DevStudio. [Website](https://vexos-omega.vercel.app) · [Docs](https://vexos-omega.vercel.app/docs/) · [Releases](https://github.com/Nour-yahyaoui/vexos/releases)
 - **[nour-code](https://github.com/Nour-yahyaoui/nour-code)** — local AI coding agent powered by Qwen3 8B and Ollama, with permission-checked tools, hot-reloadable skills, and a 345-test offline suite. Latest release: [v1.4.0](https://github.com/Nour-yahyaoui/nour-code/releases/tag/v1.4.0).
+- **[OneClick](https://github.com/Nour-yahyaoui/onclick)** — local-first POS for phone & accessories shops. One Rust binary (axum + SQLite), works offline, in French / Arabic / English. Inventory that fills itself: scan an unknown barcode, answer two questions, the sale goes through.
 - **[Campus](https://github.com/Nour-yahyaoui/Campus)** — free, open-source university community platform: clubs with mini-sites, student projects with a review workflow, and capacity-safe event registration.
 - **[Matjari](https://matjari-dashboard.vercel.app/)** — full-stack store management platform (web + mobile) covering sales, stock/inventory, and employee management for retail businesses.
 - **[Grafspee](https://github.com/nour-yahyaoui/grafspee)** — free open-source React/Next.js component library with 60+ ready-to-use components.

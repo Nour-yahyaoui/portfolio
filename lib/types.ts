@@ -18,6 +18,8 @@ export interface ProjectLink {
 }
 
 export interface Project {
+  /** URL slug for the case-study page at /projects/[slug] */
+  slug: string;
   title: string;
   description: string;
   /** Legacy v1 artwork key — v2 (Paper & Ink) renders projects typographically. */
