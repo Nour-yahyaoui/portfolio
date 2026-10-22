@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { skillGroups } from "@/lib/skills";
 
 /**
  * About, set like a printed document: portrait in the left rail, prose at a
@@ -8,53 +9,6 @@ import { ArrowUpRight } from "lucide-react";
  * No client JavaScript needed — this is a server component.
  */
 
-const skills: { name: string; description: string; technologies: string[] }[] = [
-  {
-    name: "Frontend",
-    description: "Responsive, interactive interfaces with modern frameworks",
-    technologies: ["React 19", "Next.js", "Vite", "Tailwind CSS", "TypeScript", "Framer Motion", "React Native"],
-  },
-  {
-    name: "Backend",
-    description: "Scalable APIs and database architecture",
-    technologies: ["Next.js Serverless", "Node.js", "Express", "Rust (Actix Web / Axum)", "Python", "PHP", "Neon DB", "PostgreSQL"],
-  },
-  {
-    name: "AI & Agents",
-    description: "Local inference, tool-using agents, and the guardrails around them",
-    technologies: ["Ollama", "Qwen3 8B", "FastAPI", "SSE Streaming", "Prometheus", "pytest"],
-  },
-  {
-    name: "Mobile",
-    description: "Native and cross-platform mobile applications",
-    technologies: ["React Native", "Expo", "Android (Java)", "iOS Swift", "Cross-Platform"],
-  },
-  {
-    name: "Desktop & Systems",
-    description: "Linux images and cross-platform desktop applications",
-    technologies: ["Linux (Debian)", "live-build", "XFCE", "VexOS DevStudio", "Python (Tkinter/PyQt)", "Java (Swing/JavaFX)"],
-  },
-  {
-    name: "State Management",
-    description: "Efficient state for complex applications",
-    technologies: ["Zustand", "Redux Toolkit", "React Context", "TanStack Query"],
-  },
-  {
-    name: "Security & Architecture",
-    description: "Secure, scalable, and maintainable system design",
-    technologies: ["Rate Limiting", "XSS Prevention", "CSRF Protection", "SQL Injection Prevention", "JWT Auth", "RBAC", "Clean Architecture", "SOLID Principles"],
-  },
-  {
-    name: "Design",
-    description: "User-centered design, done with restraint",
-    technologies: ["UI/UX Design", "Figma", "Responsive Design", "Accessibility", "Micro-interactions"],
-  },
-  {
-    name: "DevOps & Tools",
-    description: "Development and deployment workflows",
-    technologies: ["Git/GitHub", "Docker", "Debian", "live-build", "Vercel", "CI/CD", "Postman", "VS Code"],
-  },
-];
 
 const securityControls = [
   "Rate limiting",
@@ -85,8 +39,8 @@ export default function AboutClient() {
           <figure>
             <div className="relative aspect-square w-full max-w-sm overflow-hidden border border-line bg-subtle">
               <Image
-                src="/port.png"
-                alt="Portrait of Nour Yahyaoui"
+                src="/nour-portrait.jpg"
+                alt="Portrait of Nour Yahyaoui against a black background"
                 fill
                 sizes="(max-width: 1024px) 384px, 33vw"
                 className="object-cover"
@@ -101,8 +55,10 @@ export default function AboutClient() {
           <dl className="mt-8 border-t border-line">
             {[
               { term: "Role", detail: "Full-stack developer" },
-              { term: "Focus", detail: "Web products, local AI, Linux" },
-              { term: "Learning", detail: "Rust — Actix Web and Axum" },
+              { term: "Focus", detail: "Web products, local AI, Linux, Rust systems" },
+              { term: "Languages", detail: "Arabic · French · English (working languages; UIs shipped in all three)" },
+              { term: "Works", detail: "Remotely, from Tunisia (Africa/Tunis)" },
+              { term: "Learning", detail: "Deeper Rust — Actix Web & axum in production" },
             ].map((row) => (
               <div key={row.term} className="grid grid-cols-[6.5rem_1fr] gap-3 border-b border-linesoft py-3">
                 <dt className="font-mono text-[11px] uppercase leading-6 tracking-[0.12em] text-mute">{row.term}</dt>
@@ -110,6 +66,21 @@ export default function AboutClient() {
               </div>
             ))}
           </dl>
+
+          <figure className="mt-10 hidden lg:block">
+            <div className="relative aspect-[3/4] w-full max-w-xs overflow-hidden border border-line bg-subtle">
+              <Image
+                src="/nour-white-shirt.jpg"
+                alt="Nour Yahyaoui in a white shirt, mirror portrait"
+                fill
+                sizes="320px"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-mute">
+              Off duty, same person
+            </figcaption>
+          </figure>
         </div>
 
         <div className="lg:col-span-8">
@@ -154,6 +125,50 @@ export default function AboutClient() {
         </div>
       </div>
 
+      <section className="pt-16" aria-labelledby="journey-title">
+        <div className="border-b-2 border-ink pb-4">
+          <p className="label-mono">Chronology</p>
+          <h2 id="journey-title" className="h-title mt-3 text-ink">
+            The journey, in four lines of the ledger.
+          </h2>
+        </div>
+        <div>
+          {[
+            {
+              period: "2023",
+              title: "First principles",
+              body: "Started with Python and web fundamentals — HTML, CSS, JavaScript — and the habit that never left: finish things and put them in front of people.",
+            },
+            {
+              period: "2024",
+              title: "In public, with React",
+              body: "Joined GitHub (July 2024) and shipped a first public project — a vanilla-JS button gallery. Moved into React, then Next.js and React Native, and first freelance client work.",
+            },
+            {
+              period: "2025",
+              title: "Full-stack products",
+              body: "Production platforms end to end on Next.js, PostgreSQL/Neon, and serverless deploys: the Matjari store system, the Nextgen e-commerce platform, bacplus for Bac students — plus open tools like env-sentry and the Grafspee component library.",
+            },
+            {
+              period: "2026",
+              title: "Systems: Rust, local AI, Linux",
+              body: "Went down the stack: nour-code (a guarded local AI agent, v1.4.0), VexOS (a bootable Debian-based distro), OneClick (a single-binary Rust till), and Rust APIs with Actix Web and axum (Campus, Aswem). The web craft stayed; the systems ambition arrived.",
+            },
+          ].map((entry) => (
+            <article key={entry.period} className="grid gap-2 border-b border-line py-6 sm:grid-cols-[7rem_1fr] sm:gap-4">
+              <p className="tnum font-display text-3xl leading-none text-ink">
+                {entry.period}
+                <span className="text-accent">.</span>
+              </p>
+              <div>
+                <h3 className="text-base font-semibold leading-snug text-ink">{entry.title}</h3>
+                <p className="mt-1.5 max-w-[68ch] text-[15px] leading-7 text-mute">{entry.body}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="pt-16" aria-labelledby="skills-title">
         <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3 border-b-2 border-ink pb-4">
           <div>
@@ -163,12 +178,19 @@ export default function AboutClient() {
             </h2>
           </div>
           <p className="tnum font-mono text-[11px] uppercase tracking-[0.14em] text-mute">
-            {String(skills.length).padStart(2, "0")} groups
+            {String(skillGroups.length).padStart(2, "0")} groups
           </p>
         </div>
+        <p className="mt-5 max-w-2xl text-[15px] leading-7 text-mute">
+          Prefer it alive? The same skills exist as an interactive 3D universe —
+          44 of them in orbit, each linked to the project that proves it.{" "}
+          <Link href="/skills" className="inline-flex items-center gap-1.5 whitespace-nowrap font-semibold text-accent underline decoration-accent underline-offset-4">
+            Enter the Skills Universe <ArrowRight size={14} aria-hidden="true" />
+          </Link>
+        </p>
 
         <div>
-          {skills.map((skill, i) => (
+          {skillGroups.map((skill, i) => (
             <article
               key={skill.name}
               className="grid gap-2 border-b border-line py-6 sm:grid-cols-[3.5rem_16rem_1fr] sm:gap-4"
@@ -214,6 +236,86 @@ export default function AboutClient() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="mt-16" aria-labelledby="working-title">
+        <div className="border-b-2 border-ink pb-4">
+          <p className="label-mono">Engagement</p>
+          <h2 id="working-title" className="h-title mt-3 text-ink">
+            Working with me.
+          </h2>
+        </div>
+        <div>
+          {[
+            {
+              step: "01",
+              title: "Discover, in plain words",
+              body: "We define what you're building, who it's for, and what \"done\" looks like — before any stack is chosen. If I'm not the right person, I say so here, not after your deposit.",
+            },
+            {
+              step: "02",
+              title: "Build in working slices",
+              body: "You see real, usable increments early — a till that can sell before it can report, a storefront that can take an order before it has offers. Feedback lands on software, not mockups.",
+            },
+            {
+              step: "03",
+              title: "Harden before handover",
+              body: "Validation, rate limits, secret hygiene, backups of decisions in writing. The checklist runs before launch, while fixes are still cheap.",
+            },
+            {
+              step: "04",
+              title: "Ship — and write it down",
+              body: "Deployed, documented, and understandable without me. My READMEs are written for the person who maintains the system in two years. That person might be you.",
+            },
+          ].map((item) => (
+            <article key={item.step} className="grid gap-2 border-b border-line py-6 sm:grid-cols-[3.5rem_1fr] sm:gap-4">
+              <p className="tnum font-display text-2xl leading-none text-mute" aria-hidden="true">
+                {item.step}
+              </p>
+              <div>
+                <h3 className="text-base font-semibold leading-snug text-ink">{item.title}</h3>
+                <p className="mt-1.5 max-w-[68ch] text-[15px] leading-7 text-mute">{item.body}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p className="mt-6 max-w-[68ch] text-[15px] leading-7 text-mute">
+          I work remotely from Tunisia, in Arabic, French, or English — the
+          three languages my shipped interfaces already speak.
+        </p>
+      </section>
+
+      <section className="mt-16 border border-line bg-surface p-6 sm:p-8" aria-labelledby="now-title">
+        <p className="label-mono">
+          Right now <span className="px-1 text-accent">·</span> October 2026
+        </p>
+        <h2 id="now-title" className="h-section mt-3 text-ink">
+          On the desk at the moment
+        </h2>
+        <ul className="mt-5 space-y-3">
+          {[
+            "VexOS Desktop 2.2.1 — release-candidate testing in VirtualBox.",
+            "OneClick v1.0.10 — the Rust till, next stop SQLCipher encryption at rest.",
+            "nour-code after v1.4.0 — a turn can no longer hang; the agent keeps getting harder to stall.",
+            "Open to new freelance projects — the contact page is the fastest route.",
+          ].map((item) => (
+            <li key={item.slice(0, 32)} className="flex items-baseline gap-3 text-[15px] leading-7 text-mute">
+              <span className="font-mono text-accent" aria-hidden="true">
+                —
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-7 flex flex-wrap gap-3">
+          <Link href="/contact" className="btn btn-primary">
+            Start a project
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
+          <Link href="/projects" className="btn btn-outline">
+            Read the case studies
+          </Link>
+        </div>
       </section>
     </main>
   );

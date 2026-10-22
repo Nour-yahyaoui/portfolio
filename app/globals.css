@@ -287,6 +287,54 @@ a {
   }
 }
 
+/* ---------- Skills Universe (components/SkillUniverse.tsx) ----------
+   The one deliberate exception to this site's no-gradient rule: a night-sky
+   panel needs depth, so it gets exactly two faint nebula washes over a solid
+   near-black. The panel is dark in BOTH themes — it is a window into space,
+   framed by the page's paper. Stars and the core pulse respect the global
+   prefers-reduced-motion block below. */
+
+.universe-panel {
+  background:
+    radial-gradient(ellipse 62% 48% at 50% 40%, rgb(196 52 11 / 0.16), transparent 62%),
+    radial-gradient(ellipse 45% 38% at 82% 88%, rgb(97 92 237 / 0.1), transparent 65%),
+    #12100c;
+  color: #f5f3ee;
+}
+
+[data-theme="dark"] .universe-panel {
+  background:
+    radial-gradient(ellipse 62% 48% at 50% 40%, rgb(242 109 61 / 0.14), transparent 62%),
+    radial-gradient(ellipse 45% 38% at 82% 88%, rgb(97 92 237 / 0.12), transparent 65%),
+    #0b0a08;
+}
+
+.universe-star {
+  position: absolute;
+  border-radius: 999px;
+  background: #fff;
+  opacity: 0.2;
+  animation-name: universe-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  pointer-events: none;
+}
+
+@keyframes universe-twinkle {
+  0%, 100% { opacity: 0.12; }
+  50% { opacity: 0.85; }
+}
+
+.universe-core-ring {
+  animation: universe-pulse 3.4s ease-out infinite;
+}
+
+@keyframes universe-pulse {
+  0% { transform: scale(0.9); opacity: 0.65; }
+  70% { transform: scale(1.28); opacity: 0; }
+  100% { transform: scale(1.28); opacity: 0; }
+}
+
 /* Print: the spec sheet should print like one (distinctive-visual-style). */
 @media print {
   :root {
