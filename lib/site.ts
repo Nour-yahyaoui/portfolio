@@ -10,6 +10,15 @@ export const AUTHOR_NAME = "Nour Yahyaoui";
 export const AUTHOR_EMAIL = "nourryahyaoui@gmail.com";
 export const TWITTER_HANDLE = ""; // add if/when a Twitter/X handle exists
 
+// Public profile URLs — single source of truth for the header, footer,
+// contact page and JSON-LD, so they can never drift apart again.
+export const GITHUB_URL = "https://github.com/Nour-yahyaoui";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/nour-yahyaoui-86987b36b";
+export const LINKEDIN_HANDLE = "nour-yahyaoui";
+export const INSTAGRAM_URL = "https://instagram.com/nourr_yahyaouiii";
+export const INSTAGRAM_HANDLE = "@nourr_yahyaouiii";
+export const GITHUB_HANDLE = "github.com/Nour-yahyaoui";
+
 export const DEFAULT_DESCRIPTION =
   "Nour Yahyaoui is a full-stack developer from Tunisia building secure web products, local AI tools, and VexOS, a Debian-based Linux distribution for developers.";
 
@@ -69,11 +78,7 @@ export function personJsonLd() {
       "Debian live-build",
       "Developer Tooling",
     ],
-    sameAs: [
-      "https://github.com/nour-yahyaoui",
-      "https://instagram.com/nourr_yahyaouiii",
-      "https://www.linkedin.com/in/nourr-yahyaoui-86987b36b",
-    ],
+    sameAs: [GITHUB_URL, INSTAGRAM_URL, LINKEDIN_URL],
   };
 }
 
