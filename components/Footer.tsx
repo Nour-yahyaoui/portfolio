@@ -1,11 +1,17 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import {
+  AUTHOR_EMAIL,
+  GITHUB_URL,
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+} from "@/lib/site";
 
 const socials = [
-  { label: "GitHub", href: "https://github.com/Nour-yahyaoui" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/nourr-yahyaoui-86987b36b" },
-  { label: "Instagram", href: "https://instagram.com/nourr_yahyaouiii" },
-  { label: "Email", href: "mailto:nourryahyaoui@gmail.com" },
+  { label: "GitHub", href: GITHUB_URL },
+  { label: "LinkedIn", href: LINKEDIN_URL },
+  { label: "Instagram", href: INSTAGRAM_URL },
+  { label: "Email", href: `mailto:${AUTHOR_EMAIL}` },
 ];
 
 /** Colophon — like the last page of a printed document. */

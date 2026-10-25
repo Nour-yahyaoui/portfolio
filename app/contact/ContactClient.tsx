@@ -3,6 +3,15 @@
 import { useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { ArrowUpRight, CheckCircle2, TriangleAlert } from "lucide-react";
+import {
+  AUTHOR_EMAIL,
+  GITHUB_HANDLE,
+  GITHUB_URL,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  LINKEDIN_HANDLE,
+  LINKEDIN_URL,
+} from "@/lib/site";
 
 /**
  * Contact, in the Paper & Ink style. The form follows frontend-craft's
@@ -16,13 +25,13 @@ type Status = "idle" | "sending" | "sent" | "error";
 const SEND_TIMEOUT_MS = 15000;
 
 const contactRows = [
-  { term: "Email", value: "nourryahyaoui@gmail.com", href: "mailto:nourryahyaoui@gmail.com" },
+  { term: "Email", value: AUTHOR_EMAIL, href: `mailto:${AUTHOR_EMAIL}` },
   { term: "Phone", value: "+216 58 923 247", href: "tel:+21658923247" },
   { term: "WhatsApp", value: "+216 58 923 247", href: "https://wa.me/21658923247" },
   { term: "Location", value: "Kasserine Sbiba, Tunisia" },
-  { term: "GitHub", value: "github.com/Nour-yahyaoui", href: "https://github.com/Nour-yahyaoui" },
-  { term: "LinkedIn", value: "nourr-yahyaoui", href: "https://www.linkedin.com/in/nourr-yahyaoui-86987b36b" },
-  { term: "Instagram", value: "@nourr_yahyaouiii", href: "https://instagram.com/nourr_yahyaouiii" },
+  { term: "GitHub", value: GITHUB_HANDLE, href: GITHUB_URL },
+  { term: "LinkedIn", value: LINKEDIN_HANDLE, href: LINKEDIN_URL },
+  { term: "Instagram", value: INSTAGRAM_HANDLE, href: INSTAGRAM_URL },
 ];
 
 export default function ContactClient() {

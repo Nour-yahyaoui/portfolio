@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Github, Menu, X } from "lucide-react";
+import { Github, Linkedin, Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import { GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -74,13 +75,22 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <a
-            href="https://github.com/Nour-yahyaoui"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Nour Yahyaoui on GitHub"
             className="grid h-11 w-11 place-items-center rounded-[2px] border border-line text-mute transition-colors hover:border-linestrong hover:text-ink"
           >
             <Github size={17} aria-hidden="true" />
+          </a>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Nour Yahyaoui on LinkedIn"
+            className="hidden h-11 w-11 place-items-center rounded-[2px] border border-line text-mute transition-colors hover:border-linestrong hover:text-ink sm:grid"
+          >
+            <Linkedin size={17} aria-hidden="true" />
           </a>
           <ThemeToggle />
           <button

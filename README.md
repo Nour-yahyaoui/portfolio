@@ -66,7 +66,7 @@ This repo is my personal portfolio site, built with **Next.js** (App Router) and
 ### 📫 Let's Connect
 
 📧 [nourryahyaoui@gmail.com](mailto:nourryahyaoui@gmail.com)
-💼 [LinkedIn](https://www.linkedin.com/in/nourr-yahyaoui-86987b36b)
+💼 [LinkedIn](https://www.linkedin.com/in/nour-yahyaoui-86987b36b)
 🐙 [GitHub](https://github.com/nour-yahyaoui)
 
 ---
