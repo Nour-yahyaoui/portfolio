@@ -76,6 +76,23 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "rustpad",
+    title: "RustPad — Native Word & PDF Desktop Studio",
+    description:
+      "A standalone, offline-first desktop studio for Microsoft Word (.docx) and vector PDF (.pdf) documents, written in 100% pure Rust. It creates, edits, signs, redacts, and converts documents in a single 3.3 MB binary — no WebView, no HTML/CSS/JavaScript, no runtime to install.",
+    status: "Release v1.2.0",
+    version: "v1.2.0",
+    tags: ["Rust", "Desktop app", "OpenXML", "PDF 1.7", "Pure Rust", "Offline-first"],
+    mainTag: "Rust desktop systems",
+    liveDemo: "https://rustpad-studio.vercel.app",
+    code: "https://github.com/Nour-yahyaoui/rustpad",
+    links: [
+      { label: "Live landing page", href: "https://rustpad-studio.vercel.app", variant: "primary" },
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/rustpad", variant: "secondary" },
+      { label: "Releases", href: "https://github.com/Nour-yahyaoui/rustpad/releases", variant: "quiet" },
+    ],
+  },
+  {
     slug: "campus",
     title: "Campus — University Community Platform",
     description:

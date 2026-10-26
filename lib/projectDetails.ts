@@ -156,6 +156,44 @@ export const projectDetails: ProjectDetail[] = [
     ],
   },
   {
+    slug: "rustpad",
+    tagline: "A Word and PDF studio in one 3.3 MB Rust binary — no browser engine, no runtime to install.",
+    overview: [
+      "Desktop document editors often ship as 150–400 MB Chromium wrappers just to write an A4 report or sign a PDF. RustPad takes the opposite route: it reads and writes Microsoft Word (.docx) and vector PDF (.pdf) files natively, in a single standalone executable that works fully offline.",
+      "Everything is implemented in the repository itself — from DEFLATE/PKZIP compression and OpenXML serialization to PDF 1.7 layout, TrueType glyph rasterization, and native windowing. The latest release is v1.2.0, with Windows and Linux x64 binaries published on GitHub.",
+    ],
+    howItWorks: [
+      {
+        title: "Author and format a Word document",
+        body: "Start from one of six built-in OpenXML templates, or open an existing .docx or .md file. Styles, lists, interactive checklists, multi-column tables, running headers and footers, and A4 / Letter / Legal page geometry are all handled in the editor, with a document outline and live word and reading-time metrics.",
+      },
+      {
+        title: "Export to PDF, then sign, redact, and merge",
+        body: "Ctrl+E generates a vector PDF from the Word draft. PDF Studio edits text lines in place, adds ink signatures, [APPROVED] stamps, and sticky notes, and performs true redaction by removing text from the content stream rather than painting a black box over it.",
+      },
+      {
+        title: "Work side by side, or from the terminal",
+        body: "A 50/50 split view places a draft next to a PDF, and a Ctrl+K command palette searches all of the studio's actions. The same engine is available headless: convert between .docx, .pdf, and .md, inspect files, run OCR, and merge PDFs from the command line.",
+      },
+    ],
+    stack: [
+      { group: "Language", items: ["100% Rust", "Cargo workspace of 9 crates", "No crates.io runtime dependencies"] },
+      { group: "Document formats", items: ["ECMA-376 OpenXML (.docx)", "ISO 32000 PDF 1.7 (.pdf)", "RFC 1951 DEFLATE / RFC 1950 Zlib"] },
+      { group: "Rendering & platform", items: ["Pure-Rust TrueType rasterizer", "X11 via runtime dlopen (Linux)", "Win32 GDI (Windows)"] },
+    ],
+    engineering: [
+      "No WebView by design: the document model, layout, and rendering run in native Rust memory, which keeps the binary at 3.3 MB and removes the browser runtime from the picture entirely.",
+      "Redaction edits the PDF content stream, so the removed text is actually gone from the file — the security property comes from the data, not from a visual overlay.",
+      "Nine crates with clear responsibilities — docx_io, pdf_engine, pdf_create, doc_model, and others — so each format can be tested and audited on its own.",
+    ],
+    facts: [
+      { label: "Current release", value: "v1.2.0" },
+      { label: "Binary size", value: "3.16 MB (Windows) · 3.18 MB (Linux)" },
+      { label: "Dependencies", value: "Zero external crates.io runtime dependencies" },
+      { label: "Licence", value: "MIT" },
+    ],
+  },
+  {
     slug: "campus",
     tagline: "A university community platform — clubs, projects, events — that is honest about what it has actually verified.",
     overview: [
