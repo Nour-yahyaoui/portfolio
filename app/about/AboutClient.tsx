@@ -67,20 +67,6 @@ export default function AboutClient() {
             ))}
           </dl>
 
-          <figure className="mt-10 hidden lg:block">
-            <div className="relative aspect-[3/4] w-full max-w-xs overflow-hidden border border-line bg-subtle">
-              <Image
-                src="/nour-white-shirt.jpg"
-                alt="Nour Yahyaoui in a white shirt, mirror portrait"
-                fill
-                sizes="320px"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-mute">
-              Off duty, same person
-            </figcaption>
-          </figure>
         </div>
 
         <div className="lg:col-span-8">

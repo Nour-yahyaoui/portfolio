@@ -55,11 +55,33 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "rustpad",
+    title: "RustPad — Native Word & PDF Desktop Studio",
+    description:
+      "A standalone, offline-first desktop studio for Microsoft Word (.docx) and vector PDF (.pdf) documents, written in 100% pure Rust. It creates, edits, signs, redacts, and converts documents in a single 3.3 MB binary — no WebView, no HTML/CSS/JavaScript, no runtime to install.",
+    featured: true,
+    status: "Single-binary desktop app",
+    version: "v1.2.0",
+    highlights: [
+      "Word and PDF in one 3.3 MB binary",
+      "Real PDF redaction, not a black box",
+      "Zero WebView, zero crates.io runtime deps",
+    ],
+    tags: ["Rust", "Desktop app", "OpenXML", "PDF 1.7", "Pure Rust", "Offline-first"],
+    mainTag: "Rust desktop systems",
+    liveDemo: "https://rustpad-studio.vercel.app",
+    code: "https://github.com/Nour-yahyaoui/rustpad",
+    links: [
+      { label: "Live landing page", href: "https://rustpad-studio.vercel.app", variant: "primary" },
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/rustpad", variant: "secondary" },
+      { label: "Releases", href: "https://github.com/Nour-yahyaoui/rustpad/releases", variant: "quiet" },
+    ],
+  },
+  {
     slug: "oneclick",
     title: "OneClick — Point of Sale for Phone Shops",
     description:
       "A local-first till and shop-management system for phone and accessories shops, written in Rust. One binary, works fully offline, in French, Arabic (RTL), and English. Its defining idea: inventory that fills itself — scan an unknown barcode at the counter, answer two questions, and the sale goes through while the product sheet creates itself.",
-    featured: true,
     status: "Usable for a full trading day",
     version: "v1.0.10",
     tags: ["Rust", "axum", "SQLite", "maud", "Tokio", "Offline-first", "POS", "FR / AR / EN"],
@@ -73,23 +95,6 @@ export const projects: Project[] = [
     links: [
       { label: "Source code", href: "https://github.com/Nour-yahyaoui/onclick", variant: "primary" },
       { label: "Releases", href: "https://github.com/Nour-yahyaoui/onclick/releases", variant: "quiet" },
-    ],
-  },
-  {
-    slug: "rustpad",
-    title: "RustPad — Native Word & PDF Desktop Studio",
-    description:
-      "A standalone, offline-first desktop studio for Microsoft Word (.docx) and vector PDF (.pdf) documents, written in 100% pure Rust. It creates, edits, signs, redacts, and converts documents in a single 3.3 MB binary — no WebView, no HTML/CSS/JavaScript, no runtime to install.",
-    status: "Release v1.2.0",
-    version: "v1.2.0",
-    tags: ["Rust", "Desktop app", "OpenXML", "PDF 1.7", "Pure Rust", "Offline-first"],
-    mainTag: "Rust desktop systems",
-    liveDemo: "https://rustpad-studio.vercel.app",
-    code: "https://github.com/Nour-yahyaoui/rustpad",
-    links: [
-      { label: "Live landing page", href: "https://rustpad-studio.vercel.app", variant: "primary" },
-      { label: "Source code", href: "https://github.com/Nour-yahyaoui/rustpad", variant: "secondary" },
-      { label: "Releases", href: "https://github.com/Nour-yahyaoui/rustpad/releases", variant: "quiet" },
     ],
   },
   {
