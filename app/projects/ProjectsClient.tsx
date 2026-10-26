@@ -20,7 +20,7 @@ export default function ProjectsClient() {
         <h1 className="h-display mt-5 text-ink">Everything, in order.</h1>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-mute">
           Products, tools, and experiments — from a bootable Linux distribution
-          to a Rust till that runs a shop offline. Featured work first, then the
+          to a single-binary Rust document studio. Featured work first, then the
           full numbered index. Every entry links to its case study: what it is,
           how it works, and the stack behind it.
         </p>

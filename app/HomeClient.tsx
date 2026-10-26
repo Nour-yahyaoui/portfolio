@@ -81,8 +81,8 @@ export default function HomeClient() {
 
         <p className="mt-5 max-w-2xl text-[15px] leading-7 text-mute">
           A Linux distribution you can boot, an AI coding agent that runs
-          entirely on your own hardware, and a Rust till that runs a shop
-          offline. Open any of them for the full case study — how it works,
+          entirely on your own hardware, and a native Rust studio that edits Word
+          and PDF files offline in one 3.3 MB binary. Open any of them for the full case study — how it works,
           and the stack behind it.
         </p>
 
@@ -104,23 +104,7 @@ export default function HomeClient() {
 
       <section className="border-y border-line" aria-labelledby="person-title">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-12 lg:gap-12 lg:px-8">
-          <div className="lg:col-span-4">
-            <figure>
-              <div className="relative aspect-[3/4] w-full max-w-xs overflow-hidden border border-line bg-subtle">
-                <Image
-                  src="/nour-white-shirt.jpg"
-                  alt="Nour Yahyaoui in a white shirt, mirror portrait"
-                  fill
-                  sizes="(max-width: 1024px) 320px, 25vw"
-                  className="object-cover"
-                />
-              </div>
-              <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-mute">
-                The author of the index
-              </figcaption>
-            </figure>
-          </div>
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-12">
             <p className="label-mono">02 · The person</p>
             <h2 id="person-title" className="h-title mt-3 text-ink">
               One developer, end to end.
