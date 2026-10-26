@@ -10,7 +10,7 @@ const specSheet: { term: string; detail: string }[] = [
   { term: "Based in", detail: "Tunisia — working with clients remotely" },
   { term: "Practice", detail: "Full-stack web & mobile, local AI, Linux systems" },
   { term: "Experience", detail: "3 years of freelance and client work" },
-  { term: "Currently", detail: "VexOS v2.2.1 · nour-code v1.4.0 · OneClick v1.0.10" },
+  { term: "Currently", detail: "VexOS v2.2.1 · nour-code v1.4.0 · RustPad v1.2.0" },
   { term: "Open to", detail: "Freelance projects and thoughtful collaborations" },
 ];
 
