@@ -82,7 +82,7 @@ export default function HomeClient() {
         <p className="mt-5 max-w-2xl text-[15px] leading-7 text-mute">
           A Linux distribution you can boot, an AI coding agent that runs
           entirely on your own hardware, and a native Rust studio that edits Word
-          and PDF files offline in one 3.3 MB binary. Open any of them for the full case study — how it works,
+          and PDF files offline in one ~3.9 MB binary. Open any of them for the full case study — how it works,
           and the stack behind it.
         </p>
 
