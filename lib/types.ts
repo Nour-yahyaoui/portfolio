@@ -1,6 +1,5 @@
 export type ProjectAccent = "orange" | "blue" | "cyan" | "violet";
 export type ProjectArtwork =
-  | "vexos"
   | "nour-code"
   | "learning"
   | "commerce"

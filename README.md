@@ -51,7 +51,6 @@ This repo is my personal portfolio site, built with **Next.js** (App Router) and
 
 ### 📌 What I've Actually Shipped
 
-- **[VexOS Linux Distribution](https://github.com/Nour-yahyaoui/vexos)** — a Debian trixie-based developer distro with an XFCE live environment, preinstalled toolchain, and VexOS DevStudio. [Website](https://vexos-omega.vercel.app) · [Docs](https://vexos-omega.vercel.app/docs/) · [Releases](https://github.com/Nour-yahyaoui/vexos/releases)
 - **[nour-code](https://github.com/Nour-yahyaoui/nour-code)** — local AI coding agent powered by Qwen3 8B and Ollama, with permission-checked tools, hot-reloadable skills, and a 345-test offline suite. Latest release: [v1.4.0](https://github.com/Nour-yahyaoui/nour-code/releases/tag/v1.4.0). [Website](https://nour-code-agent.vercel.app)
 - **[OneClick](https://github.com/Nour-yahyaoui/onclick)** — local-first POS for phone & accessories shops. One Rust binary (axum + SQLite), works offline, in French / Arabic / English. Inventory that fills itself: scan an unknown barcode, answer two questions, the sale goes through.
 - **[RustPad](https://github.com/Nour-yahyaoui/rustpad)** — offline-first Word (.docx) and PDF (.pdf) desktop studio in 100% pure Rust. Legal redlines, forensic PDF redaction, and SHA-256 sealing in a single ~3.9 MB binary. Latest release: [v2.1.0](https://github.com/Nour-yahyaoui/rustpad/releases/tag/v2.1.0). [Live landing page](https://rustpad-studio.vercel.app)
