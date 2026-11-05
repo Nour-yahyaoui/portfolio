@@ -23,47 +23,6 @@ export interface ProjectDetail {
 
 export const projectDetails: ProjectDetail[] = [
   {
-    slug: "vexos",
-    tagline: "A bootable Linux distribution that arrives ready to code — and resets clean on every reboot.",
-    overview: [
-      "Setting up a development machine costs hours: install an OS, then a browser, an editor, three language toolchains, git. VexOS removes that setup from the equation. You download one ISO, boot it (it is built and tested for VirtualBox), and land on an XFCE desktop that already has Firefox ESR, Python 3, Node.js with npm, Rust with cargo, gcc, git, and apt ready to use.",
-      "Inside it sits VexOS DevStudio, a browser-based IDE with a code editor, a Run button, live preview, and an AI assistant that runs on your own Groq key — the key never leaves the machine. Because the whole session runs in RAM, a reboot returns the system to its exact starting state: nothing you break stays broken, which makes it a safe place to learn, experiment, or hand to a student.",
-      "The repository also carries VexOS Linux, a small terminal-only system built on the kernel source in the same repo, with BusyBox, bash, and its own vpk package manager — the from-scratch counterpart to the Debian-based desktop.",
-    ],
-    howItWorks: [
-      {
-        title: "The image is built, not assembled by hand",
-        body: "The desktop ISO is produced with Debian live-build on a Debian/Ubuntu host: validate the configuration, run auto/config, then auto/build. Every package list is a plain-text file in the repo, so anyone can audit exactly what is inside the image and rebuild it. A failed build resumes where it stopped instead of starting over.",
-      },
-      {
-        title: "Boot → desktop → code, in minutes",
-        body: "Create a VirtualBox VM (Debian 64-bit, 4 GB RAM, 2 CPUs, VMSVGA with 128 MB video memory), attach the ISO, boot, and log in. The compilers, runtimes, browser, and DevStudio are already configured — the first thing you do is write code, not install it.",
-      },
-      {
-        title: "DevStudio closes the loop",
-        body: "DevStudio gives the live session a real workflow: edit files in the browser IDE, press Run, see the live preview, and ask the AI assistant about your code using your own API key. When you reboot, the RAM session is gone and you start from the same clean desktop again.",
-      },
-    ],
-    stack: [
-      { group: "Base system", items: ["Debian trixie", "Linux kernel (source in-repo)", "XFCE desktop", "live-build"] },
-      { group: "Preinstalled toolchain", items: ["Firefox ESR", "Python 3", "Node.js + npm", "Rust + cargo", "gcc", "git", "apt"] },
-      { group: "DevStudio & site", items: ["Browser IDE with live preview", "Groq-powered assistant (bring your own key)", "Next.js landing/docs site with static export"] },
-      { group: "Terminal edition", items: ["BusyBox", "bash", "vpk package manager"] },
-    ],
-    engineering: [
-      "Reproducibility over magic: the entire image definition is text files under version control, so the ISO is an output, not an artifact someone tweaked by hand.",
-      "The RAM-only live session is a feature, not a limitation — it makes the system disposable and therefore safe for classrooms, demos, and risky experiments.",
-      "Two editions share one repo: the pragmatic Debian desktop for daily use, and the kernel-up terminal system for learning how a distribution is actually put together.",
-      "Honest status: v2.2.1 is a release candidate, and the roadmap (signed apt repo, Calamares installer, guest additions) is written down in the repo instead of promised vaguely.",
-    ],
-    facts: [
-      { label: "Current release", value: "VexOS Desktop 2.2.1 (release candidate)" },
-      { label: "Runs on", value: "VirtualBox (Debian 64-bit profile), 4 GB RAM" },
-      { label: "Persistence", value: "None by design — RAM session, clean reboot" },
-      { label: "Build time", value: "30–90 min, ~25 GB disk, resumable" },
-    ],
-  },
-  {
     slug: "nour-code",
     tagline: "An AI coding agent that runs entirely on your machine — with real tools, real guardrails, and a paper trail.",
     overview: [
@@ -613,6 +572,149 @@ export const projectDetails: ProjectDetail[] = [
       { label: "Type", value: "Client work" },
       { label: "Live at", value: "ghassen-studio.vercel.app" },
       { label: "Source", value: "Private" },
+    ],
+  },
+  {
+    slug: "wintercave",
+    tagline: "A text editor you run locally — one Rust binary, no Node, no bundler, no dist folder.",
+    overview: [
+      "WinterCave is a latency-obsessed text editor distributed as a single Rust program on actix-web. It serves the editor page itself, tokenizes and syntax-highlights files through a wintercave-core engine crate, and reads and writes files through a path-confined file API.",
+      "The editing surface is a native browser textarea, so IME, clipboard, undo, screen readers, and caret movement come from the browser rather than a reimplementation. Mod+S saves over PUT /api/files; a status bar shows unsaved until the write lands, and closing with unsaved changes warns.",
+    ],
+    howItWorks: [
+      {
+        title: "One binary is the server and the app",
+        body: "The Rust executable embeds the editor UI and serves it locally. There is no Node, no npm, no bundler, no wasm shell, and no dist folder. The client is a small plain script that moves text between the page and the API, rendered server-side so the page still works with JavaScript off.",
+      },
+      {
+        title: "Highlighting and completion stay local",
+        body: "Every keystroke (debounced 120 ms) posts the buffer to /api/highlight, where wintercave-core tokenizes it and returns HTML spans painted in a scroll-synced layer behind the textarea. Completion suggestions come from the file and a per-language table — nothing is sent to a remote model or service.",
+      },
+      {
+        title: "Files stay inside the chosen root",
+        body: "Writes are atomic: a temp file beside the target, sync_all, then rename over it. Every path is confined to --root; dot-dot, absolute paths, and NUL bytes are rejected before the filesystem is touched. The browser's native directory permission picker lets the user choose which folder on this PC the editor may touch.",
+      },
+    ],
+    stack: [
+      { group: "Engine", items: ["wintercave-core (document model, edits, undo, search, tokenizer, keymap)", "wintercave-wasm (bindings, kept compiling)"] },
+      { group: "Server", items: ["actix-web", "HTML rendering (src/ui.rs)", "file API (src/api.rs, src/files.rs)", "path confinement (src/paths.rs)"] },
+      { group: "Client", items: ["Native textarea editor", "Theme, dialogs, completion (assets/editor.js)", "Stylesheet (assets/editor.css)"] },
+    ],
+    engineering: [
+      "The core crate has no filesystem, no DOM, and no async runtime, so the same code can drive a terminal or native window later.",
+      "No-JavaScript fallback: <noscript> users get a normal POST /save form that writes the file and redirects back to it.",
+      "Redaction-grade path safety: symlinked parents are resolved and checked; only the chosen --root may be read or written.",
+    ],
+    facts: [
+      { label: "Current release", value: "0.3.1" },
+      { label: "Languages highlighted", value: "12 (Rust, JS/TS, Python, shell, YAML, SQL, JSON, HTML, CSS, Markdown, plain text)" },
+      { label: "Default port", value: "4173" },
+    ],
+  },
+  {
+    slug: "rustflow",
+    tagline: "A local-first API development workspace — build, send, inspect, and test requests without an account.",
+    overview: [
+      "Rustflow (which grew out of the RequestLab desktop application) is a local-first API development workspace. Build, send, inspect, and test HTTP requests without creating an account. The repository contains the RequestLab desktop application alongside an optional cloud engineering layer.",
+    ],
+    howItWorks: [
+      {
+        title: "Send and inspect without an account",
+        body: "No signup is required to build, send, inspect, and test requests — the workspace runs locally first.",
+      },
+      {
+        title: "RequestLab desktop application",
+        body: "The desktop application brings the API workspace to the desktop, with an optional SaaS portal/API and manual billing administration layer available as cloud engineering.",
+      },
+    ],
+    stack: [
+      { group: "Application", items: ["RequestLab desktop application", "Optional cloud engineering layer", "SaaS portal/API, manual billing administration"] },
+    ],
+    engineering: [
+      "Local-first by design: requests are built, sent, and inspected without an account, keeping the user in control of their data.",
+    ],
+    facts: [
+      { label: "Origin", value: "Started as Rustflow, now contains RequestLab" },
+      { label: "Account required", value: "No" },
+    ],
+  },
+  {
+    slug: "node-modules-details-api",
+    tagline: "Descriptions, usage examples, tags, and categories for 779 Node.js libraries, served by one free CORS-enabled REST API.",
+    overview: [
+      "node_modules_details_api indexes 779 Node.js libraries with descriptions, usage examples, tags, and categories. It is served by one free, CORS-enabled REST API that includes a built-in searchable documentation UI.",
+    ],
+    howItWorks: [
+      {
+        title: "One REST API, 779 libraries",
+        body: "Each library entry carries descriptions, usage examples, tags, and categories, queryable through a CORS-enabled REST API with a searchable documentation UI.",
+      },
+    ],
+    stack: [
+      { group: "Runtime", items: ["Rust"] },
+      { group: "API", items: ["CORS-enabled REST API", "Searchable documentation UI"] },
+    ],
+    engineering: [
+      "A single REST API surface makes the library index consumable from any frontend or client without CORS friction.",
+    ],
+    facts: [
+      { label: "Libraries indexed", value: "779" },
+      { label: "License", value: "MIT" },
+    ],
+  },
+  {
+    slug: "pdf-to-quiz",
+    tagline: "Turn any PDF into a quiz using AI.",
+    overview: [
+      "pdf-to-quiz converts an uploaded PDF into an AI-generated quiz, extracting questions from the document's contents.",
+    ],
+    howItWorks: [
+      {
+        title: "Upload a PDF",
+        body: "Upload any PDF document.",
+      },
+      {
+        title: "AI generates questions",
+        body: "The contents of the PDF are used to generate quiz questions automatically.",
+      },
+    ],
+    stack: [
+      { group: "Frontend", items: ["Next.js", "TypeScript"] },
+      { group: "AI", items: ["Quiz generation from PDF contents"] },
+    ],
+    engineering: [
+      "Open source, built to turn static documents into interactive quizzes.",
+    ],
+    facts: [
+      { label: "Input", value: "PDF" },
+      { label: "Output", value: "AI-generated quiz" },
+    ],
+  },
+  {
+    slug: "multisim-pro",
+    tagline: "A lightweight digital logic workbench — place gates, connect signals, view truth tables in the browser.",
+    overview: [
+      "multisim-pro is a lightweight, open-source digital logic workbench built with Vue 3. Place logic gates, connect signals, toggle inputs, and explore the resulting truth table right in the browser.",
+    ],
+    howItWorks: [
+      {
+        title: "Build circuits in the browser",
+        body: "Place logic gates and connect signals by wiring them together in an interactive canvas.",
+      },
+      {
+        title: "Inspect the truth table",
+        body: "Toggle inputs and observe the resulting truth table (tableau de vérité) for the circuit you built.",
+      },
+    ],
+    stack: [
+      { group: "Frontend", items: ["Vue 3", "TypeScript"] },
+    ],
+    engineering: [
+      "Open-source logic simulation that runs entirely in the browser.",
+    ],
+    facts: [
+      { label: "License", value: "MIT" },
+      { label: "Runs in", value: "Browser" },
     ],
   },
 ];

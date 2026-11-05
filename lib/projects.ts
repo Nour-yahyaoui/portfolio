@@ -7,30 +7,7 @@ import type { Project } from "./types";
  * (stack tables, how-it-works) lives in lib/projectDetails.ts.
  */
 export const projects: Project[] = [
-  {
-    slug: "vexos",
-    title: "VexOS Linux Distribution",
-    description:
-      "A Debian trixie-based Linux distribution built for web and software development. Boot the live ISO into XFCE with Firefox ESR, Python, Node.js with npm, Rust with cargo, gcc, git, and VexOS DevStudio — a browser-based IDE with a Run button, live preview, and an AI assistant powered by your own Groq key. The live session runs in RAM and resets on reboot.",
-    featured: true,
-    status: "Release candidate",
-    version: "v2.2.1",
-    tags: ["Debian trixie", "Linux distribution", "live-build", "XFCE", "Rust", "Python", "Node.js", "DevStudio"],
-    highlights: [
-      "Bootable developer Linux distribution",
-      "Clean RAM-only live session",
-      "DevStudio with live preview + AI",
-    ],
-    mainTag: "Linux distribution",
-    liveDemo: "https://vexos-omega.vercel.app",
-    code: "https://github.com/Nour-yahyaoui/vexos",
-    links: [
-      { label: "Website", href: "https://vexos-omega.vercel.app", variant: "primary" },
-      { label: "Source code", href: "https://github.com/Nour-yahyaoui/vexos", variant: "secondary" },
-      { label: "Documentation", href: "https://vexos-omega.vercel.app/docs/", variant: "quiet" },
-      { label: "Releases", href: "https://github.com/Nour-yahyaoui/vexos/releases", variant: "quiet" },
-    ],
-  },
+
   {
     slug: "nour-code",
     title: "nour-code",
@@ -224,6 +201,100 @@ export const projects: Project[] = [
     mainTag: "Client Work",
     liveDemo: "https://ghassen-studio.vercel.app/",
     note: "A designer portfolio — built for a client",
+  },
+  {
+    slug: "wintercave",
+    title: "WinterCave — Local-First Text Editor",
+    description:
+      "A text editor you run locally. One Rust binary serves the editor page, tokenizes and syntax-highlights files, and reads and writes them through a path-confined file API. No Node, no npm, no bundler, no wasm shell, and no dist folder. Built around a native textarea so IME, clipboard, undo, screen readers, and caret movement are the browser's own.",
+    featured: true,
+    status: "v0.3.1",
+    tags: ["Rust", "actix-web", "text editor", "offline-first", "developer tools"],
+    highlights: [
+      "One Rust binary — no runtime dependencies",
+      "Native textarea with syntax highlighting for 12 languages",
+      "Path-confined file API with atomic writes",
+      "No-JavaScript save form fallback",
+    ],
+    mainTag: "Rust desktop tool",
+    liveDemo: "https://wintercave.vercel.app/",
+    code: "https://github.com/Nour-yahyaoui/WinterCave",
+    links: [
+      { label: "Landing page", href: "https://wintercave.vercel.app/", variant: "primary" },
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/WinterCave", variant: "secondary" },
+    ],
+  },
+  {
+    slug: "rustflow",
+    title: "Rustflow — Local-First API Workspace",
+    description:
+      "A local-first API development workspace to build, send, inspect, and test requests without creating an account. The repository grew out of Rustflow and now contains the RequestLab desktop application, with an optional cloud engineering layer.",
+    status: "Beta",
+    tags: ["Rust", "API", "desktop app", "developer tools", "local-first"],
+    highlights: [
+      "Send and inspect requests without an account",
+      "RequestLab desktop application",
+      "Local-first by design",
+    ],
+    mainTag: "Developer tools",
+    code: "https://github.com/Nour-yahyaoui/Rustflow",
+    links: [
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/Rustflow", variant: "primary" },
+    ],
+  },
+  {
+    slug: "node-modules-details-api",
+    title: "node_modules_details_api — 779 Node.js Libraries",
+    description:
+      "Descriptions, usage examples, tags, and categories for 779 Node.js libraries, served by one free, CORS-enabled REST API with a built-in searchable documentation UI.",
+    status: "Live",
+    tags: ["Rust", "REST API", "Node.js", "documentation", "open source"],
+    highlights: [
+      "779 libraries indexed",
+      "CORS-enabled REST API",
+      "Searchable documentation UI",
+    ],
+    mainTag: "Rust API",
+    code: "https://github.com/Nour-yahyaoui/node_modules_details_api",
+    links: [
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/node_modules_details_api", variant: "primary" },
+    ],
+  },
+  {
+    slug: "pdf-to-quiz",
+    title: "pdf-to-quiz — AI Quiz from Any PDF",
+    description:
+      "Turn any PDF into a quiz using AI. Upload a document and get questions generated from its contents.",
+    status: "Live",
+    tags: ["Next.js", "TypeScript", "AI", "open source"],
+    highlights: [
+      "PDF-to-quiz generation with AI",
+      "Next.js frontend",
+      "Open source",
+    ],
+    mainTag: "AI Tooling",
+    code: "https://github.com/Nour-yahyaoui/pdf-to-quiz",
+    links: [
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/pdf-to-quiz", variant: "primary" },
+    ],
+  },
+  {
+    slug: "multisim-pro",
+    title: "multisim-pro — Digital Logic Workbench",
+    description:
+      "A lightweight, open-source digital logic workbench built with Vue 3. Place logic gates, connect signals, toggle inputs, and explore the resulting truth table right in the browser.",
+    status: "Live",
+    tags: ["Vue 3", "TypeScript", "logic simulator", "education", "open source"],
+    highlights: [
+      "Place gates and connect signals in the browser",
+      "Truth table output",
+      "Vue 3 + TypeScript",
+    ],
+    mainTag: "Education tool",
+    code: "https://github.com/Nour-yahyaoui/multisim-pro",
+    links: [
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/multisim-pro", variant: "primary" },
+    ],
   },
 ];
 
