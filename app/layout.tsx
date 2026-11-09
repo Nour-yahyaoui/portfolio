@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import {
   SITE_URL,
@@ -115,9 +113,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <ThemeProvider>
-          <Header />
+          {/* Header/footer live in app/(site)/layout.tsx so the lobby (/) and
+              the emerald edition (/emerald) can frame themselves. */}
           <div id="main">{children}</div>
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

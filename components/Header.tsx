@@ -8,7 +8,8 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 const navItems = [
-  { name: "Home", href: "/" },
+  { name: "Classic", href: "/classic" },
+  { name: "Emerald", href: "/emerald" },
   { name: "About", href: "/about" },
   { name: "Projects", href: "/projects" },
   { name: "Skills", href: "/skills" },

@@ -51,6 +51,235 @@
   --err: #ff9d94;
 }
 
+/* ==========================================================================
+   EMERALD EDITION (route: /emerald)
+   The same "Paper & Ink" system with one deliberate change of temperature:
+   warm paper + vermilion is swapped for a cold, deep emerald field. Every
+   token below is a drop-in override of the tokens above, so all existing
+   utilities (bg-paper, text-ink, border-line, text-accent…) keep working —
+   nothing in the classic edition can drift because of this block.
+   Applied by app/emerald/layout.tsx with data-palette="emerald".
+   ========================================================================== */
+
+[data-palette="emerald"] {
+  color-scheme: dark;
+  /* Surfaces: near-black green, low chroma so long reading stays comfortable */
+  --paper: #04130f;
+  --surface: #072019;
+  --subtle: #061a14;
+  /* Ink: cool off-white with a mint cast — never pure #fff on dark green */
+  --ink: #e7fdf3;
+  --mute: #8fb9a9;
+  /* Rules: emerald hairlines instead of warm grey */
+  --rule: #14382c;
+  --rule-soft: #0e271f;
+  --rule-strong: #2e7d64;
+  /* One accent family: emerald → mint, with a cold cyan for depth */
+  --accent: #34d399;
+  --accent-2: #22d3ee;
+  --accent-3: #a7f3d0;
+  --onaccent: #04130f;
+  --inv: #0b2a20;
+  --oninv: #e7fdf3;
+  --oninv-mute: #7fae9c;
+  --skeleton: #0d2720;
+  --focus: #6ee7b7;
+  --ok: #6ee7b7;
+  --err: #fda4af;
+  /* Display face: a geometric sans, tighter — the cold counterpoint to the
+     classic edition's serif. Loaded by app/emerald/layout.tsx. */
+  --font-display: "Space Grotesk", "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+[data-palette="emerald"] body,
+body:has([data-palette="emerald"]) {
+  background: #04130f;
+}
+
+/* ---------- Emerald edition: layout primitives ---------- */
+
+.em-shell {
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(120% 80% at 12% -10%, rgba(52, 211, 153, 0.16), transparent 60%),
+    radial-gradient(90% 70% at 92% 4%, rgba(34, 211, 238, 0.12), transparent 62%),
+    radial-gradient(70% 60% at 50% 110%, rgba(16, 185, 129, 0.1), transparent 60%),
+    var(--paper);
+  color: var(--ink);
+}
+
+/* Faint engineering grid — cold, low contrast, never competes with text. */
+.em-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(52, 211, 153, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(52, 211, 153, 0.055) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(120% 90% at 50% 0%, #000 10%, transparent 78%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 10%, transparent 78%);
+}
+
+.em-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.em-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7.4vw, 5.4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.em-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4.4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+}
+
+.em-h3 {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.em-lead {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--mute);
+}
+
+/* Glass panel: 1px emerald hairline, tint, blur — no heavy shadows. */
+.em-panel {
+  position: relative;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(52, 211, 153, 0.06), rgba(4, 19, 15, 0.35));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.em-panel--hover {
+  transition: border-color 0.22s ease, transform 0.22s ease, background-color 0.22s ease;
+}
+
+.em-panel--hover:hover {
+  border-color: var(--rule-strong);
+  transform: translateY(-3px);
+}
+
+.em-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--mute);
+  white-space: nowrap;
+}
+
+.em-btn {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease,
+    color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.em-btn:hover {
+  transform: translateY(-2px);
+}
+
+.em-btn--primary {
+  border-color: transparent;
+  background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: var(--onaccent);
+}
+
+.em-btn--primary:hover {
+  box-shadow: 0 10px 30px -12px rgba(52, 211, 153, 0.65);
+}
+
+.em-btn--ghost {
+  background: rgba(7, 32, 25, 0.6);
+  color: var(--ink);
+}
+
+.em-btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Compact variant for tight spots (footers, inline rows). */
+.em-btn--sm {
+  min-height: 40px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+/* Section index numbers, mono, dim. */
+.em-index {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.em-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--rule-strong),
+    var(--rule) 45%,
+    transparent
+  );
+}
+
+/* Gradient text, cold side: emerald → mint → cyan. */
+.em-grad {
+  background: linear-gradient(
+    100deg,
+    var(--accent-3) 0%,
+    var(--accent) 45%,
+    var(--accent-2) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.em-scroll-marker::-webkit-scrollbar {
+  height: 6px;
+}
+
 @theme inline {
   --color-paper: var(--paper);
   --color-surface: var(--surface);
@@ -359,5 +588,169 @@ a {
   a {
     color: #000000;
     text-decoration: underline;
+  }
+}
+
+/* ==========================================================================
+   LOBBY (route: /)
+   The door between the two editions. Deliberately its own neutral, near-black
+   world: the two editions bring the colour, the lobby only frames them.
+   ========================================================================== */
+
+.lobby {
+  color-scheme: dark;
+  --lobby-bg: #06090a;
+  --lobby-ink: #f5f2ea;
+  --lobby-mute: #9aa3a2;
+  --lobby-line: rgba(255, 255, 255, 0.1);
+  --gold: #d6a21c;
+  --gold-soft: #f0b429;
+  --em: #34d399;
+  --em-soft: #22d3ee;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(70% 55% at 12% 8%, rgba(214, 162, 28, 0.14), transparent 62%),
+    radial-gradient(70% 55% at 88% 8%, rgba(52, 211, 153, 0.16), transparent 62%),
+    var(--lobby-bg);
+  color: var(--lobby-ink);
+}
+
+.lobby::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(110% 80% at 50% 0%, #000 12%, transparent 76%);
+  -webkit-mask-image: radial-gradient(110% 80% at 50% 0%, #000 12%, transparent 76%);
+}
+
+.lobby-eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lobby-mute);
+}
+
+.lobby-title {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(2.5rem, 6.6vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.lobby-door {
+  position: relative;
+  display: flex;
+  min-height: 30rem;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--lobby-line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.025);
+  padding: 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lobby-door::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.lobby-door--gold:hover {
+  border-color: rgba(214, 162, 28, 0.55);
+  box-shadow: 0 40px 90px -50px rgba(214, 162, 28, 0.75);
+}
+
+.lobby-door--gold::after {
+  background: radial-gradient(90% 60% at 50% 0%, rgba(214, 162, 28, 0.14), transparent 70%);
+}
+
+.lobby-door--emerald:hover {
+  border-color: rgba(52, 211, 153, 0.55);
+  box-shadow: 0 40px 90px -50px rgba(52, 211, 153, 0.8);
+}
+
+.lobby-door--emerald::after {
+  background: radial-gradient(90% 60% at 50% 0%, rgba(52, 211, 153, 0.16), transparent 70%);
+}
+
+.lobby-door:hover::after {
+  opacity: 1;
+}
+
+.lobby-door:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.lobby-enter {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.lobby-enter--gold {
+  background: linear-gradient(120deg, var(--gold) 0%, var(--gold-soft) 100%);
+  color: #170d02;
+}
+
+.lobby-enter--emerald {
+  background: linear-gradient(120deg, var(--em) 0%, var(--em-soft) 100%);
+  color: #04130f;
+}
+
+.lobby-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: 1px solid var(--lobby-line);
+  border-radius: 999px;
+  padding: 0.25rem 0.625rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--lobby-mute);
+  white-space: nowrap;
+}
+
+.lobby-swatch {
+  display: flex;
+  gap: 4px;
+}
+
+.lobby-swatch span {
+  height: 10px;
+  width: 26px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lobby-door,
+  .lobby-door::after {
+    transition: none;
   }
 }
