@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Mail, Sparkles } from "lucide-react";
 import EmeraldHero from "@/components/emerald/EmeraldHero";
+import VoyageLoader from "@/components/emerald/VoyageLoader";
 import ArtifactLab from "@/components/emerald/ArtifactLab";
 import WorkGrid from "@/components/emerald/WorkGrid";
 import Metrics from "@/components/emerald/Metrics";
@@ -78,10 +79,14 @@ export default function EmeraldPage() {
     <>
       <EmeraldHero />
 
-      {/* 01 — Intro */}
+      {/* 01 — The Voyage: the flight itself. Owns the viewport while you
+          scroll through it, then hands you back to the page. */}
+      <VoyageLoader />
+
+      {/* 02 — Intro */}
       <Section
         id="intro"
-        index="01"
+        index="02"
         eyebrow="The short version"
         title={
           <>
@@ -136,7 +141,7 @@ export default function EmeraldPage() {
       {/* 02 — Capabilities */}
       <Section
         id="capabilities"
-        index="02"
+        index="03"
         eyebrow="What I build"
         title="Six kinds of work, all with receipts."
         lead="Each card names the proof: a repository, a live product, or a binary you can download and run."
@@ -173,7 +178,7 @@ export default function EmeraldPage() {
       {/* 03 — Work */}
       <Section
         id="work"
-        index="03"
+        index="04"
         eyebrow="Selected work"
         title="Everything in the index, filterable."
         lead="Twenty projects: Linux distributions, local AI agents, tills, storefronts, platforms and the odd zero-dependency CLI. Pick a kind to narrow the field."
@@ -186,7 +191,7 @@ export default function EmeraldPage() {
       {/* 04 — Deep dives */}
       <Section
         id="deep-dives"
-        index="04"
+        index="05"
         eyebrow="Three in full"
         title="The systems I'd point at first."
         lead="Not summaries — the actual design decisions, and the trade each one makes."
@@ -241,7 +246,7 @@ export default function EmeraldPage() {
       {/* 05 — Lab */}
       <Section
         id="lab"
-        index="05"
+        index="06"
         eyebrow="The lab"
         title={
           <>
@@ -264,7 +269,7 @@ export default function EmeraldPage() {
       {/* 06 — Process */}
       <Section
         id="process"
-        index="06"
+        index="07"
         eyebrow="How I work"
         title="Five steps, in the same order every time."
         lead="Process is what stops a good first week from becoming a bad third month."
@@ -288,7 +293,7 @@ export default function EmeraldPage() {
       {/* 07 — Stack */}
       <Section
         id="stack"
-        index="07"
+        index="08"
         eyebrow="Stack constellation"
         title="Forty-four tools, placed by how much they're used."
       >
@@ -300,7 +305,7 @@ export default function EmeraldPage() {
       {/* 08 — Journey */}
       <Section
         id="journey"
-        index="08"
+        index="09"
         eyebrow="Journey"
         title="Four years, four turns down the stack."
       >
@@ -322,7 +327,7 @@ export default function EmeraldPage() {
       {/* 09 — Numbers */}
       <Section
         id="numbers"
-        index="09"
+        index="10"
         eyebrow="By the numbers"
         title="Counted from the repositories, not from memory."
       >
@@ -334,7 +339,7 @@ export default function EmeraldPage() {
       {/* 10 — FAQ */}
       <Section
         id="faq"
-        index="10"
+        index="11"
         eyebrow="Questions"
         title="The six I get asked most."
       >
@@ -363,7 +368,7 @@ export default function EmeraldPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="em-panel em-grid relative overflow-hidden px-6 py-10 sm:px-10 sm:py-14">
-              <p className="em-eyebrow">11 · Contact</p>
+              <p className="em-eyebrow">12 · Contact</p>
               <h2 className="em-h2 mt-3 max-w-2xl text-ink">
                 Tell me what &ldquo;done&rdquo; looks like.
               </h2>

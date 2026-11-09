@@ -5,13 +5,11 @@ import { ArrowDown, ArrowUpRight, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import EmeraldCanvas from "./EmeraldCanvas";
 import {
-  CrystalCore,
-  GroundGlow,
-  ParallaxRig,
-  ParticleDrift,
-  PrismRings,
-  WireCage,
-} from "./scene/artifacts";
+  Aurora,
+  GodRays,
+  MonumentCrystal,
+} from "./scene/voyage";
+import { ParallaxRig, ParticleDrift, PrismRings } from "./scene/artifacts";
 import { AUTHOR_EMAIL, GITHUB_URL } from "@/lib/site";
 
 const facts = [
@@ -27,16 +25,17 @@ export default function EmeraldHero() {
       {/* 3D field — decorative, sits behind the type, never eats a click. */}
       <EmeraldCanvas
         className="pointer-events-none absolute inset-0 -z-10 h-full w-full"
-        camera={{ position: [0, 0.35, 6.4], fov: 46 }}
-        label="Animated emerald crystal core surrounded by orbiting rings and drifting particles"
+        camera={{ position: [0, 0.3, 6.8], fov: 46 }}
+        label="A faceted emerald crystal turning slowly inside shafts of light, ringed by orbiting shards"
       >
-        <ParallaxRig strength={0.28}>
-          <group position={[1.35, 0.25, -0.6]} scale={0.92}>
-            <CrystalCore detail={5} radius={1.3} amp={0.24} />
-            <WireCage radius={2.45} opacity={0.1} />
+        <ParallaxRig strength={0.3}>
+          <group position={[1.5, 0.15, -0.8]} scale={0.72}>
+            <MonumentCrystal radius={2.5} detail={5} amp={0.4} glow={1.2} />
+            <PrismRings count={3} />
           </group>
-          <PrismRings count={3} />
-          <GroundGlow />
+          <GodRays count={5} radius={6.5} />
+          <Aurora position={[0, 2.4, -12]} seed={0.9} width={64} height={22} />
+          <Aurora position={[0, -2.6, -16]} seed={2.3} width={78} height={26} />
         </ParallaxRig>
         <ParticleDrift count={700} spread={18} depth={20} />
       </EmeraldCanvas>
