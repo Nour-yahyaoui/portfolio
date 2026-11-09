@@ -7,6 +7,12 @@ import {
   LINKEDIN_URL,
 } from "@/lib/site";
 
+const editions = [
+  { label: "Lobby", href: "/" },
+  { label: "Classic", href: "/classic" },
+  { label: "Emerald", href: "/emerald" },
+];
+
 const socials = [
   { label: "GitHub", href: GITHUB_URL },
   { label: "LinkedIn", href: LINKEDIN_URL },
@@ -47,7 +53,19 @@ export default function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="mt-8 flex flex-col gap-2 border-t border-linesoft pt-4 text-xs text-mute sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-linesoft pt-4 text-xs text-mute sm:flex-row sm:items-center sm:justify-between">
+          <nav aria-label="Editions" className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span className="font-mono text-[11px] uppercase tracking-[0.14em]">Editions</span>
+            {editions.map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="font-mono text-[11px] uppercase tracking-[0.14em] transition-colors hover:text-accent"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
           <p>© {new Date().getFullYear()} Nour Yahyaoui. Set in a serif, a system sans, and one mono.</p>
           <p className="font-mono text-[11px] uppercase tracking-[0.14em]">Ideas → reliable software</p>
         </div>
