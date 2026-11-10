@@ -377,15 +377,17 @@ export const deepDives: DeepDive[] = [
 ];
 
 export const emeraldSections = [
-  { id: "intro", index: "01", label: "The short version" },
-  { id: "capabilities", index: "02", label: "What I build" },
-  { id: "work", index: "03", label: "Selected work" },
-  { id: "deep-dives", index: "04", label: "Three in full" },
-  { id: "lab", index: "05", label: "The lab" },
-  { id: "process", index: "06", label: "How I work" },
-  { id: "stack", index: "07", label: "Stack constellation" },
-  { id: "journey", index: "08", label: "Journey" },
-  { id: "numbers", index: "09", label: "By the numbers" },
-  { id: "faq", index: "10", label: "Questions" },
-  { id: "contact", index: "11", label: "Contact" },
+  { id: "voyage", index: "01", label: "The voyage" },
+  { id: "intro", index: "02", label: "The short version" },
+  { id: "capabilities", index: "03", label: "What I build" },
+  { id: "work", index: "04", label: "Selected work" },
+  { id: "deep-dives", index: "05", label: "Three in full" },
+  { id: "lab", index: "06", label: "The lab" },
+  { id: "process", index: "07", label: "How I work" },
+  { id: "stack", index: "08", label: "Stack constellation" },
+  { id: "journey", index: "09", label: "Journey" },
+  { id: "numbers", index: "10", label: "By the numbers" },
+  { id: "faq", index: "11", label: "Questions" },
+  { id: "contact", index: "12", label: "Contact" },
 ];
+

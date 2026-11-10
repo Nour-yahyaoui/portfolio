@@ -48,6 +48,7 @@ export default function EmeraldCanvas({
 }) {
   const host = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [inView, setInView] = useState(false);
   const reduced = useReducedMotion();
 
   useEffect(() => {
@@ -55,14 +56,16 @@ export default function EmeraldCanvas({
     if (!node) return;
     if (typeof IntersectionObserver === "undefined") {
       setVisible(true);
+      setInView(true);
       return;
     }
+    // `visible` latches on first sight (mount cost paid once); `inView`
+    // keeps tracking so the render loop stops when the canvas scrolls away.
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setVisible(true);
-          io.disconnect();
-        }
+        const hit = entries.some((entry) => entry.isIntersecting);
+        if (hit) setVisible(true);
+        setInView(hit);
       },
       { rootMargin: "220px 0px" },
     );
@@ -76,7 +79,7 @@ export default function EmeraldCanvas({
         <CanvasBoundary fallback={<div className="h-full w-full" />}>
           {visible ? (
             <Canvas
-              frameloop={reduced ? "demand" : "always"}
+              frameloop={reduced ? "demand" : inView ? "always" : "never"}
               dpr={dpr}
               camera={camera}
               gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
