@@ -90,7 +90,7 @@ export default function EmeraldPage() {
         eyebrow="The short version"
         title={
           <>
-            Twenty projects, one rule: if the code can&apos;t show it, the page
+            Twenty-one projects, one rule: if the code can&apos;t show it, the page
             doesn&apos;t claim it.
           </>
         }
@@ -181,7 +181,7 @@ export default function EmeraldPage() {
         index="04"
         eyebrow="Selected work"
         title="Everything in the index, filterable."
-        lead="Twenty projects: Linux distributions, local AI agents, tills, storefronts, platforms and the odd zero-dependency CLI. Pick a kind to narrow the field."
+        lead="Twenty-one projects: Linux distributions, local AI agents, tills, storefronts, platforms and the odd zero-dependency CLI. Pick a kind to narrow the field."
       >
         <Reveal>
           <WorkGrid />
@@ -295,7 +295,7 @@ export default function EmeraldPage() {
         id="stack"
         index="08"
         eyebrow="Stack constellation"
-        title="Forty-four tools, placed by how much they're used."
+        title="Thirty tools, placed by how much they're used."
       >
         <Reveal>
           <StackOrbit />

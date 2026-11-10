@@ -154,6 +154,59 @@ export const projectDetails: ProjectDetail[] = [
     ],
   },
   {
+    slug: "agencyos",
+    tagline: "One workspace for the business and the delivery of agency work — multi-tenant, role-scoped, and honest about what it cannot verify.",
+    overview: [
+      "An agency runs two businesses at once: winning and servicing clients, and actually delivering the work. Those usually live in different tools, so nobody can answer simple questions — what is blocked, what is invoiced, what the client can see. AgencyOS puts both halves in one multi-tenant platform: clients and their onboarding checklist, projects and milestones, a Kanban board with dependency rules, support tickets, documents, invoices, notifications and reporting — plus a client portal that shows a client only their own work.",
+      "It is a modular monolith with two deployables and one database: Next.js 15 (App Router) for the web, NestJS 11 for the REST API, PostgreSQL 17 with Prisma for persistence. The browser never learns the API host — it calls the same-origin path /api/v1 and Next.js rewrites to API_INTERNAL_URL, so cookies stay first-party and there is no CORS preflight in the happy path.",
+      "The project's discipline is separating what is proven from what is merely possible. Builds, lint, 11 unit tests, 15 integration tests against a real PostgreSQL and 4 Playwright end-to-end specs pass; the docs state plainly that Docker images, GitHub Actions runs and every third-party provider call (Stripe, OpenAI, Resend, S3) were not executed in the build sandbox, and those paths are implemented to report themselves unavailable rather than fake success.",
+    ],
+    howItWorks: [
+      {
+        title: "Tenancy enforced in the query, not the controller",
+        body: "Every tenant-owned table carries organizationId, and required relations use composite foreign keys — [organizationId, parentId] — so the database itself rejects a row pointing at another tenant's parent. Five roles narrow the scope further: OWNER and MANAGER see the whole organization, DEVELOPER sees only projects they are a member of, and CLIENT sees only rows tied to their clientId, with drafts hidden and boards read-only. Cross-tenant reads return 404 (no existence oracle) and organisation-level denials return 403.",
+      },
+      {
+        title: "Sessions that survive a stolen token",
+        body: "Authentication is bcrypt-hashed passwords with access and refresh cookies. Refresh tokens are grouped into families: rotating one invalidates the old one, and replaying an old token revokes the entire family. Cookie-authenticated mutations additionally require CSRF double-submit — Origin must match WEB_URL and the x-csrf-token header must equal the cookie, compared in constant time. Bearer clients skip CSRF by design.",
+      },
+      {
+        title: "Delivery with order, not just columns",
+        body: "The board is drag and drop, but the interesting part is underneath: tasks can depend on each other, the dependency graph is checked for cycles, and a task refuses to complete while prerequisites are open. ProjectsService.projectWhere(scope) is the single definition of \"which projects can this caller see\", reused by tasks, analytics, documents and the assistant — one rule, one place to audit.",
+      },
+      {
+        title: "Money the browser cannot edit",
+        body: "Invoice totals are calculated on the server, never accepted from the client. Stripe Checkout creates the session, and webhooks are signature-verified and idempotent through a WebhookEvent unique on [provider, eventId], so a retried delivery cannot double-apply a payment. No card data is stored, and invoices are numbered per organization per year.",
+      },
+      {
+        title: "Integrations that admit when they are off",
+        body: "Stripe, OpenAI, Resend and S3-compatible storage are all optional and lazily constructed — IntegrationsService only builds a client when its key exists, and GET /api/v1/integrations/status tells the UI the truth. Ask the assistant something without OPENAI_API_KEY configured and you get 503 AI_UNAVAILABLE with no fabricated output; a deadline reminder with no mail provider is recorded as explicitly not delivered. Deadline reminders also dedupe on a key like deadline:<taskId>:<date>, so nobody gets the same nudge twice.",
+      },
+    ],
+    stack: [
+      { group: "Web", items: ["Next.js 15 (App Router)", "React 19", "TypeScript", "Tailwind CSS", "Radix primitives", "TanStack Query v5", "React Hook Form + Zod", "dnd-kit", "Recharts"] },
+      { group: "API", items: ["NestJS 11", "REST under /api/v1", "Swagger / OpenAPI", "class-validator DTOs", "Zod env validation", "Helmet", "Throttling (240 req/min, tighter on auth)", "Structured logging with request ids"] },
+      { group: "Data", items: ["PostgreSQL 17", "Prisma 6 — 23 models, 12 enums, 45 indexes", "2 reviewable SQL migrations", "Composite tenant foreign keys"] },
+      { group: "Integrations", items: ["Stripe Checkout + signature-verified webhooks", "OpenAI (grounded analyses)", "Resend (transactional email)", "S3-compatible storage, local disk in development"] },
+      { group: "Quality", items: ["Jest + Supertest (unit + integration)", "Playwright end-to-end on Chromium", "ESLint 9", "GitHub Actions", "Dockerfiles + Compose"] },
+    ],
+    engineering: [
+      "A modular monolith on purpose: 19 controllers grouped by domain, each with its own service and DTOs. Splitting into microservices at this scale would add distributed transactions and deployment overhead for no gain, and clean module boundaries keep a later extraction possible without a rewrite.",
+      "The cross-module rule is enforced socially and in review: a module calls another module's service, never its tables through a private query. That is what keeps \"who can see this project\" a single function instead of five subtly different WHERE clauses.",
+      "Where Prisma falls short, the trade-off is written down instead of hidden: it cannot express optional composite relations, so optional links (for example Document.projectId) use single-column foreign keys plus a service-level tenant check. PostgreSQL row-level security is not used — it is listed on the roadmap as the next defence-in-depth step.",
+      "The seeds are safe by construction: both the base seed and the additive ~1,400-row activity seed are deterministic, idempotent, labelled with demo-activity-* ids, and refuse to run when NODE_ENV is production. Every payment record carries a demo_* provider id, so no one mistakes demo data for real transactions.",
+      "Honest degradation is treated as a feature, not a gap. An assistant that says \"unavailable\" and an integration panel that says \"not configured\" are worth more in a review than a demo that appears to work because it is quietly making things up.",
+    ],
+    facts: [
+      { label: "Verified", value: "2026-11-06 (builds, lint, tests, migrations)" },
+      { label: "API surface", value: "66 paths / 85 operations / 31 schemas" },
+      { label: "Tests", value: "11 unit · 15 integration · 4 end-to-end" },
+      { label: "Data model", value: "23 models · 12 enums · 45 indexes" },
+      { label: "Web app", value: "23 routes, production build green" },
+      { label: "Licence", value: "Apache-2.0" },
+    ],
+  },
+  {
     slug: "campus",
     tagline: "A university community platform — clubs, projects, events — that is honest about what it has actually verified.",
     overview: [

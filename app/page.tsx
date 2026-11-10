@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Nour Yahyaoui — choose an edition",
     description:
-      "Classic (paper & ink) or the new emerald edition: the same twenty projects, two different lights to read them in.",
+      "Classic (paper & ink) or the new emerald edition: the same twenty-one projects, two different lights to read them in.",
     url: SITE_URL,
     type: "website",
   },

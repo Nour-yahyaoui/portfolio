@@ -47,7 +47,7 @@ export const CORE_POS = CURVE.getPointAt(1).clone().add(new THREE.Vector3(0, 0.6
 /** Act boundaries in scroll-progress space (0 → 1). */
 export const ACTS = [
   { id: "awakening", at: 0.0, title: "Awakening", line: "One crystal. One perimeter it cannot cross." },
-  { id: "tunnel", at: 0.17, title: "The Tunnel", line: "Forty gates. Twenty thousand stars going past." },
+  { id: "tunnel", at: 0.17, title: "The Tunnel", line: "Forty-four gates. Nine thousand stars going past." },
   { id: "gallery", at: 0.4, title: "The Gallery", line: "Twelve systems, hanging in the dark. Click one." },
   { id: "forge", at: 0.63, title: "The Forge", line: "Loops, strands, and every edge case at once." },
   { id: "core", at: 0.83, title: "The Core", line: "Everything converges — or it never ships." },

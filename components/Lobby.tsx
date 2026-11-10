@@ -27,9 +27,9 @@ const doors: {
     edition: "Edition A",
     name: "Paper & Ink",
     tone: "Warm · light · printed",
-    copy: "The original portfolio: warm paper, a serif display, hairline rules and one vermilion accent. Laid out like a printed manual — an index of twenty projects, each with a written case study.",
+    copy: "The original portfolio: warm paper, a serif display, hairline rules and one vermilion accent. Laid out like a printed manual — an index of twenty-one projects, each with a written case study.",
     bullets: [
-      "Twenty projects with full case studies",
+      "Twenty-one projects with full case studies",
       "Specification sheets, printed-index typography",
       "Light and dark themes, serif throughout",
     ],

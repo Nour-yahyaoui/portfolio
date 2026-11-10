@@ -75,6 +75,45 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "agencyos",
+    title: "AgencyOS — Operations Platform for Digital Agencies",
+    description:
+      "A multi-tenant platform for the business and the delivery of agency work: clients and milestones, Kanban tasks with real dependency rules, a client portal scoped to each client's own work, support tickets, documents, invoicing through Stripe, deadline notifications, analytics computed from database rows, and an assistant that returns 503 instead of inventing an answer when no provider is configured. Next.js 15 and NestJS 11 over PostgreSQL 17 with Prisma, verified by 11 unit, 15 integration and 4 end-to-end tests.",
+    status: "23 routes · 66 API paths",
+    version: "Apache-2.0",
+    tags: [
+      "Next.js 15",
+      "React 19",
+      "NestJS 11",
+      "PostgreSQL 17",
+      "Prisma 6",
+      "Stripe",
+      "Playwright",
+      "OpenAPI",
+    ],
+    highlights: [
+      "Every query scoped server-side by organizationId and role — 5 roles, composite tenant foreign keys",
+      "Refresh-token families with reuse revocation, CSRF double-submit, bcrypt, audit log",
+      "11 unit + 15 integration + 4 Playwright tests; 66 paths / 85 operations exported to OpenAPI",
+    ],
+    mainTag: "Full Stack",
+    liveDemo: "https://agencyos-web-beryl.vercel.app/",
+    code: "https://github.com/Nour-yahyaoui/agencyos",
+    note: "Modular monolith: Next.js as a thin back-end-for-frontend, NestJS modules behind one /api/v1 rewrite, optional providers that report when they're unavailable",
+    loginInstructions:
+      "Seeded demo accounts share the password DemoPass123!: owner@agencyos.dev, manager@agencyos.dev, dev@agencyos.dev and client@agencyos.dev all belong to Northstar Studio (the client sees Acme Robotics only), admin@agencyos.dev is the platform super admin, and other@agencyos.dev belongs to a second organization — useful for checking tenant isolation.",
+    links: [
+      { label: "Live app", href: "https://agencyos-web-beryl.vercel.app/", variant: "primary" },
+      { label: "API docs (Swagger)", href: "https://agencyos-api-kappa.vercel.app/api/docs", variant: "secondary" },
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/agencyos", variant: "secondary" },
+      {
+        label: "Architecture notes",
+        href: "https://github.com/Nour-yahyaoui/agencyos/blob/master/agencyos/docs/ARCHITECTURE.md",
+        variant: "quiet",
+      },
+    ],
+  },
+  {
     slug: "campus",
     title: "Campus — University Community Platform",
     description:
