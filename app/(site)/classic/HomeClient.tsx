@@ -49,8 +49,8 @@ const services = [
 ];
 
 const numbers = [
-  { value: "15", label: "Projects in this index, each with a case study" },
-  { value: "28", label: "Public repositories on GitHub" },
+  { value: "21", label: "Projects in this index, each with a case study" },
+  { value: "31", label: "Public repositories on GitHub" },
   { value: "345", label: "Offline tests guarding nour-code alone" },
   { value: "3", label: "Languages shipped in product UIs — Arabic, French, English" },
   { value: "3 yrs", label: "Of freelance & client work" },
@@ -217,7 +217,7 @@ export default function HomeClient() {
           </Link>
         </div>
         <p className="mt-5 max-w-2xl text-[15px] leading-7 text-mute">
-          Forty-four skills in motion — React and Rust, Actix and Ollama,
+          Thirty skills in motion — React and Rust, Actix and Ollama,
           Postgres and Python. Hover to pause the strip; click any skill to
           open the project that proves it.
         </p>

@@ -14,7 +14,7 @@ const Voyage = dynamic(() => import("./Voyage"), {
     <div
       aria-hidden="true"
       className="bg-[#04130f]"
-      style={{ height: "680vh" }}
+      style={{ height: "760vh" }}
     />
   ),
 });

@@ -276,6 +276,19 @@ body:has([data-palette="emerald"]) {
   color: transparent;
 }
 
+/* Story beat card: a short rise + fade as each caption arrives. Killed
+   automatically by the global prefers-reduced-motion rule above. */
+@keyframes em-beat-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .em-scroll-marker::-webkit-scrollbar {
   height: 6px;
 }

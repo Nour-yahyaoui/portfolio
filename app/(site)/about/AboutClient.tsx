@@ -169,7 +169,7 @@ export default function AboutClient() {
         </div>
         <p className="mt-5 max-w-2xl text-[15px] leading-7 text-mute">
           Prefer it in motion? The same skills scroll past as an animated
-          showcase — 44 of them, each linked to the project that proves it.{" "}
+          showcase — 30 of them, each linked to the project that proves it.{" "}
           <Link href="/skills" className="inline-flex items-center gap-1.5 whitespace-nowrap font-semibold text-accent underline decoration-accent underline-offset-4">
             See the skills showcase <ArrowRight size={14} aria-hidden="true" />
           </Link>

@@ -268,7 +268,7 @@ export interface Metric {
 }
 
 export const metrics: Metric[] = [
-  { value: 20, label: "Projects in the index", note: "Each with a written case study" },
+  { value: 21, label: "Projects in the index", note: "Each with a written case study" },
   { value: 345, label: "Offline tests", note: "Guarding nour-code alone" },
   { value: 3.9, suffix: " MB", label: "RustPad binary", note: "Word + PDF, no runtime" },
   { value: 7, label: "Checksummed migrations", note: "Campus schema, in order" },
@@ -303,7 +303,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Can I see the code before we talk?",
-    a: "Yes — twenty repositories are public, including the three flagship systems. Read the READMEs; they're the same documentation style you'd get for your own project.",
+    a: "Yes — thirty-one repositories are public, including every system in this index. Read the READMEs; they're the same documentation style you'd get for your own project.",
   },
 ];
 

@@ -45,13 +45,134 @@ export const HERO_POS = new THREE.Vector3(2.3, 0.35, -1);
 export const CORE_POS = CURVE.getPointAt(1).clone().add(new THREE.Vector3(0, 0.6, -18));
 
 /** Act boundaries in scroll-progress space (0 → 1). */
-export const ACTS = [
-  { id: "awakening", at: 0.0, title: "Awakening", line: "One crystal. One perimeter it cannot cross." },
-  { id: "tunnel", at: 0.17, title: "The Tunnel", line: "Forty gates. Twenty thousand stars going past." },
-  { id: "gallery", at: 0.4, title: "The Gallery", line: "Twelve systems, hanging in the dark. Click one." },
-  { id: "forge", at: 0.63, title: "The Forge", line: "Loops, strands, and every edge case at once." },
-  { id: "core", at: 0.83, title: "The Core", line: "Everything converges — or it never ships." },
+export type Beat = { from: number; text: string };
+export type Act = {
+  id: string;
+  at: number;
+  title: string;
+  line: string;
+  /** Story beats inside the act — the caption changes as you scroll through. */
+  beats: Beat[];
+};
+
+/**
+ * Six chapters. The story is a loop: it opens on a crystal with a hard
+ * perimeter, flies out through the work and the connections between it, and
+ * returns to the same crystal — larger, with everything else built around it.
+ */
+export const ACTS: Act[] = [
+  {
+    id: "awakening",
+    at: 0,
+    title: "Awakening",
+    line: "One crystal. One perimeter it cannot cross.",
+    beats: [
+      {
+        from: 0,
+        text: "Every system starts as a shape with a boundary. This one is nour-code: a model in the middle, a shell of permissions around it.",
+      },
+      {
+        from: 0.085,
+        text: "The shell is the product. Paths are checked, commands are allow-listed, every call is written down. The core moves; the shell decides how far.",
+      },
+    ],
+  },
+  {
+    id: "tunnel",
+    at: 0.16,
+    title: "The Tunnel",
+    line: "Forty-four gates. Nine thousand stars going past.",
+    beats: [
+      {
+        from: 0.16,
+        text: "Then the flight: forty-four gates, each one a request that made it through validation, a rate limit and an audit line.",
+      },
+      {
+        from: 0.26,
+        text: "This is what production looks like from the inside — not one big moment, but thousands of small ones that hold.",
+      },
+    ],
+  },
+  {
+    id: "gallery",
+    at: 0.38,
+    title: "The Gallery",
+    line: "Twelve systems, hanging in the dark. Click one.",
+    beats: [
+      {
+        from: 0.38,
+        text: "The work itself: tills and storefronts, a university platform, a Linux distribution, a document studio that fits in 3.9 MB.",
+      },
+      {
+        from: 0.48,
+        text: "Every monolith opens its case study. None of them are mockups — all of them run.",
+      },
+    ],
+  },
+  {
+    id: "network",
+    at: 0.57,
+    title: "The Network",
+    line: "Everything connected. Nothing assumed.",
+    beats: [
+      {
+        from: 0.57,
+        text: "Between the systems: the connections nobody sees until they break. APIs, webhooks, migrations, tenant scopes, permissions.",
+      },
+      {
+        from: 0.645,
+        text: "Signals travel these edges constantly. Each pulse is a request that was validated, scoped to its tenant, and answered — or refused.",
+      },
+    ],
+  },
+  {
+    id: "forge",
+    at: 0.71,
+    title: "The Forge",
+    line: "Loops, strands and edge cases, all at once.",
+    beats: [
+      {
+        from: 0.71,
+        text: "Where it is built: an agentic loop that calls a tool, reads the result, and continues — up to fifteen times, every call audited.",
+      },
+      {
+        from: 0.775,
+        text: "And the edge cases arrive anyway: an unknown barcode, an Arabic label on a French receipt, a shop with no internet.",
+      },
+    ],
+  },
+  {
+    id: "core",
+    at: 0.84,
+    title: "The Core",
+    line: "Everything converges — or it never ships.",
+    beats: [
+      {
+        from: 0.84,
+        text: "Back at the centre: the same crystal as the beginning, larger. What changed is everything built around it.",
+      },
+      {
+        from: 0.925,
+        text: "Twenty-one projects, thirty-one repositories, one rule — if the code cannot show it, the page does not claim it.",
+      },
+    ],
+  },
 ];
+
+/**
+ * Pacing: the camera eases in and out of every chapter instead of sliding
+ * through at a constant rate, so each beat gets a moment on screen.
+ */
+export function pacedProgress(p: number): number {
+  let i = 0;
+  for (let k = 0; k < ACTS.length; k++) if (p >= ACTS[k].at) i = k;
+  const start = ACTS[i].at;
+  const end = i + 1 < ACTS.length ? ACTS[i + 1].at : 1;
+  const local = end > start ? (p - start) / (end - start) : 0;
+  const eased = local * local * (3 - 2 * local);
+  return start + eased * (end - start);
+}
+
 
 export type Quality = "high" | "low";
 
@@ -73,7 +194,7 @@ export function CameraRig({
   const prevFov = useRef(48);
 
   useFrame((state, delta) => {
-    const target = reduced ? 0.05 : progress.current;
+    const target = reduced ? 0.05 : pacedProgress(progress.current);
     // Critically-damped follow: fast enough to feel connected, slow enough
     // to feel like flying rather than dragging.
     const damp = 1 - Math.pow(0.0015, Math.min(delta, 0.05));
@@ -470,8 +591,10 @@ const starVertex = /* glsl */ `
     vMix = aMix;
     vec4 mv = modelViewMatrix * vec4(position, 1.0);
     float twinkle = 0.45 + 0.55 * pow(abs(sin(uTime * 0.8 + aPhase)), 2.0);
-    gl_PointSize = aSize * uPixelRatio * (52.0 / max(-mv.z, 0.001)) * twinkle;
-    vAlpha = twinkle * smoothstep(120.0, 8.0, -mv.z);
+    // Cap the sprite: a star the camera flies through must not become a
+    // screen-filling blob, and it fades out as it passes the lens.
+    gl_PointSize = min(aSize * uPixelRatio * (52.0 / max(-mv.z, 0.001)) * twinkle, 26.0 * uPixelRatio);
+    vAlpha = twinkle * smoothstep(120.0, 8.0, -mv.z) * smoothstep(0.6, 2.4, -mv.z);
     gl_Position = projectionMatrix * mv;
   }
 `;
@@ -668,6 +791,383 @@ export function Spires({ count = 70, from = 0.18, to = 0.6 }: { count?: number; 
       <boxGeometry args={[1, 1, 1]} />
       <meshBasicMaterial color={PALETTE.emerald} wireframe transparent opacity={0.16} />
     </instancedMesh>
+  );
+}
+
+/* ------------------------------------------------------------- neural tissue */
+
+interface Network {
+  nodes: THREE.Vector3[];
+  edges: [number, number][];
+}
+
+/** Connect every node to its nearest few neighbours — a k-NN graph, not noise. */
+function buildNetwork(points: THREE.Vector3[], neighbors = 2, maxDist = 5): Network {
+  const edges: [number, number][] = [];
+  const seen = new Set<string>();
+
+  points.forEach((p, i) => {
+    const nearest = points
+      .map((q, j) => ({ j, d: p.distanceTo(q) }))
+      .filter((x) => x.j !== i && x.d < maxDist)
+      .sort((a, b) => a.d - b.d)
+      .slice(0, neighbors);
+
+    nearest.forEach(({ j }) => {
+      const key = i < j ? `${i}-${j}` : `${j}-${i}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      edges.push([i, j]);
+    });
+  });
+
+  return { nodes: points, edges };
+}
+
+const edgeVertex = /* glsl */ `
+  attribute float aT;
+  attribute float aPhase;
+  attribute float aLen;
+  varying float vT;
+  varying float vPhase;
+  varying float vLen;
+  void main() {
+    vT = aT;
+    vPhase = aPhase;
+    vLen = aLen;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const edgeFragment = /* glsl */ `
+  uniform float uTime;
+  uniform vec3 uA;
+  uniform vec3 uB;
+  uniform float uGlow;
+  varying float vT;
+  varying float vPhase;
+  varying float vLen;
+
+  void main() {
+    // A signal leaves one node, arrives at the other, then repeats — travelling
+    // light along a fixed wire, which is what a request actually looks like.
+    float speed = 0.16 + 0.10 * fract(vPhase * 7.13);
+    float head = fract(uTime * speed + vPhase);
+    float d = abs(vT - head);
+    d = min(d, 1.0 - d);
+    float pulse = exp(-d * d * 110.0);
+    float base = 0.14 + 0.06 * sin(vLen * 3.0 + uTime * 0.4);
+    vec3 col = mix(uA, uB, vT);
+    gl_FragColor = vec4(col * (base + pulse * 1.9) * uGlow, base * 0.7 + pulse * 0.95);
+  }
+`;
+
+function NeuralLines({ net, glow = 1 }: { net: Network; glow?: number }) {
+  const mat = useRef<THREE.ShaderMaterial>(null);
+
+  const geometry = useMemo(() => {
+    const positions = new Float32Array(net.edges.length * 6);
+    const ts = new Float32Array(net.edges.length * 2);
+    const phases = new Float32Array(net.edges.length * 2);
+    const lens = new Float32Array(net.edges.length * 2);
+
+    net.edges.forEach(([a, b], i) => {
+      const A = net.nodes[a];
+      const B = net.nodes[b];
+      positions.set([A.x, A.y, A.z, B.x, B.y, B.z], i * 6);
+      const phase = Math.random();
+      const len = A.distanceTo(B);
+      ts[i * 2] = 0;
+      ts[i * 2 + 1] = 1;
+      phases[i * 2] = phase;
+      phases[i * 2 + 1] = phase;
+      lens[i * 2] = len;
+      lens[i * 2 + 1] = len;
+    });
+
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    g.setAttribute("aT", new THREE.BufferAttribute(ts, 1));
+    g.setAttribute("aPhase", new THREE.BufferAttribute(phases, 1));
+    g.setAttribute("aLen", new THREE.BufferAttribute(lens, 1));
+    return g;
+  }, [net]);
+
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uA: { value: new THREE.Color(PALETTE.emerald) },
+      uB: { value: new THREE.Color(PALETTE.cyan) },
+      uGlow: { value: glow },
+    }),
+    [glow],
+  );
+
+  useFrame((state) => {
+    if (mat.current) mat.current.uniforms.uTime.value = state.clock.elapsedTime;
+  });
+
+  return (
+    <lineSegments geometry={geometry}>
+      <shaderMaterial
+        ref={mat}
+        uniforms={uniforms}
+        vertexShader={edgeVertex}
+        fragmentShader={edgeFragment}
+        transparent
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </lineSegments>
+  );
+}
+
+function NeuralNodes({ net, size = 0.085 }: { net: Network; size?: number }) {
+  const mesh = useRef<THREE.InstancedMesh>(null);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+
+  // How many edges touch each node — busier nodes burn a little brighter.
+  const degree = useMemo(() => {
+    const out = new Array(net.nodes.length).fill(0);
+    net.edges.forEach(([a, b]) => {
+      out[a] += 1;
+      out[b] += 1;
+    });
+    return out;
+  }, [net]);
+
+  useFrame((state) => {
+    if (!mesh.current) return;
+    const t = state.clock.elapsedTime;
+    net.nodes.forEach((node, i) => {
+      const fire = 0.5 + 0.5 * Math.sin(t * 1.4 + i * 0.9 + degree[i]);
+      dummy.position.copy(node);
+      dummy.rotation.set(t * 0.3 + i, t * 0.2, 0);
+      dummy.scale.setScalar(size * (0.7 + degree[i] * 0.22) * (0.85 + fire * 0.5));
+      dummy.updateMatrix();
+      mesh.current!.setMatrixAt(i, dummy.matrix);
+    });
+    mesh.current.instanceMatrix.needsUpdate = true;
+  });
+
+  return (
+    <instancedMesh ref={mesh} args={[undefined, undefined, net.nodes.length]}>
+      <icosahedronGeometry args={[1, 1]} />
+      <meshStandardMaterial
+        color={PALETTE.mint}
+        emissive={new THREE.Color(PALETTE.emerald)}
+        emissiveIntensity={1.8}
+        roughness={0.2}
+        metalness={0.3}
+      />
+    </instancedMesh>
+  );
+}
+
+/**
+ * A neural web strung along the flight path: nodes in a shell around the
+ * route, wired to their nearest neighbours, with signals running the wires.
+ * It reads as connective tissue and it doubles as a depth cue — near edges
+ * whip past while far ones crawl.
+ */
+export function NeuralWeb({
+  nodes = 150,
+  from = 0.24,
+  to = 0.78,
+  inner = 3.4,
+  outer = 11,
+  neighbors = 2,
+  glow = 1,
+}: {
+  nodes?: number;
+  from?: number;
+  to?: number;
+  inner?: number;
+  outer?: number;
+  neighbors?: number;
+  glow?: number;
+}) {
+  const net = useMemo(() => {
+    const points: THREE.Vector3[] = [];
+    for (let i = 0; i < nodes; i++) {
+      const u = from + Math.random() * (to - from);
+      const centre = CURVE.getPointAt(u);
+      const a = Math.random() * Math.PI * 2;
+      const r = inner + Math.pow(Math.random(), 0.65) * (outer - inner);
+      points.push(
+        new THREE.Vector3(
+          centre.x + Math.cos(a) * r,
+          centre.y + Math.sin(a) * r * 0.8,
+          centre.z + (Math.random() - 0.5) * 7,
+        ),
+      );
+    }
+    return buildNetwork(points, neighbors, 6.5);
+  }, [nodes, from, to, inner, outer, neighbors]);
+
+  return (
+    <group>
+      <NeuralLines net={net} glow={glow} />
+      <NeuralNodes net={net} />
+    </group>
+  );
+}
+
+/** The same idea as a ball: a cluster of wired nodes, used for the core. */
+export function NeuralCluster({
+  position = [0, 0, 0],
+  radius = 5,
+  nodes = 90,
+  neighbors = 3,
+  glow = 1.1,
+}: {
+  position?: [number, number, number];
+  radius?: number;
+  nodes?: number;
+  neighbors?: number;
+  glow?: number;
+}) {
+  const group = useRef<THREE.Group>(null);
+
+  const net = useMemo(() => {
+    const points: THREE.Vector3[] = [];
+    const golden = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < nodes; i++) {
+      const y = 1 - (i / Math.max(nodes - 1, 1)) * 2;
+      const r = Math.sqrt(Math.max(1 - y * y, 0));
+      const theta = golden * i;
+      const jitter = 0.82 + Math.random() * 0.32;
+      points.push(
+        new THREE.Vector3(
+          Math.cos(theta) * r * radius * jitter,
+          y * radius * jitter,
+          Math.sin(theta) * r * radius * jitter,
+        ),
+      );
+    }
+    return buildNetwork(points, neighbors, radius * 0.72);
+  }, [nodes, radius, neighbors]);
+
+  useFrame((state) => {
+    if (group.current) {
+      const t = state.clock.elapsedTime;
+      group.current.rotation.y = t * 0.05;
+      group.current.rotation.x = Math.sin(t * 0.14) * 0.08;
+    }
+  });
+
+  return (
+    <group ref={group} position={position}>
+      <NeuralLines net={net} glow={glow} />
+      <NeuralNodes net={net} size={0.1} />
+    </group>
+  );
+}
+
+/* -------------------------------------------------------------- depth layers */
+
+/**
+ * Floor and ceiling grids receding into the fog. A flat starfield reads as
+ * speed; a grid you can see converging reads as *distance*.
+ */
+export function DepthField() {
+  return (
+    <group>
+      <mesh position={[0, -5.5, -45]} rotation={[Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[80, 220, 20, 56]} />
+        <meshBasicMaterial color={PALETTE.emerald} wireframe transparent opacity={0.085} />
+      </mesh>
+      <mesh position={[0, 7.5, -45]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[80, 220, 14, 40]} />
+        <meshBasicMaterial color={PALETTE.cyan} wireframe transparent opacity={0.05} />
+      </mesh>
+    </group>
+  );
+}
+
+const moteVertex = /* glsl */ `
+  attribute float aSize;
+  attribute float aPhase;
+  uniform float uTime;
+  uniform float uPixelRatio;
+  varying float vAlpha;
+  void main() {
+    vec3 p = position;
+    p.x += sin(uTime * 0.22 + aPhase) * 0.6;
+    p.y += cos(uTime * 0.18 + aPhase * 1.7) * 0.5;
+    vec4 mv = modelViewMatrix * vec4(p, 1.0);
+    gl_PointSize = min(aSize * uPixelRatio * (140.0 / max(-mv.z, 0.001)), 86.0 * uPixelRatio);
+    // Only the near-but-not-touching motes survive: that is what makes them
+    // read as out-of-focus bokeh instead of a wash of green.
+    float near = smoothstep(1.1, 3.6, -mv.z);
+    float far = smoothstep(26.0, 9.0, -mv.z);
+    vAlpha = near * far * (0.3 + 0.3 * sin(uTime * 0.7 + aPhase));
+    gl_Position = projectionMatrix * mv;
+  }
+`;
+
+const moteFragment = /* glsl */ `
+  uniform vec3 uColor;
+  varying float vAlpha;
+  void main() {
+    float d = length(gl_PointCoord - 0.5);
+    float a = smoothstep(0.5, 0.12, d) * 0.5;
+    gl_FragColor = vec4(uColor, a * vAlpha);
+  }
+`;
+
+/** Soft out-of-focus motes drifting close to the lens — the near depth layer. */
+export function Motes({ count = 120 }: { count?: number }) {
+  const mat = useRef<THREE.ShaderMaterial>(null);
+  const { gl } = useThree();
+
+  const geometry = useMemo(() => {
+    const positions = new Float32Array(count * 3);
+    const sizes = new Float32Array(count);
+    const phases = new Float32Array(count);
+    const p = new THREE.Vector3();
+    for (let i = 0; i < count; i++) {
+      CURVE.getPointAt(Math.random(), p);
+      const a = Math.random() * Math.PI * 2;
+      const r = 1.6 + Math.random() * 5.5;
+      positions[i * 3] = p.x + Math.cos(a) * r;
+      positions[i * 3 + 1] = p.y + Math.sin(a) * r * 0.8;
+      positions[i * 3 + 2] = p.z + (Math.random() - 0.5) * 12;
+      sizes[i] = 6 + Math.random() * 16;
+      phases[i] = Math.random() * Math.PI * 2;
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    g.setAttribute("aSize", new THREE.BufferAttribute(sizes, 1));
+    g.setAttribute("aPhase", new THREE.BufferAttribute(phases, 1));
+    return g;
+  }, [count]);
+
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uPixelRatio: { value: Math.min(gl.getPixelRatio(), 2) },
+      uColor: { value: new THREE.Color(PALETTE.mint) },
+    }),
+    [gl],
+  );
+
+  useFrame((state) => {
+    if (mat.current) mat.current.uniforms.uTime.value = state.clock.elapsedTime;
+  });
+
+  return (
+    <points geometry={geometry}>
+      <shaderMaterial
+        ref={mat}
+        uniforms={uniforms}
+        vertexShader={moteVertex}
+        fragmentShader={moteFragment}
+        transparent
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+      />
+    </points>
   );
 }
 
@@ -957,7 +1457,7 @@ const implodeVertex = /* glsl */ `
     float a = aAngle + uTime * aSpeed;
     vec3 p = vec3(cos(a) * r, sin(a * 1.7 + uTime * 0.4) * r * 0.8, sin(a) * r);
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
-    gl_PointSize = aSize * uPixelRatio * (60.0 / max(-mv.z, 0.001));
+    gl_PointSize = min(aSize * uPixelRatio * (60.0 / max(-mv.z, 0.001)), 34.0 * uPixelRatio);
     vAlpha = pulse;
     gl_Position = projectionMatrix * mv;
   }
@@ -1025,7 +1525,7 @@ export function Implosion({ count = 2600 }: { count?: number }) {
   );
 }
 
-export function CoreChamber() {
+export function CoreChamber({ high = true }: { high?: boolean }) {
   const rings = useRef<THREE.Group>(null);
 
   useFrame((state) => {
@@ -1038,8 +1538,10 @@ export function CoreChamber() {
 
   return (
     <group position={CORE_POS}>
-      <MonumentCrystal radius={3.4} detail={6} amp={0.55} glow={1.35} />
-      <Implosion count={2600} />
+      <MonumentCrystal radius={3.4} detail={high ? 6 : 4} amp={0.55} glow={1.35} />
+      <Implosion count={high ? 2600 : 1100} />
+      {/* Everything the flight passed, wired together around the centre. */}
+      <NeuralCluster radius={8.4} nodes={high ? 130 : 60} neighbors={3} glow={1.2} />
       <group ref={rings}>
         {[5.2, 6.4, 7.6, 8.8].map((r, i) => (
           <mesh key={r}>
@@ -1072,7 +1574,7 @@ export function VoyageWorld({
 
   // The forge sits just off the path: a near miss reads better than a crash.
   const forgeAt = useMemo(() => {
-    const at = 0.73;
+    const at = 0.775;
     const point = CURVE.getPointAt(at);
     const tangent = CURVE.getTangentAt(at);
     const side = new THREE.Vector3()
@@ -1103,20 +1605,34 @@ export function VoyageWorld({
         <Aurora position={[0, 3.5, -18]} seed={0.4} width={70} height={26} />
         <Aurora position={[0, -3, -26]} seed={1.7} width={90} height={30} />
       </group>
+      {/* The first hint of the network: a small wired cluster behind the monument. */}
+      <NeuralCluster position={[HERO_POS.x + 0.5, HERO_POS.y, HERO_POS.z - 2]} radius={4.6} nodes={high ? 70 : 34} glow={0.8} />
 
       {/* Acts 02–03 — the flight */}
+      <DepthField />
       <Starfield count={high ? 9000 : 3200} />
+      <Motes count={high ? 120 : 50} />
       <Gates count={high ? 44 : 22} />
       <Spires count={high ? 70 : 30} />
 
       {/* Act 03 — the gallery */}
-      <Monoliths onOpen={onOpen} />
+      <Monoliths from={0.38} to={0.56} onOpen={onOpen} />
 
-      {/* Act 04 — the forge */}
+      {/* Act 04 — the network: connective tissue strung along the whole route */}
+      <NeuralWeb
+        nodes={high ? 170 : 70}
+        from={0.22}
+        to={0.8}
+        inner={3.6}
+        outer={12}
+        glow={1.15}
+      />
+
+      {/* Act 05 — the forge */}
       <Forge position={forgeAt} />
 
-      {/* Act 05 — the core */}
-      <CoreChamber />
+      {/* Act 06 — the core */}
+      <CoreChamber high={high} />
     </>
   );
 }

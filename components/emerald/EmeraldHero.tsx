@@ -8,6 +8,7 @@ import {
   Aurora,
   GodRays,
   MonumentCrystal,
+  NeuralCluster,
 } from "./scene/voyage";
 import { ParallaxRig, ParticleDrift, PrismRings } from "./scene/artifacts";
 import { AUTHOR_EMAIL, GITHUB_URL } from "@/lib/site";
@@ -26,7 +27,7 @@ export default function EmeraldHero() {
       <EmeraldCanvas
         className="pointer-events-none absolute inset-0 -z-10 h-full w-full"
         camera={{ position: [0, 0.3, 6.8], fov: 46 }}
-        label="A faceted emerald crystal turning slowly inside shafts of light, ringed by orbiting shards"
+        label="A faceted emerald crystal turning inside shafts of light, wired into a small network of pulsing nodes"
       >
         <ParallaxRig strength={0.3}>
           <group position={[1.5, 0.15, -0.8]} scale={0.72}>
@@ -34,6 +35,7 @@ export default function EmeraldHero() {
             <PrismRings count={3} />
           </group>
           <GodRays count={5} radius={6.5} />
+          <NeuralCluster position={[1.4, 0.2, -1.6]} radius={4.2} nodes={64} glow={0.9} />
           <Aurora position={[0, 2.4, -12]} seed={0.9} width={64} height={22} />
           <Aurora position={[0, -2.6, -16]} seed={2.3} width={78} height={26} />
         </ParallaxRig>

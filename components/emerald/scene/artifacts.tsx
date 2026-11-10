@@ -202,8 +202,8 @@ const pointVertex = /* glsl */ `
     p.y += sin(uTime * 0.35 + aPhase) * 0.22;
     p.x += cos(uTime * 0.22 + aPhase * 1.7) * 0.14;
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
-    gl_PointSize = aSize * uPixelRatio * (46.0 / max(-mv.z, 0.001));
-    vAlpha = 0.25 + 0.75 * pow(abs(sin(uTime * 0.6 + aPhase)), 2.0);
+    gl_PointSize = min(aSize * uPixelRatio * (46.0 / max(-mv.z, 0.001)), 24.0 * uPixelRatio);
+    vAlpha = (0.25 + 0.75 * pow(abs(sin(uTime * 0.6 + aPhase)), 2.0)) * smoothstep(0.5, 2.0, -mv.z);
     vPhase = aPhase;
     gl_Position = projectionMatrix * mv;
   }

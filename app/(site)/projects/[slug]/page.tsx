@@ -153,6 +153,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 </span>
               ))}
             </div>
+
+            {/* Seeded demo credentials, where a project ships them — so someone
+                reviewing the live app can actually get through the door. */}
+            {project.loginInstructions && (
+              <>
+                <p className="label-mono mt-8 border-b border-ink pb-2 text-ink">
+                  Demo access
+                </p>
+                <p className="mt-3 text-sm leading-6 text-mute">
+                  {project.loginInstructions}
+                </p>
+              </>
+            )}
           </div>
         </aside>
 

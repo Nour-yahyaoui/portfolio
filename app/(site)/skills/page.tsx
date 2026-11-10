@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Skills | Nour Yahyaoui",
     description:
-      "44 skills in motion — every icon linked to the project that proves it. React · Next.js · Rust · Python · Local AI.",
+      "30 skills in motion — every icon linked to the project that proves it. React · Next.js · Rust · Python · Local AI.",
     url: "/skills",
     type: "website",
   },
