@@ -9,8 +9,6 @@ export interface ProjectDetail {
   slug: string;
   /** One plain sentence: what it is, for whom. */
   tagline: string;
-  /** Short user/problem-oriented objective. Older entries fall back to tagline. */
-  goal?: string;
   /** What it is and the problem it answers. */
   overview: string[];
   /** The flow a user (or the system) actually goes through. */
@@ -24,97 +22,6 @@ export interface ProjectDetail {
 }
 
 export const projectDetails: ProjectDetail[] = [
-  {
-    slug: "anar-ide",
-    tagline: "An open-source desktop editor built specifically for Rust, with a native shell and a Rust-aware development workflow.",
-    goal: "Give Rust developers a focused desktop editor that brings editing, rust-analyzer, project tools, and accelerated builds into one place.",
-    overview: [
-      "Anar is a Rust-focused open-source desktop editor from The Golden Army. Its README describes a Tauri 2 desktop app with React, CodeMirror 6, rust-analyzer, and RustTurbo, and marks the project v0.1.0 / Phase 3 (Files & Editor).",
-      "The repository separates shared project logic, language-server lifecycle, build/run orchestration, workspace tools, and framework detection into Rust crates, with the desktop interface in its own application directory.",
-    ],
-    howItWorks: [
-      { title: "Edit Rust projects", body: "The desktop frontend uses CodeMirror 6 for the editing surface and integrates rust-analyzer through a Rust language-server bridge." },
-      { title: "Build through RustTurbo", body: "A dedicated runner handles build and run flows with Cargo and RustTurbo, keeping compilation workflows part of the editor rather than a separate promise." },
-      { title: "A native desktop shell", body: "Tauri 2 hosts the React and TypeScript application, while the Rust workspace owns core project models, language-server lifecycle, scoped filesystem operations, search, Git, and framework detection." },
-    ],
-    stack: [
-      { group: "Desktop UI", items: ["Tauri 2", "React + TypeScript", "Vite", "Tailwind CSS", "CodeMirror 6"] },
-      { group: "Rust tooling", items: ["Rust workspace crates", "rust-analyzer lifecycle + JSON-RPC bridge", "Cargo build/run pipeline", "RustTurbo integration"] },
-      { group: "Quality", items: ["Frontend lint, format, typecheck, tests, build", "cargo fmt + clippy + workspace tests", "Linux, macOS, and Windows CI"] },
-    ],
-    engineering: [
-      "The application is split by responsibility: project/core types, language-server lifecycle, build/run, workspace access, and framework detection each live in separate Rust crates.",
-      "The editor is Rust-focused by design: CodeMirror supplies the editing surface while rust-analyzer and the Rust runner provide language and build workflows.",
-      "The README marks the editor v0.1.0 / Phase 3 instead of presenting the early project as a finished IDE.",
-    ],
-    facts: [
-      { label: "Version", value: "v0.1.0 · Phase 3 (Files & Editor)" },
-      { label: "License", value: "MIT" },
-      { label: "Repository", value: "the-golden-army/Anar-IDE" },
-    ],
-  },
-  {
-    slug: "rusturbo",
-    tagline: "An extreme Rust compilation accelerator that analyses builds, reuses artifacts, and measures real outcomes.",
-    goal: "Reduce repeated Cargo compilation work without pretending a cold build or a cache miss is magically free.",
-    overview: [
-      "RustTurbo is a Rust build accelerator distributed as both a Rust CLI and a small npm package that downloads the matching native release binary. It analyses the dependency graph, fingerprints build inputs, schedules work against the machine, reuses dependency artifacts across projects, selects a fast linker when appropriate, and benchmarks the result.",
-      "Its documentation is unusually explicit about limits: a crate that has never been downloaded or built still has to be compiled, and the benchmark reports that honestly. The README describes v0.1.0 as a working MVP validated end to end across Linux, macOS, and Windows.",
-    ],
-    howItWorks: [
-      { title: "Understand the build graph", body: "Cargo metadata supplies the resolved dependency graph. RustTurbo reports the critical path, parallel waves, graph width, duplicate crate versions, and dependencies that dominate the build." },
-      { title: "Reuse only matching artifacts", body: "Cache keys include the compiler and Cargo versions, target, profile, resolved graph/features, relevant flags, and environment. A shared target directory is the default; a portable artifact entry is available when a project needs its own target directory." },
-      { title: "Measure before claiming", body: "The benchmark harness runs cold and warm scenarios and writes JSON and Markdown reports. A cache miss is shown as a miss, not dressed up as a speedup." },
-      { title: "Use it through npm or Cargo", body: "Install the Node.js shim with npm or install the Rust binary with Cargo; the npm postinstall obtains the platform release binary." },
-    ],
-    stack: [
-      { group: "Core tool", items: ["Rust", "Cargo metadata + build orchestration", "Dependency graph analysis"] },
-      { group: "Build acceleration", items: ["Artifact fingerprinting and cache reuse", "Hardware-aware scheduling", "mold / lld / system linker selection", "Actix Web preset"] },
-      { group: "Distribution + verification", items: ["Node.js / npm installer shim", "GitHub Releases binaries", "Cross-platform CI", "Cold/warm benchmark reports"] },
-    ],
-    engineering: [
-      "Cache keys include the inputs that can change build artifacts; correctness takes priority over a cache hit.",
-      "Build scripts can embed host-library state, so RustTurbo detects risky cases and can refuse to share those artifacts in strict mode.",
-      "Cargo.toml is not rewritten, optimization levels are not silently changed, and commands are run as explicit argument vectors rather than through a shell.",
-      "The tool reports honest limits: downloads, first-time compilation, and cache-empty runs still cost what they cost.",
-    ],
-    facts: [
-      { label: "Status", value: "v0.1.0 · working MVP" },
-      { label: "Install", value: "npm package or Cargo / GitHub Releases" },
-      { label: "Repository", value: "the-golden-army/Rusturbo" },
-    ],
-  },
-  {
-    slug: "bidi-kit",
-    tagline: "A small toolkit for mixed-direction text, so Arabic, English, French, numbers, and punctuation behave together.",
-    goal: "Make bidirectional text dependable in everyday interfaces, including when a page mixes RTL and LTR languages.",
-    overview: [
-      "bidi-kit is a zero-dependency JavaScript and TypeScript package for right-to-left and mixed-direction text. It provides direction detection, segmentation, paragraph helpers, inline isolation, bidi-control auditing, and a system Arabic font stack for common text-layout problems.",
-      "The npm package is v0.1.1. Its source is part of the ui-storm repository, where the JavaScript package and a Rust implementation share test fixtures so their text segmentation can be checked against the same examples.",
-    ],
-    howItWorks: [
-      { title: "Keep mixed text isolated", body: "Wrap an RTL run inside an LTR sentence (or the reverse) with direction-aware isolation so nearby punctuation and neutral characters do not jump to the wrong side." },
-      { title: "Handle direction explicitly", body: "Helpers detect direction, split mixed text into runs, and generate paragraph or segment markup for browser and server-rendered use." },
-      { title: "Audit invisible controls", body: "The toolkit can strip bidi control characters and report them during audits, helping teams inspect text that can visually reorder names or labels." },
-      { title: "Use it across environments", body: "The package ships ESM, CommonJS, TypeScript types, and a standalone browser script, without importing Node-only modules in the distribution build." },
-    ],
-    stack: [
-      { group: "Package", items: ["JavaScript + TypeScript", "ESM, CommonJS, and browser global builds", "Node.js and browser use", "npm distribution"] },
-      { group: "Text direction", items: ["Unicode bidirectional behavior", "Arabic and RTL interfaces", "LTR / RTL isolation with <bdi>", "Punctuation and number runs"] },
-      { group: "Quality", items: ["Zero runtime dependencies", "Shared cross-language fixtures", "Browser and Node tests"] },
-    ],
-    engineering: [
-      "Use semantic direction and isolation rather than trying to fix bidi behavior with visual CSS flips.",
-      "Keep the package dependency-free and usable from plain HTML as well as bundled applications.",
-      "Share fixtures with the Rust implementation so parity is checked by tests rather than assumed.",
-      "Treat invisible bidi controls as inspectable input, not mysterious rendering noise.",
-    ],
-    facts: [
-      { label: "npm version", value: "0.1.1" },
-      { label: "Dependencies", value: "Zero" },
-      { label: "Source", value: "Nour-yahyaoui/ui-storm · packages/bidi-kit" },
-    ],
-  },
   {
     slug: "nour-code",
     tagline: "An AI coding agent that runs entirely on your machine — with real tools, real guardrails, and a paper trail.",

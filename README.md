@@ -1,33 +1,76 @@
-# Nour Yahyaoui — Personal Showroom
+<h1 align="center">Hiiiii 👋, I'm Nour Yahyaoui</h1>
+<h3 align="center">Full-Stack Developer specializing in React/Next.js, Node.js & PostgreSQL — from Tunisia 🇹🇳</h3>
 
-A Next.js portfolio arranged as a small set of rooms rather than one long résumé page. The front door stays deliberately brief; visitors choose where to go next.
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=nour-yahyaoui&label=Profile%20views&color=0e75b6&style=flat" alt="nour-yahyaoui" />
+</p>
 
-## Rooms
+---
+### 👨‍💻 About Me
 
-- **The Workshop** (`/work`) — a concise wall of 24 projects. Each project opens a case file with its goal, description, how it works, engineering decisions, facts, and skills/tools.
-- **History** (`/history`) — 24 historical images and short, first-person retellings. The retellings are not presented as authentic quotations.
-- **Art & Archive** (`/art`) — the same supplied historical image collection in a parchment-and-ink gallery.
-- **Listening Room** (`/listening`) — eight favorite tracks transcribed from screenshots. No audio or MP3 files are hosted; track links open YouTube Music search.
-- **Ideas** (`/ideas`) — a short list of philosophy and science interests, without an invented personal manifesto.
+🎓 19-year-old full-stack developer from Tunisia, **3 years of freelance/client experience**.
+💻 I build production web apps end-to-end — frontend, backend, and deployment — and I'm currently expanding into **Rust (Actix Web / Axum)** to work on performance-critical backend services.
 
-Old portfolio URLs redirect to the new showroom or its work room. Project descriptions and case-study data remain in `lib/projects.ts` and `lib/projectDetails.ts`.
+This repo is my personal portfolio site, built with **Next.js** (App Router) and Tailwind CSS. **v2 — "Paper & Ink"**: an editorial spec-sheet design with a numbered project index, a full case study per project, light/dark themes that follow your system, and an animated **skills showcase** at `/skills` — 44 skills in motion, each linked to its proof. Design brief: [`docs/STYLE.md`](docs/STYLE.md).
 
-## Development
+---
 
-```bash
-npm ci
-npm run dev
-```
+### 🧰 Tech Stack
 
-The development server can be exposed on all interfaces with:
+#### 🖥️ Frontend
 
-```bash
-npm run dev -- --hostname 0.0.0.0
-```
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
-## Validation
+#### ⚙️ Backend
 
-```bash
-npm run lint
-npm run build
-```
+![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Neon DB](https://img.shields.io/badge/Neon-00BFFF?style=for-the-badge&logo=neon&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+
+#### 🛠️ Tools & Others
+
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+
+---
+
+### 📌 What I've Actually Shipped
+
+- **[nour-code](https://github.com/Nour-yahyaoui/nour-code)** — local AI coding agent powered by Qwen3 8B and Ollama, with permission-checked tools, hot-reloadable skills, and a 345-test offline suite. Latest release: [v1.4.0](https://github.com/Nour-yahyaoui/nour-code/releases/tag/v1.4.0). [Website](https://nour-code-agent.vercel.app)
+- **[OneClick](https://github.com/Nour-yahyaoui/onclick)** — local-first POS for phone & accessories shops. One Rust binary (axum + SQLite), works offline, in French / Arabic / English. Inventory that fills itself: scan an unknown barcode, answer two questions, the sale goes through.
+- **[RustPad](https://github.com/Nour-yahyaoui/rustpad)** — offline-first Word (.docx) and PDF (.pdf) desktop studio in 100% pure Rust. Legal redlines, forensic PDF redaction, and SHA-256 sealing in a single ~3.9 MB binary. Latest release: [v2.1.0](https://github.com/Nour-yahyaoui/rustpad/releases/tag/v2.1.0). [Live landing page](https://rustpad-studio.vercel.app)
+- **[Campus](https://github.com/Nour-yahyaoui/Campus)** — free, open-source university community platform: clubs with mini-sites, student projects with a review workflow, and capacity-safe event registration.
+- **[Matjari](https://matjari-dashboard.vercel.app/)** — full-stack store management platform (web + mobile) covering sales, stock/inventory, and employee management for retail businesses.
+- **[Grafspee](https://github.com/nour-yahyaoui/grafspee)** — free open-source React/Next.js component library with 60+ ready-to-use components.
+- **[env-sentry](https://github.com/nour-yahyaoui/env-sentry)** — Python library that catches `.env` drift and hardcoded secrets before they ship.
+
+---
+
+
+
+### 📫 Let's Connect
+
+📧 [nourryahyaoui@gmail.com](mailto:nourryahyaoui@gmail.com)
+💼 [LinkedIn](https://www.linkedin.com/in/nour-yahyaoui-86987b36b)
+🐙 [GitHub](https://github.com/nour-yahyaoui)
+
+---
+
+<p align="center">
+  <i>"Building the future, one line of code at a time."</i>
+</p>
