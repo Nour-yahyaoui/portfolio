@@ -17,7 +17,7 @@ export interface ProjectLink {
 }
 
 export interface Project {
-  /** URL slug for the case-study page at /projects/[slug] */
+  /** URL slug for the case file at /work/[slug] */
   slug: string;
   title: string;
   description: string;

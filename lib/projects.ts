@@ -1,13 +1,46 @@
 import type { Project } from "./types";
 
 /**
- * The project index — single source of truth for the home page, the
- * /projects index, and the case-study pages at /projects/[slug].
- * Order matters: it is the numbering visitors see. Case-study prose
- * (stack tables, how-it-works) lives in lib/projectDetails.ts.
+ * The project index — single source of truth for the /work room and its
+ * case files at /work/[slug]. Order matters: it is the numbering visitors
+ * see. Case-study prose lives in lib/projectDetails.ts.
  */
 export const projects: Project[] = [
-
+  {
+    slug: "anar-ide",
+    title: "Anar-IDE",
+    description: "An open-source desktop editor built for Rust, powered by Tauri 2, React, CodeMirror 6, rust-analyzer, and RustTurbo.",
+    status: "v0.1.0 · Phase 3",
+    tags: ["Rust", "Tauri 2", "React", "CodeMirror 6", "rust-analyzer", "RustTurbo"],
+    mainTag: "Desktop developer tool",
+    code: "https://github.com/the-golden-army/Anar-IDE",
+  },
+  {
+    slug: "rusturbo",
+    title: "RustTurbo",
+    description: "An npm-installable Rust build accelerator that analyses dependency graphs, reuses build artifacts, schedules work against hardware, and measures the result.",
+    status: "v0.1.0 · Working MVP",
+    tags: ["Rust", "Cargo", "Node.js package", "Build cache", "Benchmarking"],
+    mainTag: "Build systems",
+    code: "https://github.com/the-golden-army/Rusturbo",
+    links: [
+      { label: "Source code", href: "https://github.com/the-golden-army/Rusturbo", variant: "primary" },
+      { label: "npm package", href: "https://www.npmjs.com/package/rusturbo", variant: "secondary" },
+    ],
+  },
+  {
+    slug: "bidi-kit",
+    title: "bidi-kit",
+    description: "A zero-dependency JavaScript and TypeScript toolkit that keeps Arabic, English, French, punctuation, numbers, and bidirectional text behaving in mixed-direction interfaces.",
+    status: "npm v0.1.1",
+    tags: ["TypeScript", "Node.js package", "Arabic · RTL", "Accessibility", "Zero dependencies"],
+    mainTag: "Text & internationalisation",
+    code: "https://github.com/Nour-yahyaoui/ui-storm",
+    links: [
+      { label: "npm package", href: "https://www.npmjs.com/package/bidi-kit", variant: "primary" },
+      { label: "Source repository", href: "https://github.com/Nour-yahyaoui/ui-storm", variant: "secondary" },
+    ],
+  },
   {
     slug: "nour-code",
     title: "nour-code",
