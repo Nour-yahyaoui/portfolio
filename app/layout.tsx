@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Nour Yahyaoui — Personal Showroom",
+    default: "Nour Yahyaoui | Full-Stack Developer",
     template: "%s | Nour Yahyaoui",
   },
   description: DEFAULT_DESCRIPTION,

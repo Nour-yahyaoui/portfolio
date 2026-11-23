@@ -9,8 +9,6 @@ export interface ProjectDetail {
   slug: string;
   /** One plain sentence: what it is, for whom. */
   tagline: string;
-  /** Short user/problem-oriented objective. Older entries fall back to tagline. */
-  goal?: string;
   /** What it is and the problem it answers. */
   overview: string[];
   /** The flow a user (or the system) actually goes through. */
@@ -24,97 +22,6 @@ export interface ProjectDetail {
 }
 
 export const projectDetails: ProjectDetail[] = [
-  {
-    slug: "anar-ide",
-    tagline: "An open-source desktop editor built specifically for Rust, with a native shell and a Rust-aware development workflow.",
-    goal: "Give Rust developers a focused desktop editor that brings editing, rust-analyzer, project tools, and accelerated builds into one place.",
-    overview: [
-      "Anar is a Rust-focused open-source desktop editor from The Golden Army. Its README describes a Tauri 2 desktop app with React, CodeMirror 6, rust-analyzer, and RustTurbo, and marks the project v0.1.0 / Phase 3 (Files & Editor).",
-      "The repository separates shared project logic, language-server lifecycle, build/run orchestration, workspace tools, and framework detection into Rust crates, with the desktop interface in its own application directory.",
-    ],
-    howItWorks: [
-      { title: "Edit Rust projects", body: "The desktop frontend uses CodeMirror 6 for the editing surface and integrates rust-analyzer through a Rust language-server bridge." },
-      { title: "Build through RustTurbo", body: "A dedicated runner handles build and run flows with Cargo and RustTurbo, keeping compilation workflows part of the editor rather than a separate promise." },
-      { title: "A native desktop shell", body: "Tauri 2 hosts the React and TypeScript application, while the Rust workspace owns core project models, language-server lifecycle, scoped filesystem operations, search, Git, and framework detection." },
-    ],
-    stack: [
-      { group: "Desktop UI", items: ["Tauri 2", "React + TypeScript", "Vite", "Tailwind CSS", "CodeMirror 6"] },
-      { group: "Rust tooling", items: ["Rust workspace crates", "rust-analyzer lifecycle + JSON-RPC bridge", "Cargo build/run pipeline", "RustTurbo integration"] },
-      { group: "Quality", items: ["Frontend lint, format, typecheck, tests, build", "cargo fmt + clippy + workspace tests", "Linux, macOS, and Windows CI"] },
-    ],
-    engineering: [
-      "The application is split by responsibility: project/core types, language-server lifecycle, build/run, workspace access, and framework detection each live in separate Rust crates.",
-      "The editor is Rust-focused by design: CodeMirror supplies the editing surface while rust-analyzer and the Rust runner provide language and build workflows.",
-      "The README marks the editor v0.1.0 / Phase 3 instead of presenting the early project as a finished IDE.",
-    ],
-    facts: [
-      { label: "Version", value: "v0.1.0 · Phase 3 (Files & Editor)" },
-      { label: "License", value: "MIT" },
-      { label: "Repository", value: "the-golden-army/Anar-IDE" },
-    ],
-  },
-  {
-    slug: "rusturbo",
-    tagline: "An extreme Rust compilation accelerator that analyses builds, reuses artifacts, and measures real outcomes.",
-    goal: "Reduce repeated Cargo compilation work without pretending a cold build or a cache miss is magically free.",
-    overview: [
-      "RustTurbo is a Rust build accelerator distributed as both a Rust CLI and a small npm package that downloads the matching native release binary. It analyses the dependency graph, fingerprints build inputs, schedules work against the machine, reuses dependency artifacts across projects, selects a fast linker when appropriate, and benchmarks the result.",
-      "Its documentation is unusually explicit about limits: a crate that has never been downloaded or built still has to be compiled, and the benchmark reports that honestly. The README describes v0.1.0 as a working MVP validated end to end across Linux, macOS, and Windows.",
-    ],
-    howItWorks: [
-      { title: "Understand the build graph", body: "Cargo metadata supplies the resolved dependency graph. RustTurbo reports the critical path, parallel waves, graph width, duplicate crate versions, and dependencies that dominate the build." },
-      { title: "Reuse only matching artifacts", body: "Cache keys include the compiler and Cargo versions, target, profile, resolved graph/features, relevant flags, and environment. A shared target directory is the default; a portable artifact entry is available when a project needs its own target directory." },
-      { title: "Measure before claiming", body: "The benchmark harness runs cold and warm scenarios and writes JSON and Markdown reports. A cache miss is shown as a miss, not dressed up as a speedup." },
-      { title: "Use it through npm or Cargo", body: "Install the Node.js shim with npm or install the Rust binary with Cargo; the npm postinstall obtains the platform release binary." },
-    ],
-    stack: [
-      { group: "Core tool", items: ["Rust", "Cargo metadata + build orchestration", "Dependency graph analysis"] },
-      { group: "Build acceleration", items: ["Artifact fingerprinting and cache reuse", "Hardware-aware scheduling", "mold / lld / system linker selection", "Actix Web preset"] },
-      { group: "Distribution + verification", items: ["Node.js / npm installer shim", "GitHub Releases binaries", "Cross-platform CI", "Cold/warm benchmark reports"] },
-    ],
-    engineering: [
-      "Cache keys include the inputs that can change build artifacts; correctness takes priority over a cache hit.",
-      "Build scripts can embed host-library state, so RustTurbo detects risky cases and can refuse to share those artifacts in strict mode.",
-      "Cargo.toml is not rewritten, optimization levels are not silently changed, and commands are run as explicit argument vectors rather than through a shell.",
-      "The tool reports honest limits: downloads, first-time compilation, and cache-empty runs still cost what they cost.",
-    ],
-    facts: [
-      { label: "Status", value: "v0.1.0 · working MVP" },
-      { label: "Install", value: "npm package or Cargo / GitHub Releases" },
-      { label: "Repository", value: "the-golden-army/Rusturbo" },
-    ],
-  },
-  {
-    slug: "bidi-kit",
-    tagline: "A small toolkit for mixed-direction text, so Arabic, English, French, numbers, and punctuation behave together.",
-    goal: "Make bidirectional text dependable in everyday interfaces, including when a page mixes RTL and LTR languages.",
-    overview: [
-      "bidi-kit is a zero-dependency JavaScript and TypeScript package for right-to-left and mixed-direction text. It provides direction detection, segmentation, paragraph helpers, inline isolation, bidi-control auditing, and a system Arabic font stack for common text-layout problems.",
-      "The npm package is v0.1.1. Its source is part of the ui-storm repository, where the JavaScript package and a Rust implementation share test fixtures so their text segmentation can be checked against the same examples.",
-    ],
-    howItWorks: [
-      { title: "Keep mixed text isolated", body: "Wrap an RTL run inside an LTR sentence (or the reverse) with direction-aware isolation so nearby punctuation and neutral characters do not jump to the wrong side." },
-      { title: "Handle direction explicitly", body: "Helpers detect direction, split mixed text into runs, and generate paragraph or segment markup for browser and server-rendered use." },
-      { title: "Audit invisible controls", body: "The toolkit can strip bidi control characters and report them during audits, helping teams inspect text that can visually reorder names or labels." },
-      { title: "Use it across environments", body: "The package ships ESM, CommonJS, TypeScript types, and a standalone browser script, without importing Node-only modules in the distribution build." },
-    ],
-    stack: [
-      { group: "Package", items: ["JavaScript + TypeScript", "ESM, CommonJS, and browser global builds", "Node.js and browser use", "npm distribution"] },
-      { group: "Text direction", items: ["Unicode bidirectional behavior", "Arabic and RTL interfaces", "LTR / RTL isolation with <bdi>", "Punctuation and number runs"] },
-      { group: "Quality", items: ["Zero runtime dependencies", "Shared cross-language fixtures", "Browser and Node tests"] },
-    ],
-    engineering: [
-      "Use semantic direction and isolation rather than trying to fix bidi behavior with visual CSS flips.",
-      "Keep the package dependency-free and usable from plain HTML as well as bundled applications.",
-      "Share fixtures with the Rust implementation so parity is checked by tests rather than assumed.",
-      "Treat invisible bidi controls as inspectable input, not mysterious rendering noise.",
-    ],
-    facts: [
-      { label: "npm version", value: "0.1.1" },
-      { label: "Dependencies", value: "Zero" },
-      { label: "Source", value: "Nour-yahyaoui/ui-storm · packages/bidi-kit" },
-    ],
-  },
   {
     slug: "nour-code",
     tagline: "An AI coding agent that runs entirely on your machine — with real tools, real guardrails, and a paper trail.",
@@ -386,6 +293,85 @@ export const projectDetails: ProjectDetail[] = [
     ],
   },
   {
+    slug: "nextgen",
+    tagline: "A complete store — storefront, checkout, and the admin desk behind it — on a serverless stack.",
+    overview: [
+      "Nextgen is an end-to-end e-commerce platform for small and medium businesses: customers browse, filter, wishlist, and order with cash on delivery; the owner runs everything from an admin dashboard — products and size variants, time-limited offers, order statuses, customer messages, and restocking.",
+      "It was built from scratch over several weeks as a production exercise: a normalized PostgreSQL schema, 25+ API endpoints, and full TypeScript coverage, deployed on Vercel with Neon serverless Postgres.",
+    ],
+    howItWorks: [
+      {
+        title: "Shopping, with real stock rules",
+        body: "Products carry size variants, each with its own stock level. The cart validates quantities against that stock, wishlists persist between visits, and checkout is cash-on-delivery with order-confirmation flow — the payment method that actually dominates local e-commerce.",
+      },
+      {
+        title: "Orders and stock move together, or not at all",
+        body: "Creating an order and decrementing variant stock happen in one database transaction. There is no state where an order exists but the stock was never taken — or the reverse. Order status then flows pending → confirmed → delivered/cancelled, with delivery dates recorded automatically.",
+      },
+      {
+        title: "Offers that expire themselves",
+        body: "Admins create percentage or fixed-price promotions with start and end dates; the storefront shows live countdowns and offer badges, and expired offers simply stop applying — no manual cleanup, no stale discounts.",
+      },
+      {
+        title: "Nothing is ever deleted",
+        body: "Products are archived (soft delete), never removed, so order history stays intact and reportable forever. The dashboard surfaces revenue, order counts, unread messages, and low-stock alerts at a glance.",
+      },
+    ],
+    stack: [
+      { group: "Frontend", items: ["Next.js (App Router) + TypeScript", "Tailwind CSS", "Zustand (cart, wishlist, persisted)", "Framer Motion", "Lucide icons"] },
+      { group: "Backend", items: ["Next.js API routes (25+ endpoints)", "PostgreSQL on Neon (pooled, serverless)", "8-table normalized schema", "ImageBB for product imagery"] },
+      { group: "Delivery", items: ["Vercel", "Turbopack dev", "ESLint + strict TypeScript"] },
+    ],
+    engineering: [
+      "Atomic order/stock transactions and soft-delete archiving are the two decisions that keep a small shop's data trustworthy — both chosen before the first feature was built on top of them.",
+      "Stock is tracked per variant, not per product, because \"we have the shirt but not in medium\" is the real-world case that breaks naive inventories.",
+      "Skeleton loading states and lazy, placeholder-backed images keep the storefront feeling instant on mid-range phones — the device most customers actually use.",
+    ],
+    facts: [
+      { label: "Scale", value: "8 tables · 25+ endpoints · 40+ components" },
+      { label: "Payment", value: "Cash on delivery" },
+      { label: "Hosting", value: "Vercel + Neon PostgreSQL" },
+      { label: "Build time", value: "2–3 weeks, end to end" },
+    ],
+  },
+  {
+    slug: "aswem",
+    tagline: "What does bread actually cost in Kasserine today? Aswem asks the people buying it.",
+    overview: [
+      "Official price statistics are averages of averages, months old. Aswem (أسوام, \"prices\") collects the ground truth instead: anyone can report what they just paid for an everyday product in their governorate, and everyone can see the median price, the lowest reported price, and the most recent reports — free and open source, in Tunisian Darija and French.",
+    ],
+    howItWorks: [
+      {
+        title: "Read: the median is the headline",
+        body: "A product page leads with the median (robust against outliers), the low, and recent reports per governorate — so a single prank or mistake can't move the number everyone sees.",
+      },
+      {
+        title: "Report: four fields, no account",
+        body: "Product, price in dinars, governorate, and either a place name or your position — rounded to about 110 m, so the map is useful without exposing anyone's exact location.",
+      },
+      {
+        title: "Trust, enforced at the API",
+        body: "The web server validates and forwards reports to the Rust API with a shared secret the browser never sees. The API then rejects prices more than 4× from the recent median in either direction and rate-limits every client — crowd data stays usable because abuse is boring to attempt.",
+      },
+    ],
+    stack: [
+      { group: "Web", items: ["Next.js App Router (Server Components + Server Actions)", "Darija at /ar · French at /fr", "Vercel"] },
+      { group: "API", items: ["Rust · Actix Web", "SQLx", "Render"] },
+      { group: "Data", items: ["Neon serverless Postgres", "pg_trgm fuzzy search", "Prices as integer millimes — no floating point"] },
+    ],
+    engineering: [
+      "Splitting a TypeScript edge from a Rust API puts the validation and rate-limiting where they're cheapest to run hard, and keeps the secret server-side by construction.",
+      "Integer millimes again: when thousands of small reports aggregate into medians, float error is a correctness bug, not a rounding detail.",
+      "Fuzzy product search via pg_trgm forgives how people actually type product names in two languages — the database does the tolerant matching, not client code.",
+    ],
+    facts: [
+      { label: "Licence", value: "Open source" },
+      { label: "Languages", value: "Tunisian Darija · French" },
+      { label: "Account needed", value: "No" },
+      { label: "Location privacy", value: "Rounded to ~110 m" },
+    ],
+  },
+  {
     slug: "env-sentry",
     tagline: "The five-second check that stops you committing your secrets — zero dependencies, one command.",
     overview: [
@@ -417,6 +403,73 @@ export const projectDetails: ProjectDetail[] = [
       { label: "Dependencies", value: "0" },
       { label: "Size", value: "One ~250-line file, on purpose" },
       { label: "Licence", value: "MIT" },
+    ],
+  },
+  {
+    slug: "grafspee",
+    tagline: "60+ copy-paste React components, each with a live example — so you stop rebuilding the same dialog.",
+    overview: [
+      "Every Next.js project rebuilds the same buttons, dialogs, dropdowns, and form controls — slightly differently each time. Grafspee collects 60+ production-ready components with TypeScript into one documented library: browse the live example, copy the code, adapt it, ship.",
+      "It is built the way modern component libraries are actually built: accessible Radix UI primitives underneath, Tailwind styling on top, and a documentation site that is itself a Next.js app.",
+    ],
+    howItWorks: [
+      {
+        title: "See it working, then take the code",
+        body: "Each component page pairs a live, interactive example with the exact source that powers it. There's no abstraction gap between what you preview and what you paste into your project.",
+      },
+      {
+        title: "Accessible by inheritance",
+        body: "Interactive primitives — dialog, dropdown menu, popover, select, tabs, tooltip, accordion and friends — come from Radix UI, so keyboard navigation, focus management, and ARIA behaviour are correct before any styling begins.",
+      },
+      {
+        title: "Variants without prop soup",
+        body: "class-variance-authority drives component variants (sizes, intents, states) in a typed way, with clsx/tailwind-merge keeping class composition predictable — the same pattern used across the shadcn/ui ecosystem, so Grafspee drops into those projects naturally.",
+      },
+    ],
+    stack: [
+      { group: "Library", items: ["React + TypeScript", "Radix UI primitives (25+ packages)", "Tailwind CSS", "class-variance-authority · cmdk · date-fns"] },
+      { group: "Docs site", items: ["Next.js", "Live examples + copy-ready snippets", "Vercel"] },
+    ],
+    engineering: [
+      "Copy-paste distribution beats npm versioning for a library this size: the code becomes yours, with no upgrade treadmill and no theming API to learn.",
+      "Standing on Radix means the hard problems (focus traps, dismissal, aria-expanded) are solved once, correctly — Grafspee's value is curation, styling, and examples, not reinventing a dialog.",
+    ],
+    facts: [
+      { label: "Components", value: "60+" },
+      { label: "Model", value: "Copy-paste, free, open source" },
+      { label: "Primitives", value: "Radix UI" },
+      { label: "Live docs", value: "grafspee.vercel.app" },
+    ],
+  },
+  {
+    slug: "claude-prompt",
+    tagline: "An interview that turns \"build me an app\" into a brief an AI agent can actually execute.",
+    overview: [
+      "AI coding agents fail most often at the first step: the prompt. People describe the app in their head in two sentences, the agent guesses the other ninety percent, and everyone is disappointed. claude-prompt fixes the input: it interviews you with a few sharp, skippable questions about what you're building, then drafts a clean, complete prompt you can hand straight to Claude, Cursor, or any other agent — downloadable as a .md file.",
+    ],
+    howItWorks: [
+      {
+        title: "Short questions, all skippable",
+        body: "The flow is mobile-first and respects what you don't know yet. The stack question has a deliberate skip: if you can't answer it, the generated prompt instructs the agent to choose a sensible stack explicitly — instead of leaving a hole for it to guess through.",
+      },
+      {
+        title: "Drafted by Groq, kept in your browser",
+        body: "Your answers go to Groq to compose the brief — structured, specific, and ready to paste. Nothing is stored server-side; answers live only in your browser until you copy or download the result.",
+      },
+    ],
+    stack: [
+      { group: "App", items: ["Next.js + TypeScript", "Tailwind CSS", "Mobile-first UI"] },
+      { group: "AI", items: ["Groq inference", "Markdown export (.md download)"] },
+      { group: "Privacy", items: ["No server-side storage of answers"] },
+    ],
+    engineering: [
+      "The interesting design decision is the skip button: a good brief builder must handle \"I don't know\" as data, not as an empty field — the prompt encodes the uncertainty and delegates it explicitly.",
+      "Stateless by principle: with nothing stored, there's nothing to leak, secure, or GDPR-delete. The simplest backend is no backend.",
+    ],
+    facts: [
+      { label: "Output", value: "Copy-paste prompt or .md download" },
+      { label: "Storage", value: "Browser only" },
+      { label: "Works with", value: "Claude, Cursor, any AI coding agent" },
     ],
   },
   {
@@ -485,6 +538,37 @@ export const projectDetails: ProjectDetail[] = [
     ],
   },
   {
+    slug: "c-editor",
+    tagline: "Download one file, run it, write C in your browser. That's the whole install guide.",
+    overview: [
+      "Teaching or learning C usually starts with an hour of toolchain archaeology. C-Road Editor removes it: a single Rust binary serves a browser-based C editor that compiles against your local gcc. No Python, no Node, no runtime, no config files — one file per platform (Linux, macOS, Windows .exe), then open 127.0.0.1:8080.",
+    ],
+    howItWorks: [
+      {
+        title: "One binary is the server and the app",
+        body: "The Rust executable embeds the editor UI and serves it locally. Your code never leaves the machine; compilation calls the gcc you already have (apt/dnf/pacman, Xcode tools, or MinGW-w64/WSL on Windows). Delete the file and the uninstall is complete.",
+      },
+      {
+        title: "Releases, not build instructions",
+        body: "Prebuilt binaries are published on GitHub Releases for each platform — learners download and run, they don't meet Cargo before they meet C.",
+      },
+    ],
+    stack: [
+      { group: "Runtime", items: ["Rust (single binary)", "Local HTTP server on 127.0.0.1:8080"] },
+      { group: "Toolchain", items: ["System gcc", "Zero other dependencies"] },
+      { group: "Distribution", items: ["GitHub Releases: Linux · macOS · Windows"] },
+    ],
+    engineering: [
+      "The constraint is the design: if it needs a runtime, it fails its audience. A single static binary is what \"works on a school computer\" actually requires.",
+      "Pairing with the c-road learning repo makes the editor the practice half of a learn-C path — tooling in service of teaching, again.",
+    ],
+    facts: [
+      { label: "Install", value: "Download one file, run it" },
+      { label: "Requires", value: "gcc only" },
+      { label: "Platforms", value: "Linux · macOS · Windows" },
+    ],
+  },
+  {
     slug: "buttoncraft",
     tagline: "My first public project, rebuilt properly — a gallery of buttons you can steal with a clean conscience.",
     overview: [
@@ -511,6 +595,179 @@ export const projectDetails: ProjectDetail[] = [
     facts: [
       { label: "First version", value: "2024 — first public project" },
       { label: "Live at", value: "button-gen.vercel.app" },
+    ],
+  },
+  {
+    slug: "ghassen-studio",
+    tagline: "A designer's portfolio where the website knows to stay out of the work's way. (Client project — described from the live site.)",
+    overview: [
+      "When the client is a designer, the developer's job changes: the site itself must have impeccable judgement and then disappear. Ghassen Studio is a portfolio built for exactly that brief — a quiet visual system, generous space, and smooth but restrained interactions, so every page points at the work instead of at itself.",
+    ],
+    howItWorks: [
+      {
+        title: "A gallery, not a brochure",
+        body: "Projects lead with imagery at full presence; typography and chrome stay minimal and consistent so different bodies of work — different colours, moods, media — all feel at home in the same frame.",
+      },
+      {
+        title: "Motion with manners",
+        body: "Transitions are smooth and short, there to orient rather than impress. On a portfolio, animation that delays the work is a cost, so it is spent carefully.",
+      },
+    ],
+    stack: [
+      { group: "Build", items: ["Vite + React", "Modern CSS (fluid type, responsive grids)"] },
+      { group: "Engagement", items: ["Client project — design-led", "Source private by agreement"] },
+    ],
+    engineering: [
+      "Performance is part of the aesthetic: image-led pages live or die on loading behaviour, so the build keeps the stack light (Vite + React, no heavy framework overhead) and lets the media be the heaviest thing on the page — intentionally.",
+      "Client work is also a communication exercise: build, show, refine against a designer's eye. The restraint in the result is the deliverable.",
+    ],
+    facts: [
+      { label: "Type", value: "Client work" },
+      { label: "Live at", value: "ghassen-studio.vercel.app" },
+      { label: "Source", value: "Private" },
+    ],
+  },
+  {
+    slug: "wintercave",
+    tagline: "A text editor you run locally — one Rust binary, no Node, no bundler, no dist folder.",
+    overview: [
+      "WinterCave is a latency-obsessed text editor distributed as a single Rust program on actix-web. It serves the editor page itself, tokenizes and syntax-highlights files through a wintercave-core engine crate, and reads and writes files through a path-confined file API.",
+      "The editing surface is a native browser textarea, so IME, clipboard, undo, screen readers, and caret movement come from the browser rather than a reimplementation. Mod+S saves over PUT /api/files; a status bar shows unsaved until the write lands, and closing with unsaved changes warns.",
+    ],
+    howItWorks: [
+      {
+        title: "One binary is the server and the app",
+        body: "The Rust executable embeds the editor UI and serves it locally. There is no Node, no npm, no bundler, no wasm shell, and no dist folder. The client is a small plain script that moves text between the page and the API, rendered server-side so the page still works with JavaScript off.",
+      },
+      {
+        title: "Highlighting and completion stay local",
+        body: "Every keystroke (debounced 120 ms) posts the buffer to /api/highlight, where wintercave-core tokenizes it and returns HTML spans painted in a scroll-synced layer behind the textarea. Completion suggestions come from the file and a per-language table — nothing is sent to a remote model or service.",
+      },
+      {
+        title: "Files stay inside the chosen root",
+        body: "Writes are atomic: a temp file beside the target, sync_all, then rename over it. Every path is confined to --root; dot-dot, absolute paths, and NUL bytes are rejected before the filesystem is touched. The browser's native directory permission picker lets the user choose which folder on this PC the editor may touch.",
+      },
+    ],
+    stack: [
+      { group: "Engine", items: ["wintercave-core (document model, edits, undo, search, tokenizer, keymap)", "wintercave-wasm (bindings, kept compiling)"] },
+      { group: "Server", items: ["actix-web", "HTML rendering (src/ui.rs)", "file API (src/api.rs, src/files.rs)", "path confinement (src/paths.rs)"] },
+      { group: "Client", items: ["Native textarea editor", "Theme, dialogs, completion (assets/editor.js)", "Stylesheet (assets/editor.css)"] },
+    ],
+    engineering: [
+      "The core crate has no filesystem, no DOM, and no async runtime, so the same code can drive a terminal or native window later.",
+      "No-JavaScript fallback: <noscript> users get a normal POST /save form that writes the file and redirects back to it.",
+      "Redaction-grade path safety: symlinked parents are resolved and checked; only the chosen --root may be read or written.",
+    ],
+    facts: [
+      { label: "Current release", value: "0.3.1" },
+      { label: "Languages highlighted", value: "12 (Rust, JS/TS, Python, shell, YAML, SQL, JSON, HTML, CSS, Markdown, plain text)" },
+      { label: "Default port", value: "4173" },
+    ],
+  },
+  {
+    slug: "rustflow",
+    tagline: "A local-first API development workspace — build, send, inspect, and test requests without an account.",
+    overview: [
+      "Rustflow (which grew out of the RequestLab desktop application) is a local-first API development workspace. Build, send, inspect, and test HTTP requests without creating an account. The repository contains the RequestLab desktop application alongside an optional cloud engineering layer.",
+    ],
+    howItWorks: [
+      {
+        title: "Send and inspect without an account",
+        body: "No signup is required to build, send, inspect, and test requests — the workspace runs locally first.",
+      },
+      {
+        title: "RequestLab desktop application",
+        body: "The desktop application brings the API workspace to the desktop, with an optional SaaS portal/API and manual billing administration layer available as cloud engineering.",
+      },
+    ],
+    stack: [
+      { group: "Application", items: ["RequestLab desktop application", "Optional cloud engineering layer", "SaaS portal/API, manual billing administration"] },
+    ],
+    engineering: [
+      "Local-first by design: requests are built, sent, and inspected without an account, keeping the user in control of their data.",
+    ],
+    facts: [
+      { label: "Origin", value: "Started as Rustflow, now contains RequestLab" },
+      { label: "Account required", value: "No" },
+    ],
+  },
+  {
+    slug: "node-modules-details-api",
+    tagline: "Descriptions, usage examples, tags, and categories for 779 Node.js libraries, served by one free CORS-enabled REST API.",
+    overview: [
+      "node_modules_details_api indexes 779 Node.js libraries with descriptions, usage examples, tags, and categories. It is served by one free, CORS-enabled REST API that includes a built-in searchable documentation UI.",
+    ],
+    howItWorks: [
+      {
+        title: "One REST API, 779 libraries",
+        body: "Each library entry carries descriptions, usage examples, tags, and categories, queryable through a CORS-enabled REST API with a searchable documentation UI.",
+      },
+    ],
+    stack: [
+      { group: "Runtime", items: ["Rust"] },
+      { group: "API", items: ["CORS-enabled REST API", "Searchable documentation UI"] },
+    ],
+    engineering: [
+      "A single REST API surface makes the library index consumable from any frontend or client without CORS friction.",
+    ],
+    facts: [
+      { label: "Libraries indexed", value: "779" },
+      { label: "License", value: "MIT" },
+    ],
+  },
+  {
+    slug: "pdf-to-quiz",
+    tagline: "Turn any PDF into a quiz using AI.",
+    overview: [
+      "pdf-to-quiz converts an uploaded PDF into an AI-generated quiz, extracting questions from the document's contents.",
+    ],
+    howItWorks: [
+      {
+        title: "Upload a PDF",
+        body: "Upload any PDF document.",
+      },
+      {
+        title: "AI generates questions",
+        body: "The contents of the PDF are used to generate quiz questions automatically.",
+      },
+    ],
+    stack: [
+      { group: "Frontend", items: ["Next.js", "TypeScript"] },
+      { group: "AI", items: ["Quiz generation from PDF contents"] },
+    ],
+    engineering: [
+      "Open source, built to turn static documents into interactive quizzes.",
+    ],
+    facts: [
+      { label: "Input", value: "PDF" },
+      { label: "Output", value: "AI-generated quiz" },
+    ],
+  },
+  {
+    slug: "multisim-pro",
+    tagline: "A lightweight digital logic workbench — place gates, connect signals, view truth tables in the browser.",
+    overview: [
+      "multisim-pro is a lightweight, open-source digital logic workbench built with Vue 3. Place logic gates, connect signals, toggle inputs, and explore the resulting truth table right in the browser.",
+    ],
+    howItWorks: [
+      {
+        title: "Build circuits in the browser",
+        body: "Place logic gates and connect signals by wiring them together in an interactive canvas.",
+      },
+      {
+        title: "Inspect the truth table",
+        body: "Toggle inputs and observe the resulting truth table (tableau de vérité) for the circuit you built.",
+      },
+    ],
+    stack: [
+      { group: "Frontend", items: ["Vue 3", "TypeScript"] },
+    ],
+    engineering: [
+      "Open-source logic simulation that runs entirely in the browser.",
+    ],
+    facts: [
+      { label: "License", value: "MIT" },
+      { label: "Runs in", value: "Browser" },
     ],
   },
 ];

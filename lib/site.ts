@@ -5,7 +5,7 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
   "https://nour-yahyaoui.vercel.app";
 
-export const SITE_NAME = "Nour Yahyaoui | Personal Showroom";
+export const SITE_NAME = "Nour Yahyaoui | Full-Stack Developer";
 export const AUTHOR_NAME = "Nour Yahyaoui";
 export const AUTHOR_EMAIL = "nourryahyaoui@gmail.com";
 export const TWITTER_HANDLE = ""; // add if/when a Twitter/X handle exists
@@ -20,7 +20,7 @@ export const INSTAGRAM_HANDLE = "@nourr_yahyaouiii";
 export const GITHUB_HANDLE = "github.com/Nour-yahyaoui";
 
 export const DEFAULT_DESCRIPTION =
-  "A personal showroom by Nour Yahyaoui: software, historical interests, art, music, and philosophy, each in its own room.";
+  "Nour Yahyaoui is a full-stack developer from Tunisia building secure web products, local AI tools, and VexOS, a Debian-based Linux distribution for developers.";
 
 export const DEFAULT_KEYWORDS = [
   "Nour Yahyaoui",

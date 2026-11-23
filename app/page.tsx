@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
-import Showroom from "@/components/Showroom";
+import Lobby from "@/components/Lobby";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Nour Yahyaoui — a personal showroom",
+  title: "Nour Yahyaoui — choose an edition",
   description:
-    "A personal showroom by Nour Yahyaoui: software, history, art, music, philosophy, and science, each in its own room.",
-  alternates: { canonical: "/" },
+    "Two editions of the same portfolio: the classic Paper & Ink site, or the new emerald edition — a cold, deep-green experience with an expanded index and an interactive 3D lab.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Nour Yahyaoui — a personal showroom",
+    title: "Nour Yahyaoui — choose an edition",
     description:
-      "A personal map of things made, histories remembered, and songs kept nearby.",
+      "Classic (paper & ink) or the new emerald edition: the same twenty-one projects, two different lights to read them in.",
     url: SITE_URL,
     type: "website",
   },
 };
 
+/**
+ * The lobby: one question, two doors. It carries no site header or footer of
+ * its own — nothing here should pull you anywhere except into an edition.
+ */
 export default function Page() {
-  return <Showroom />;
+  return <Lobby />;
 }
