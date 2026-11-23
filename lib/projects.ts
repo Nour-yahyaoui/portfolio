@@ -169,6 +169,28 @@ export const projects: Project[] = [
     note: "Commerce operations for small shops, across web and mobile",
   },
   {
+    slug: "nextgen",
+    title: "Nextgen — Full-Stack E-commerce Platform",
+    description:
+      "A complete e-commerce platform: storefront with variants, wishlist, cart, and cash-on-delivery checkout, plus an admin dashboard covering products, offers, orders, messages, and low-stock alerts. Orders and stock updates commit atomically; products are archived, never deleted.",
+    tags: ["Next.js", "TypeScript", "PostgreSQL · Neon", "Zustand", "E-commerce", "Admin dashboard"],
+    mainTag: "Full Stack",
+    liveDemo: "https://v4-nextgen.vercel.app/",
+    code: "https://github.com/Nour-yahyaoui/nextgen",
+    note: "Storefront, inventory, and order operations in one platform",
+  },
+  {
+    slug: "aswem",
+    title: "Aswem — Community Prices for Tunisia",
+    description:
+      "Free, open-source community prices for Tunisia. People report what they actually pay for everyday products in each governorate, and Aswem shows the median, the low, and recent reports — in Tunisian Darija and French.",
+    tags: ["Next.js", "Rust · Actix Web", "SQLx", "Neon Postgres", "Open Source", "Tunisia"],
+    mainTag: "Full Stack",
+    liveDemo: "https://aswem.vercel.app",
+    code: "https://github.com/Nour-yahyaoui/aswem",
+    note: "Crowd-reported prices, guarded against outliers and abuse",
+  },
+  {
     slug: "env-sentry",
     title: "env-sentry — .env Drift & Secrets Scanner",
     description:
@@ -178,6 +200,28 @@ export const projects: Project[] = [
     liveDemo: "https://env-sentry.vercel.app",
     code: "https://github.com/Nour-yahyaoui/env-sentry",
     note: "The five-second daily check: did I mess up my .env today?",
+  },
+  {
+    slug: "grafspee",
+    title: "Grafspee — React/Next.js Component Library",
+    description:
+      "60+ production-ready React/Next.js components with TypeScript — buttons, cards, dialogs, forms, navigation, and more. The documentation site pairs every component with a live example and copy-ready code.",
+    tags: ["Next.js", "TypeScript", "Radix UI", "Tailwind CSS", "Component Library", "Open Source"],
+    mainTag: "Open Source",
+    liveDemo: "https://grafspee.vercel.app",
+    code: "https://github.com/Nour-yahyaoui/grafspee",
+    note: "Reusable UI building blocks for Next.js projects",
+  },
+  {
+    slug: "claude-prompt",
+    title: "claude-prompt — Brief Builder for AI Coding Agents",
+    description:
+      "Answer a few sharp, skippable questions about what you're building and get back a clean, complete prompt ready to hand to an AI coding agent — downloadable as Markdown. Nothing is stored server-side.",
+    tags: ["Next.js", "TypeScript", "Groq", "Mobile-first", "AI Tooling"],
+    mainTag: "AI Tooling",
+    liveDemo: "https://claude-prompt-md.vercel.app",
+    code: "https://github.com/Nour-yahyaoui/Claude-prompt",
+    note: "No more guessing what context an AI agent actually needs",
   },
   {
     slug: "bacplus",
@@ -201,6 +245,16 @@ export const projects: Project[] = [
     code: "https://github.com/Nour-yahyaoui/devdash-online-tools",
   },
   {
+    slug: "c-editor",
+    title: "C-Road Editor — Single-Binary C Editor",
+    description:
+      "A C editor that runs in your browser from a single Rust binary. No Python, no Node, no runtime to install — download one file, run it, and write C against your local gcc.",
+    tags: ["Rust", "Single binary", "gcc", "Developer Tools", "Cross-platform"],
+    mainTag: "Rust Tooling",
+    liveDemo: "https://c-editor-landing.vercel.app",
+    code: "https://github.com/Nour-yahyaoui/c-editor",
+  },
+  {
     slug: "buttoncraft",
     title: "ButtonCraft — Button Component Gallery",
     description:
@@ -209,6 +263,110 @@ export const projects: Project[] = [
     mainTag: "Next.js",
     liveDemo: "https://button-gen.vercel.app/",
     code: "https://github.com/Nour-yahyaoui/buttons",
+  },
+  {
+    slug: "ghassen-studio",
+    title: "Ghassen Studio — Designer Portfolio",
+    description:
+      "A portfolio built for a designer client: a quiet visual system and smooth, restrained interactions that keep the spotlight on the work itself. Client project — source is private.",
+    tags: ["Vite", "React", "Portfolio", "Client Work"],
+    mainTag: "Client Work",
+    liveDemo: "https://ghassen-studio.vercel.app/",
+    note: "A designer portfolio — built for a client",
+  },
+  {
+    slug: "wintercave",
+    title: "WinterCave — Local-First Text Editor",
+    description:
+      "A text editor you run locally. One Rust binary serves the editor page, tokenizes and syntax-highlights files, and reads and writes them through a path-confined file API. No Node, no npm, no bundler, no wasm shell, and no dist folder. Built around a native textarea so IME, clipboard, undo, screen readers, and caret movement are the browser's own.",
+    featured: true,
+    status: "v0.3.1",
+    tags: ["Rust", "actix-web", "text editor", "offline-first", "developer tools"],
+    highlights: [
+      "One Rust binary — no runtime dependencies",
+      "Native textarea with syntax highlighting for 12 languages",
+      "Path-confined file API with atomic writes",
+      "No-JavaScript save form fallback",
+    ],
+    mainTag: "Rust desktop tool",
+    liveDemo: "https://wintercave.vercel.app/",
+    code: "https://github.com/Nour-yahyaoui/WinterCave",
+    links: [
+      { label: "Landing page", href: "https://wintercave.vercel.app/", variant: "primary" },
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/WinterCave", variant: "secondary" },
+    ],
+  },
+  {
+    slug: "rustflow",
+    title: "Rustflow — Local-First API Workspace",
+    description:
+      "A local-first API development workspace to build, send, inspect, and test requests without creating an account. The repository grew out of Rustflow and now contains the RequestLab desktop application, with an optional cloud engineering layer.",
+    status: "Beta",
+    tags: ["Rust", "API", "desktop app", "developer tools", "local-first"],
+    highlights: [
+      "Send and inspect requests without an account",
+      "RequestLab desktop application",
+      "Local-first by design",
+    ],
+    mainTag: "Developer tools",
+    code: "https://github.com/Nour-yahyaoui/Rustflow",
+    links: [
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/Rustflow", variant: "primary" },
+    ],
+  },
+  {
+    slug: "node-modules-details-api",
+    title: "node_modules_details_api — 779 Node.js Libraries",
+    description:
+      "Descriptions, usage examples, tags, and categories for 779 Node.js libraries, served by one free, CORS-enabled REST API with a built-in searchable documentation UI.",
+    status: "Live",
+    tags: ["Rust", "REST API", "Node.js", "documentation", "open source"],
+    highlights: [
+      "779 libraries indexed",
+      "CORS-enabled REST API",
+      "Searchable documentation UI",
+    ],
+    mainTag: "Rust API",
+    code: "https://github.com/Nour-yahyaoui/node_modules_details_api",
+    links: [
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/node_modules_details_api", variant: "primary" },
+    ],
+  },
+  {
+    slug: "pdf-to-quiz",
+    title: "pdf-to-quiz — AI Quiz from Any PDF",
+    description:
+      "Turn any PDF into a quiz using AI. Upload a document and get questions generated from its contents.",
+    status: "Live",
+    tags: ["Next.js", "TypeScript", "AI", "open source"],
+    highlights: [
+      "PDF-to-quiz generation with AI",
+      "Next.js frontend",
+      "Open source",
+    ],
+    mainTag: "AI Tooling",
+    code: "https://github.com/Nour-yahyaoui/pdf-to-quiz",
+    links: [
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/pdf-to-quiz", variant: "primary" },
+    ],
+  },
+  {
+    slug: "multisim-pro",
+    title: "multisim-pro — Digital Logic Workbench",
+    description:
+      "A lightweight, open-source digital logic workbench built with Vue 3. Place logic gates, connect signals, toggle inputs, and explore the resulting truth table right in the browser.",
+    status: "Live",
+    tags: ["Vue 3", "TypeScript", "logic simulator", "education", "open source"],
+    highlights: [
+      "Place gates and connect signals in the browser",
+      "Truth table output",
+      "Vue 3 + TypeScript",
+    ],
+    mainTag: "Education tool",
+    code: "https://github.com/Nour-yahyaoui/multisim-pro",
+    links: [
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/multisim-pro", variant: "primary" },
+    ],
   },
 ];
 
