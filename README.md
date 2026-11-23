@@ -4,7 +4,7 @@ A Next.js portfolio arranged as a small set of rooms rather than one long résum
 
 ## Rooms
 
-- **The Workshop** (`/work`) — a concise wall of 24 projects. Each project opens a case file with its goal, description, how it works, engineering decisions, facts, and skills/tools.
+- **The Workshop** (`/work`) — a concise wall of the current project selection. Each project opens a case file with its goal, description, how it works, engineering decisions, facts, and skills/tools.
 - **History** (`/history`) — 24 historical images and short, first-person retellings. The retellings are not presented as authentic quotations.
 - **Art & Archive** (`/art`) — the same supplied historical image collection in a parchment-and-ink gallery.
 - **Listening Room** (`/listening`) — eight favorite tracks transcribed from screenshots. No audio or MP3 files are hosted; track links open YouTube Music search.
