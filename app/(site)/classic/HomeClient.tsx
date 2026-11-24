@@ -78,7 +78,7 @@ export default function HomeClient() {
         </div>
 
         <p className="mt-5 max-w-2xl text-[15px] leading-7 text-mute">
-          Bidi Kit, Rusturbo, and Anar IDE (The Golden Army), alongside local AI, native Rust tools, and software designed for everyday use.
+          Bidi Kit, Rusturbo, and Anar IDE (built by me under the organization named the-golden-army), alongside local AI, native Rust tools, and software designed for everyday use.
         </p>
 
         <div className="mt-8 grid gap-5 lg:grid-cols-2">

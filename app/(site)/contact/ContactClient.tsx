@@ -26,9 +26,9 @@ const SEND_TIMEOUT_MS = 15000;
 
 const contactRows = [
   { term: "Email", value: AUTHOR_EMAIL, href: `mailto:${AUTHOR_EMAIL}` },
-  { term: "Phone", value: "+216 58 923 247", href: "tel:+21658923247" },
-  { term: "WhatsApp", value: "+216 58 923 247", href: "https://wa.me/21658923247" },
-  { term: "Location", value: "Kasserine Sbiba, Tunisia" },
+  { term: "Phone", value: "+216 56 66 86 72", href: "tel:+21656668672" },
+  { term: "WhatsApp", value: "+216 56 66 86 72", href: "https://wa.me/21656668672" },
+  { term: "Location", value: "Monastir, Tunisia" },
   { term: "GitHub", value: GITHUB_HANDLE, href: GITHUB_URL },
   { term: "LinkedIn", value: LINKEDIN_HANDLE, href: LINKEDIN_URL },
   { term: "Instagram", value: INSTAGRAM_HANDLE, href: INSTAGRAM_URL },

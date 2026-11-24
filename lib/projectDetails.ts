@@ -44,8 +44,8 @@ export const projectDetails: ProjectDetail[] = [
 
   {
     slug: "anar-ide",
-    tagline: "Anar IDE — The Golden Army — a new addition to my workbench.",
-    overview: ["Anar IDE — The Golden Army is one of my newest projects. This page will hold the technical walkthrough, design decisions, and source links when those details are ready to share."],
+    tagline: "Anar IDE — an IDE I built under the organization named the-golden-army.",
+    overview: ["I built Anar IDE under the organization named the-golden-army. Anar IDE is the project name; the-golden-army is the organization it belongs to."],
     howItWorks: [],
     stack: [],
     engineering: [],
