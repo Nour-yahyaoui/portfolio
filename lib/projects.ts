@@ -31,8 +31,8 @@ export const projects: Project[] = [
 
   {
     slug: "anar-ide",
-    title: "Anar IDE — The Golden Army",
-    description: "My new IDE project, also known as the-golden-army. A dedicated space for the work as it develops.",
+    title: "Anar IDE",
+    description: "An IDE built by me under the organization named the-golden-army.",
     featured: true,
     status: "New project",
     tags: ["New work"],
