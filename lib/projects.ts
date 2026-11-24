@@ -79,7 +79,6 @@ export const projects: Project[] = [
   },
   {
     slug: "rustpad",
-    screenshot: { src: "/projects/rustpad.png", alt: "RustPad home screen with Word and PDF creation, document templates, and recent files.", width: 1912, height: 979, caption: "RustPad · Document workspace and templates" },
     title: "RustPad — Native Word & PDF Desktop Studio",
     description:
       "An offline-first desktop studio for Microsoft Word (.docx) and PDF (.pdf) documents, written in 100% pure Rust. It reviews Track Changes clause by clause, forensically sanitizes redactions, seals PDFs with SHA-256, and runs in a single ~3.9 MB binary — no WebView, no HTML/CSS/JavaScript, no runtime to install.",
