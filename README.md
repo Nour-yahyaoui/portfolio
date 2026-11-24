@@ -52,7 +52,6 @@ This repo is my personal portfolio site, built with **Next.js** (App Router) and
 ### 📌 What I've Actually Shipped
 
 - **[nour-code](https://github.com/Nour-yahyaoui/nour-code)** — local AI coding agent powered by Qwen3 8B and Ollama, with permission-checked tools, hot-reloadable skills, and a 345-test offline suite. Latest release: [v1.4.0](https://github.com/Nour-yahyaoui/nour-code/releases/tag/v1.4.0). [Website](https://nour-code-agent.vercel.app)
-- **[OneClick](https://github.com/Nour-yahyaoui/onclick)** — local-first POS for phone & accessories shops. One Rust binary (axum + SQLite), works offline, in French / Arabic / English. Inventory that fills itself: scan an unknown barcode, answer two questions, the sale goes through.
 - **[RustPad](https://github.com/Nour-yahyaoui/rustpad)** — offline-first Word (.docx) and PDF (.pdf) desktop studio in 100% pure Rust. Legal redlines, forensic PDF redaction, and SHA-256 sealing in a single ~3.9 MB binary. Latest release: [v2.1.0](https://github.com/Nour-yahyaoui/rustpad/releases/tag/v2.1.0). [Live landing page](https://rustpad-studio.vercel.app)
 - **[Campus](https://github.com/Nour-yahyaoui/Campus)** — free, open-source university community platform: clubs with mini-sites, student projects with a review workflow, and capacity-safe event registration.
 - **[Matjari](https://matjari-dashboard.vercel.app/)** — full-stack store management platform (web + mobile) covering sales, stock/inventory, and employee management for retail businesses.

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Hero from "@/components/Hero";
@@ -25,14 +24,14 @@ const services = [
   {
     title: "Shop & business systems",
     copy: "Points of sale, inventory, orders, debts, staff — the daily machinery of a small business, on web, mobile, or a single offline binary that never needs the internet to open the till.",
-    proof: "Proof: OneClick (Rust POS) and Matjari (web + mobile).",
-    href: "/projects/oneclick",
+    proof: "Proof: Matjari (web + mobile).",
+    href: "/projects/matjari",
   },
   {
-    title: "E-commerce that keeps its books",
+    title: "Tools that speak your language",
     copy: "Storefronts with variants and offers, cash-on-delivery checkout, and an admin desk where orders and stock can never disagree — because they commit in the same transaction.",
-    proof: "Proof: Nextgen, a complete store on Next.js + Neon Postgres.",
-    href: "/projects/nextgen",
+    proof: "Featured project: Bidi Kit.",
+    href: "/projects/bidi-kit",
   },
   {
     title: "Platforms & communities",
@@ -49,8 +48,7 @@ const services = [
 ];
 
 const numbers = [
-  { value: "21", label: "Projects in this index, each with a case study" },
-  { value: "31", label: "Public repositories on GitHub" },
+  { value: String(projects.length), label: "Projects in this index, each with a case study" },
   { value: "345", label: "Offline tests guarding nour-code alone" },
   { value: "3", label: "Languages shipped in product UIs — Arabic, French, English" },
   { value: "3 yrs", label: "Of freelance & client work" },
@@ -70,7 +68,7 @@ export default function HomeClient() {
           <div>
             <p className="label-mono">01 · Selected work</p>
             <h2 id="selected-work-title" className="h-title mt-3 text-ink">
-              Three systems, built to be used daily.
+              Fresh ideas. Real software.
             </h2>
           </div>
           <Link href="/projects" className="link-rule">
@@ -80,10 +78,7 @@ export default function HomeClient() {
         </div>
 
         <p className="mt-5 max-w-2xl text-[15px] leading-7 text-mute">
-          A Linux distribution you can boot, an AI coding agent that runs
-          entirely on your own hardware, and a native Rust studio that edits Word
-          and PDF files offline in one ~3.9 MB binary. Open any of them for the full case study — how it works,
-          and the stack behind it.
+          Bidi Kit, Rusturbo, and Anar IDE (The Golden Army), alongside local AI, native Rust tools, and software designed for everyday use.
         </p>
 
         <div className="mt-8 grid gap-5 lg:grid-cols-2">

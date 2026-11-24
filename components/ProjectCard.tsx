@@ -79,11 +79,11 @@ export default function ProjectCard({
 
   if (variant === "row") {
     return (
-      <article className={`grid gap-3 border-b border-line py-6 sm:grid-cols-[3.5rem_1fr] sm:gap-4 ${className}`}>
+      <article className={`project-entry min-w-0 grid gap-3 border-b border-line py-6 sm:grid-cols-[3.5rem_1fr] sm:gap-4 ${className}`}>
         <p className="tnum font-display text-2xl leading-none text-mute" aria-hidden="true">
           {number}
         </p>
-        <div>
+        <div className="min-w-0">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
             <h3 className="text-lg font-semibold leading-snug tracking-[-0.01em] text-ink">
               <Link href={detailHref} className="transition-colors hover:text-accent">
@@ -106,7 +106,7 @@ export default function ProjectCard({
   }
 
   return (
-    <article className={`flex flex-col border border-line bg-surface p-6 sm:p-8 ${className}`}>
+    <article className={`project-entry min-w-0 flex flex-col border border-line bg-surface p-6 sm:p-8 ${className}`}>
       <div className="flex items-start justify-between gap-4">
         <p className="tnum font-display text-5xl leading-none text-ink" aria-hidden="true">
           {number}
