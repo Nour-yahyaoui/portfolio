@@ -81,21 +81,9 @@ export default function AboutClient() {
               deployment that makes it real.
             </p>
             <p>
-              Recently I&apos;ve been building my own systems.{" "}
-              <strong className="font-semibold text-ink">nour-code</strong>{" "}
-              (now at v1.4.0) is a local AI coding agent: Qwen3 8B on Ollama,
-              behind FastAPI, with audited, permission-checked access to real
-              tools — nothing leaves your machine unless you allow it.{" "}
-              <strong className="font-semibold text-ink">VexOS</strong> is my
-              Debian-based Linux distribution: boot one ISO and you get a
-              ready-to-code desktop with a browser-based IDE, and a reboot
-              restores it to a clean state.
-            </p>
-            <p>
               What drives the work is simple: secure, dependable software
               that solves a real problem for a real person — and stays
-              understandable after it ships. I&apos;m currently expanding
-              into Rust for performance-critical backend services.
+              understandable after it ships.
             </p>
           </div>
 
@@ -133,12 +121,12 @@ export default function AboutClient() {
             {
               period: "2025",
               title: "Full-stack products",
-              body: "Production platforms end to end on Next.js, PostgreSQL/Neon, and serverless deploys: the Matjari store system, the Nextgen e-commerce platform, bacplus for Bac students — plus open tools like env-sentry and the Grafspee component library.",
+              body: "Production platforms end to end on Next.js, PostgreSQL, and serverless deploys: store management, client workflows, and open-source tools.",
             },
             {
               period: "2026",
               title: "Systems: Rust, local AI, Linux",
-              body: "Went down the stack: nour-code (a guarded local AI agent, v1.4.0), VexOS (a bootable Debian-based distro), OneClick (a single-binary Rust till), and Rust APIs with Actix Web and axum (Campus, Aswem). The web craft stayed; the systems ambition arrived.",
+              body: "Went down the stack: nour-code (a guarded local AI agent, v1.4.0), VexOS (a bootable Debian-based distro), Rust APIs with Actix Web and axum (Campus). The web craft stayed; the systems ambition arrived.",
             },
           ].map((entry) => (
             <article key={entry.period} className="grid gap-2 border-b border-line py-6 sm:grid-cols-[7rem_1fr] sm:gap-4">
@@ -271,38 +259,6 @@ export default function AboutClient() {
         </p>
       </section>
 
-      <section className="mt-16 border border-line bg-surface p-6 sm:p-8" aria-labelledby="now-title">
-        <p className="label-mono">
-          Right now <span className="px-1 text-accent">·</span> October 2026
-        </p>
-        <h2 id="now-title" className="h-section mt-3 text-ink">
-          On the desk at the moment
-        </h2>
-        <ul className="mt-5 space-y-3">
-          {[
-            "VexOS Desktop 2.2.1 — release-candidate testing in VirtualBox.",
-            "OneClick v1.0.10 — the Rust till, next stop SQLCipher encryption at rest.",
-            "nour-code after v1.4.0 — a turn can no longer hang; the agent keeps getting harder to stall.",
-            "Open to new freelance projects — the contact page is the fastest route.",
-          ].map((item) => (
-            <li key={item.slice(0, 32)} className="flex items-baseline gap-3 text-[15px] leading-7 text-mute">
-              <span className="font-mono text-accent" aria-hidden="true">
-                —
-              </span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Link href="/contact" className="btn btn-primary">
-            Start a project
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </Link>
-          <Link href="/projects" className="btn btn-outline">
-            Read the case studies
-          </Link>
-        </div>
-      </section>
     </main>
   );
 }

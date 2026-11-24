@@ -1,3 +1,4 @@
+import SiteMotion from "@/components/SiteMotion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -8,6 +9,7 @@ import Footer from "@/components/Footer";
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <SiteMotion />
       <Header />
       {children}
       <Footer />
