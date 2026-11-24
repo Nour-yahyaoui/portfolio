@@ -44,14 +44,50 @@ export const projectDetails: ProjectDetail[] = [
 
   {
     slug: "anar-ide",
-    tagline: "Anar IDE — an IDE I built under the organization named the-golden-army.",
-    overview: ["I built Anar IDE under the organization named the-golden-army. Anar IDE is the project name; the-golden-army is the organization it belongs to."],
-    howItWorks: [],
-    stack: [],
-    engineering: [],
-    facts: [{ label: "Write-up", value: "Coming soon" }],
+    tagline: "A Rust-focused desktop editor: a thin React interface over a Rust-first workspace, language, and build core.",
+    overview: [
+      "I built Anar IDE under the-golden-army as an open-source desktop editor specifically for Rust. Tauri 2 hosts a React and TypeScript interface, while CodeMirror 6 provides the editing surface. The work behind the interface is separated into five Rust crates: shared models, workspace operations, language-server transport, task execution, and framework support.",
+      "The documented v0.1.0 milestone covers files and editing: a workspace explorer, multi-file tabs, syntax highlighting, persistent preferences, and safe handling of changes made outside the editor. The changelog separately lists unreleased additions for rust-analyzer, Cargo execution, Rusturbo, framework profiles, search, Git, and an interactive terminal. Those additions should not be mistaken for features of the v0.1.0 milestone.",
+    ],
+    howItWorks: [
+      {
+        title: "Open a workspace, keep file access inside it",
+        body: "The Rust workspace layer canonicalizes paths and checks containment before file operations. The explorer supports creating, renaming, and deleting entries while filtering directories such as .git, target, and node_modules. Recent workspaces are persisted so reopening a project does not start from scratch.",
+      },
+      {
+        title: "Edit across tabs without losing context",
+        body: "CodeMirror retains a separate EditorState for each tab, with Rust, JSON, and Markdown highlighting. Dirty-state tracking uses Text.eq rather than rebuilding document strings. Saves are atomic, and a debounced filesystem watcher distinguishes the editor's own saves from external modifications, offering reload or conflict handling without silently overwriting edits.",
+      },
+      {
+        title: "Language intelligence and tasks — unreleased additions",
+        body: "The changelog records a rust-analyzer JSON-RPC bridge for document synchronization, diagnostics, completions, hover information, navigation, and formatting. It also records streaming Cargo build, run, check, and test tasks, clickable compiler diagnostics, interactive input, and process-tree termination when a task is stopped.",
+      },
+      {
+        title: "Rusturbo with explicit fallbacks — unreleased additions",
+        body: "The Rusturbo integration probes the installed tool, inspects rusturbo.toml, and reads analyze --json output for dependency-graph, linker, sccache, and cache information. Build and run can use Rusturbo; check and test fall back to Cargo because Rusturbo does not expose those commands. The integration notes also explain why Rusturbo's output handling requires fallback parsing for compiler diagnostics.",
+      },
+    ],
+    stack: [
+      { group: "Desktop interface", items: ["Tauri 2", "React", "TypeScript", "Vite", "Tailwind CSS", "CodeMirror 6"] },
+      { group: "Rust domain layer", items: ["anar-core", "anar-workspace", "anar-lsp", "anar-runner", "anar-frameworks"] },
+      { group: "Workspace safety", items: ["Canonical path containment", "Atomic writes", "notify filesystem watcher", "Binary and large-file guards"] },
+      { group: "Documented unreleased integrations", items: ["rust-analyzer / JSON-RPC 2.0", "Cargo + Rusturbo", "portable-pty + xterm.js", "Git and workspace search"] },
+      { group: "Quality gates", items: ["Rustfmt", "Clippy", "Cargo tests", "Frontend lint, typecheck, tests, and build", "GitHub Actions on Linux, macOS, and Windows"] },
+    ],
+    engineering: [
+      "The five domain crates do not depend on Tauri. The desktop shell owns IPC and UI state, while core logic can compile and be tested without a WebView.",
+      "Filesystem access is scoped to the opened workspace rather than exposing unrestricted paths to the frontend. Atomic writes and external-change conflict handling address two ways editors can damage user work.",
+      "Large-file mode begins at 1 MiB, with binary and 50 MiB file guards documented in the v0.1.0 changelog. Per-tab editor state preserves context without recreating the editing surface on every switch.",
+      "Rusturbo is an optional build backend, not a replacement for every Cargo command. Integration research documents its limitations instead of assuming identical capabilities or promising unmeasured compilation speedups.",
+    ],
+    facts: [
+      { label: "License", value: "MIT" },
+      { label: "Organization", value: "the-golden-army" },
+      { label: "v0.1.0 scope", value: "Files & editor" },
+      { label: "Architecture", value: "Five Rust domain crates + Tauri desktop shell" },
+      { label: "CI matrix", value: "Linux, macOS, Windows" },
+    ],
   },
-
   {
     slug: "nour-code",
     tagline: "An AI coding agent that runs entirely on your machine — with real tools, real guardrails, and a paper trail.",
@@ -306,43 +342,6 @@ export const projectDetails: ProjectDetail[] = [
       { label: "Dependencies", value: "0" },
       { label: "Size", value: "One ~250-line file, on purpose" },
       { label: "Licence", value: "MIT" },
-    ],
-  },
-  {
-    slug: "wintercave",
-    tagline: "A text editor you run locally — one Rust binary, no Node, no bundler, no dist folder.",
-    overview: [
-      "WinterCave is a latency-obsessed text editor distributed as a single Rust program on actix-web. It serves the editor page itself, tokenizes and syntax-highlights files through a wintercave-core engine crate, and reads and writes files through a path-confined file API.",
-      "The editing surface is a native browser textarea, so IME, clipboard, undo, screen readers, and caret movement come from the browser rather than a reimplementation. Mod+S saves over PUT /api/files; a status bar shows unsaved until the write lands, and closing with unsaved changes warns.",
-    ],
-    howItWorks: [
-      {
-        title: "One binary is the server and the app",
-        body: "The Rust executable embeds the editor UI and serves it locally. There is no Node, no npm, no bundler, no wasm shell, and no dist folder. The client is a small plain script that moves text between the page and the API, rendered server-side so the page still works with JavaScript off.",
-      },
-      {
-        title: "Highlighting and completion stay local",
-        body: "Every keystroke (debounced 120 ms) posts the buffer to /api/highlight, where wintercave-core tokenizes it and returns HTML spans painted in a scroll-synced layer behind the textarea. Completion suggestions come from the file and a per-language table — nothing is sent to a remote model or service.",
-      },
-      {
-        title: "Files stay inside the chosen root",
-        body: "Writes are atomic: a temp file beside the target, sync_all, then rename over it. Every path is confined to --root; dot-dot, absolute paths, and NUL bytes are rejected before the filesystem is touched. The browser's native directory permission picker lets the user choose which folder on this PC the editor may touch.",
-      },
-    ],
-    stack: [
-      { group: "Engine", items: ["wintercave-core (document model, edits, undo, search, tokenizer, keymap)", "wintercave-wasm (bindings, kept compiling)"] },
-      { group: "Server", items: ["actix-web", "HTML rendering (src/ui.rs)", "file API (src/api.rs, src/files.rs)", "path confinement (src/paths.rs)"] },
-      { group: "Client", items: ["Native textarea editor", "Theme, dialogs, completion (assets/editor.js)", "Stylesheet (assets/editor.css)"] },
-    ],
-    engineering: [
-      "The core crate has no filesystem, no DOM, and no async runtime, so the same code can drive a terminal or native window later.",
-      "No-JavaScript fallback: <noscript> users get a normal POST /save form that writes the file and redirects back to it.",
-      "Redaction-grade path safety: symlinked parents are resolved and checked; only the chosen --root may be read or written.",
-    ],
-    facts: [
-      { label: "Current release", value: "0.3.1" },
-      { label: "Languages highlighted", value: "12 (Rust, JS/TS, Python, shell, YAML, SQL, JSON, HTML, CSS, Markdown, plain text)" },
-      { label: "Default port", value: "4173" },
     ],
   },
 ];

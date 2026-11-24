@@ -118,7 +118,6 @@ export const showcaseSkills: ShowcaseSkill[] = [
   // ————— Rust & Systems —————
   { id: "rust", name: "Rust", area: "Rust & Systems", tier: "Core", icon: "rust", color: "#FF8A5C", blurb: "Single binaries, offline systems and APIs where correctness is money — integer millimes, never floats.", proof: { label: "RustPad source", href: "https://github.com/Nour-yahyaoui/rustpad" } },
   { id: "actix", name: "Actix Web", area: "Rust & Systems", tier: "Strong", icon: "actix", color: "#FFFFFF", blurb: "Production JSON APIs with sqlx — the systems-language half of two live platforms.", proof: { label: "Campus Rust API", href: "/projects/campus" } },
-  { id: "debian", name: "Debian", area: "Rust & Systems", tier: "Strong", icon: "debian", color: "#FF7A93", blurb: "I build Rust binaries that run on Debian — single-file tools with no runtime to install.", proof: { label: "WinterCave editor", href: "/projects/wintercave" } },
   { id: "linux", name: "Linux", area: "Rust & Systems", tier: "Strong", icon: "linux", color: "#FCC624", blurb: "From daily driver to Rust binaries that run anywhere: offline tools, local servers, and systems that fit in a single file.", proof: { label: "RustPad source", href: "https://github.com/Nour-yahyaoui/rustpad" } },
   { id: "bash", name: "Bash / Shell", area: "Rust & Systems", tier: "Toolkit", icon: "bash", color: "#7BD88A", blurb: "Build scripts, release automation and the glue around server work.", proof: { label: "RustPad source", href: "https://github.com/Nour-yahyaoui/rustpad" } },
 

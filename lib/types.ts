@@ -21,6 +21,7 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
+  screenshot?: { src: string; alt: string; width: number; height: number; caption: string };
   /** Legacy v1 artwork key — v2 (Paper & Ink) renders projects typographically. */
   artwork?: ProjectArtwork;
   accent?: ProjectAccent;

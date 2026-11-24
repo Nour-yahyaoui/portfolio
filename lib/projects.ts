@@ -31,15 +31,28 @@ export const projects: Project[] = [
 
   {
     slug: "anar-ide",
-    title: "Anar IDE",
-    description: "An IDE built by me under the organization named the-golden-army.",
+    screenshot: { src: "/projects/anar-ide.png", alt: "Anar desktop editor showing Rust code, build controls, and an integrated PowerShell terminal.", width: 1902, height: 960, caption: "Anar · Rust editing workspace and integrated terminal" },
+    title: "Anar IDE — Desktop Editor for Rust",
+    description:
+      "An open-source desktop editor built specifically for Rust, with a Tauri 2 shell, React interface, and CodeMirror 6 editing surface. Scoped workspace access, atomic saves, multi-file tabs, and external-change conflict handling form the v0.1.0 foundation. The repository also documents unreleased rust-analyzer intelligence, streaming Cargo tasks, and Rusturbo build integration.",
     featured: true,
-    status: "New project",
-    tags: ["New work"],
-    mainTag: "On the workbench",
-    note: "Project introduction · technical write-up to follow",
+    status: "Early-stage desktop editor",
+    version: "v0.1.0",
+    tags: ["Rust", "Tauri 2", "React", "TypeScript", "CodeMirror 6", "rust-analyzer", "Rusturbo"],
+    highlights: [
+      "Workspace-scoped file operations and atomic saves",
+      "Multi-file editor with external-change conflict handling",
+      "Rust-first core split across five standalone domain crates",
+    ],
+    mainTag: "Rust developer tools",
+    code: "https://github.com/the-golden-army/Anar-IDE",
+    note: "Built by me under the-golden-army · MIT licensed",
+    links: [
+      { label: "Source code", href: "https://github.com/the-golden-army/Anar-IDE", variant: "primary" },
+      { label: "Documentation", href: "https://github.com/the-golden-army/Anar-IDE#readme", variant: "secondary" },
+      { label: "Changelog", href: "https://github.com/the-golden-army/Anar-IDE/blob/main/CHANGELOG.md", variant: "quiet" },
+    ],
   },
-
 
   {
     slug: "nour-code",
@@ -66,6 +79,7 @@ export const projects: Project[] = [
   },
   {
     slug: "rustpad",
+    screenshot: { src: "/projects/rustpad.png", alt: "RustPad home screen with Word and PDF creation, document templates, and recent files.", width: 1912, height: 979, caption: "RustPad · Document workspace and templates" },
     title: "RustPad — Native Word & PDF Desktop Studio",
     description:
       "An offline-first desktop studio for Microsoft Word (.docx) and PDF (.pdf) documents, written in 100% pure Rust. It reviews Track Changes clause by clause, forensically sanitizes redactions, seals PDFs with SHA-256, and runs in a single ~3.9 MB binary — no WebView, no HTML/CSS/JavaScript, no runtime to install.",
@@ -89,6 +103,7 @@ export const projects: Project[] = [
   },
   {
     slug: "agencyos",
+    screenshot: { src: "/projects/agencyos.png", alt: "AgencyOS operations dashboard with project metrics, revenue chart, and task status.", width: 1884, height: 871, caption: "AgencyOS · Operations dashboard" },
     title: "AgencyOS — Operations Platform for Digital Agencies",
     description:
       "A multi-tenant platform for the business and the delivery of agency work: clients and milestones, Kanban tasks with real dependency rules, a client portal scoped to each client's own work, support tickets, documents, invoicing through Stripe, deadline notifications, analytics computed from database rows, and an assistant that returns 503 instead of inventing an answer when no provider is configured. Next.js 15 and NestJS 11 over PostgreSQL 17 with Prisma, verified by 11 unit, 15 integration and 4 end-to-end tests.",
@@ -157,28 +172,6 @@ export const projects: Project[] = [
     liveDemo: "https://env-sentry.vercel.app",
     code: "https://github.com/Nour-yahyaoui/env-sentry",
     note: "The five-second daily check: did I mess up my .env today?",
-  },
-  {
-    slug: "wintercave",
-    title: "WinterCave — Local-First Text Editor",
-    description:
-      "A text editor you run locally. One Rust binary serves the editor page, tokenizes and syntax-highlights files, and reads and writes them through a path-confined file API. No Node, no npm, no bundler, no wasm shell, and no dist folder. Built around a native textarea so IME, clipboard, undo, screen readers, and caret movement are the browser's own.",
-    featured: true,
-    status: "v0.3.1",
-    tags: ["Rust", "actix-web", "text editor", "offline-first", "developer tools"],
-    highlights: [
-      "One Rust binary — no runtime dependencies",
-      "Native textarea with syntax highlighting for 12 languages",
-      "Path-confined file API with atomic writes",
-      "No-JavaScript save form fallback",
-    ],
-    mainTag: "Rust desktop tool",
-    liveDemo: "https://wintercave.vercel.app/",
-    code: "https://github.com/Nour-yahyaoui/WinterCave",
-    links: [
-      { label: "Landing page", href: "https://wintercave.vercel.app/", variant: "primary" },
-      { label: "Source code", href: "https://github.com/Nour-yahyaoui/WinterCave", variant: "secondary" },
-    ],
   },
 ];
 

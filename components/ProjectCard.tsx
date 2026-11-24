@@ -1,3 +1,4 @@
+import ProjectScreenshot from "@/components/ProjectScreenshot";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Project, ProjectLink } from "@/lib/types";
@@ -92,6 +93,7 @@ export default function ProjectCard({
             </h3>
             <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{meta}</p>
           </div>
+          <ProjectScreenshot project={project} compact />
           <p className="mt-2 max-w-3xl text-[15px] leading-7 text-mute">{project.description}</p>
           <p className="mt-2 font-mono text-[11px] leading-5 tracking-[0.04em] text-mute">
             {project.tags.join(" · ")}
@@ -128,6 +130,7 @@ export default function ProjectCard({
           {project.title}
         </Link>
       </h3>
+      <ProjectScreenshot project={project} compact />
       <p className="mt-3 text-[15px] leading-7 text-mute">{project.description}</p>
 
       {project.highlights && project.highlights.length > 0 && (
