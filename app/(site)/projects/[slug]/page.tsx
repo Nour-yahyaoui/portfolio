@@ -1,3 +1,4 @@
+import ProjectScreenshot from "@/components/ProjectScreenshot";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -115,6 +116,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </div>
         )}
       </header>
+
+      <ProjectScreenshot project={project} />
 
       <div className="grid gap-12 pt-12 lg:grid-cols-12">
         <aside className="lg:col-span-4">
