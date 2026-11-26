@@ -9,15 +9,26 @@ import type { Project } from "./types";
 export const projects: Project[] = [
   {
     slug: "bidi-kit",
-    title: "Bidi Kit",
-    description: "A new project in my current body of work. More about Bidi Kit is coming here soon.",
+    title: "Bidi Kit — Arabic & Mixed-Direction Text Toolkit",
+    description:
+      "A zero-dependency TypeScript toolkit for Arabic inside English, French inside Arabic, and the punctuation and numbers between them. It finds directional runs, isolates mixed text with native HTML and Unicode mechanisms, provides Arabic-friendly font and CSS helpers, and audits invisible bidi controls — without replacing the browser's text engine.",
     featured: true,
-    status: "New project",
-    tags: ["New work"],
-    mainTag: "On the workbench",
-    note: "Project introduction · technical write-up to follow",
+    status: "Open-source library",
+    version: "v0.1.0",
+    tags: ["TypeScript", "Arabic", "RTL", "Unicode", "Zero dependencies", "CLI", "Open Source"],
+    highlights: [
+      "Mixed-direction paragraphs with isolated runs and escaped text",
+      "ESM, CommonJS, and a single-file browser script",
+      "Bidi-control auditing and stripping, plus a four-command CLI",
+    ],
+    mainTag: "Internationalization tooling",
+    code: "https://github.com/the-golden-army/ui-storm/tree/main/packages/bidi-kit",
+    note: "Built by me under the-golden-army · MIT licensed",
+    links: [
+      { label: "Source code", href: "https://github.com/the-golden-army/ui-storm/tree/main/packages/bidi-kit", variant: "primary" },
+      { label: "Documentation", href: "https://github.com/the-golden-army/ui-storm/blob/main/packages/bidi-kit/README.md", variant: "secondary" },
+    ],
   },
-
   {
     slug: "rusturbo",
     title: "Rusturbo",

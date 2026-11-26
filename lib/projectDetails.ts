@@ -24,14 +24,51 @@ export interface ProjectDetail {
 export const projectDetails: ProjectDetail[] = [
   {
     slug: "bidi-kit",
-    tagline: "Bidi Kit — a new addition to my workbench.",
-    overview: ["Bidi Kit is one of my newest projects. This page will hold the technical walkthrough, design decisions, and source links when those details are ready to share."],
-    howItWorks: [],
-    stack: [],
-    engineering: [],
-    facts: [{ label: "Write-up", value: "Coming soon" }],
+    tagline: "Arabic inside English, French inside Arabic — with punctuation, numbers, and fonts that behave.",
+    overview: [
+      "Mixed-language text breaks in ways a page-wide RTL switch cannot fix: a full stop jumps to the wrong side of an Arabic name, a phone number is reordered inside an Arabic paragraph, or quotation marks inherit the wrong direction. I built Bidi Kit as a zero-dependency TypeScript toolkit in the-golden-army's ui-storm repository to make those boundaries explicit.",
+      "The library detects direction, splits text into directional runs, and emits native isolation through HTML bdi elements or Unicode isolates. It also supplies font stacks, CSS helpers, an audit API, and a CLI. It does not reimplement the Unicode bidi algorithm, shape Arabic, bundle fonts, or take over line breaking: those jobs stay with the browser and renderer.",
+    ],
+    howItWorks: [
+      {
+        title: "Find the boundaries, not a new rendering engine",
+        body: "detectDirection uses the first strong character; segments returns directional runs with UTF-16 offsets into the original string. Latin numbers keep their punctuation together, Arabic punctuation stays with Arabic runs, and neutral punctuation resolves from its neighbors or the paragraph's base direction. The browser still performs the final visual ordering.",
+      },
+      {
+        title: "Isolate each mixed-language unit",
+        body: "paragraph builds a paragraph with a resolved direction and optional language, wrapping named parts in bdi elements with their own direction and language. bdi and inline escape input; paragraph escapes strings unless trusted, already-sanitized markup is explicitly requested. apply sets textContent and direction on an element. Plain-text helpers use Unicode isolates for contexts such as labels, terminals, and CSV output.",
+      },
+      {
+        title: "Give Arabic room to render",
+        body: "CSS and ROOT_CSS provide directional isolation, direction-aware alignment, Arabic-friendly line height, and root plaintext bidi handling. FONT_STACKS offers Arabic, Hebrew, and Latin system-font stacks; fontFace can generate a unicode-range-aware font-face rule. No font files are shipped, leaving font licensing, downloads, and subsetting to the application.",
+      },
+      {
+        title: "Inspect invisible characters and integration mistakes",
+        body: "audit reports bidi control characters as errors and warns about inline direction without isolation, physical alignment and CSS properties, and missing document language. stripBidiControls removes the documented control characters without changing other text. The CLI exposes check, runs, isolate, and dir, accepting a file or standard input; check exits with status 1 when it finds a bidi control character. The audit is a lint, not a security proof.",
+      },
+    ],
+    stack: [
+      { group: "Library", items: ["TypeScript", "ES2022", "Zero runtime dependencies", "No node: imports in library builds"] },
+      { group: "Distribution", items: ["ES modules", "CommonJS", "TypeScript declarations", "Single-file classic browser script"] },
+      { group: "Text and typography", items: ["HTML bdi / dir / lang", "Unicode directional isolates", "System font stacks", "CSS and font-face generation"] },
+      { group: "Tooling and checks", items: ["Node.js CLI (18+)", "node --test", "Package-content validation", "Static-bundle drift checks", "Windows CI"] },
+    ],
+    engineering: [
+      "Isolation uses the standard's existing mechanisms instead of shipping a competing Unicode bidi implementation. The toolkit determines unit boundaries; the renderer determines visual order.",
+      "The same API is available as ESM, CommonJS, and a classic browser script, so a static HTML page does not need React, a bundler, or a build step. Tests compare the global bundle with module output.",
+      "Text is escaped by default in HTML builders. Opting into raw HTML requires already-sanitized markup; removing bidi controls is a separate operation, not an HTML sanitizer.",
+      "The README documents 48 tests covering punctuation, numbers, combining marks, isolation, HTML generation, fonts, audits, module parity, and browser packaging. Package checks verify the distributable contents, while static checks detect a committed bundle drifting from the build.",
+      "Security helpers make invisible directional controls inspectable and removable, but legitimate text isolation and hostile display spoofing still require context-sensitive handling by the caller.",
+    ],
+    facts: [
+      { label: "License", value: "MIT" },
+      { label: "Organization", value: "the-golden-army" },
+      { label: "Package location", value: "ui-storm / packages / bidi-kit" },
+      { label: "Runtime dependencies", value: "None" },
+      { label: "Distribution", value: "ESM, CommonJS, classic browser script" },
+      { label: "CLI requirement", value: "Node.js 18+" },
+    ],
   },
-
   {
     slug: "rusturbo",
     tagline: "Rusturbo — a new addition to my workbench.",
