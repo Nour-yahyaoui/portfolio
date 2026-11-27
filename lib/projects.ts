@@ -31,15 +31,27 @@ export const projects: Project[] = [
   },
   {
     slug: "rusturbo",
-    title: "Rusturbo",
-    description: "One of my newest projects. Technical notes and a closer look at Rusturbo are coming soon.",
+    title: "Rusturbo — Rust Compilation Accelerator",
+    description:
+      "A Rust CLI that reduces repeated dependency compilation across projects using fingerprinted artifact caches, shared Cargo target directories, and fast-linker selection. It analyzes dependency graphs, applies an Actix Web preset without editing Cargo.toml, and benchmarks real cold, warm, and shared-cache builds instead of promising a universal speedup.",
     featured: true,
-    status: "New project",
-    tags: ["New work"],
-    mainTag: "On the workbench",
-    note: "Project introduction · technical write-up to follow",
+    status: "Open-source CLI",
+    version: "v0.1.2",
+    tags: ["Rust", "Cargo", "Build tooling", "SHA-256", "Artifact caching", "Actix Web", "CLI"],
+    highlights: [
+      "Cross-project dependency reuse keyed by toolchain, graph, and build inputs",
+      "Shared target directories or portable hard-link/copy cache entries",
+      "Five benchmark scenarios with JSON and Markdown reports",
+    ],
+    mainTag: "Rust developer tools",
+    code: "https://github.com/the-golden-army/Rusturbo",
+    note: "Built by me under the-golden-army · MIT licensed",
+    links: [
+      { label: "Source code", href: "https://github.com/the-golden-army/Rusturbo", variant: "primary" },
+      { label: "Documentation", href: "https://github.com/the-golden-army/Rusturbo#readme", variant: "secondary" },
+      { label: "Design notes", href: "https://github.com/the-golden-army/Rusturbo/blob/main/docs/DESIGN.md", variant: "quiet" },
+    ],
   },
-
   {
     slug: "anar-ide",
     screenshot: { src: "/projects/anar-ide.png", alt: "Anar desktop editor showing Rust code, build controls, and an integrated PowerShell terminal.", width: 1902, height: 960, caption: "Anar · Rust editing workspace and integrated terminal" },

@@ -71,14 +71,53 @@ export const projectDetails: ProjectDetail[] = [
   },
   {
     slug: "rusturbo",
-    tagline: "Rusturbo — a new addition to my workbench.",
-    overview: ["Rusturbo is one of my newest projects. This page will hold the technical walkthrough, design decisions, and source links when those details are ready to share."],
-    howItWorks: [],
-    stack: [],
-    engineering: [],
-    facts: [{ label: "Write-up", value: "Coming soon" }],
+    tagline: "Compile familiar dependencies once, reuse them across Rust projects, and measure what actually improves.",
+    overview: [
+      "A new Rust project often recompiles dependencies that another project on the same machine already built. I built Rusturbo under the-golden-army to target that repeated work: a Cargo-driven CLI with dependency-graph analysis, fingerprinted artifact reuse, linker selection, and an Actix Web preset. The package manifest and changelog identify version 0.1.2.",
+      "The useful first-build case is a fresh project with a previously populated, compatible cache — not a dependency graph that has never been downloaded or compiled. Rusturbo keeps Cargo in charge of compilation and freshness checks, and provides a benchmark harness so the benefit can be measured on the user's own machine rather than expressed as an invented multiplier.",
+    ],
+    howItWorks: [
+      {
+        title: "Inspect the project and explain the build",
+        body: "init writes rusturbo.toml and detects Actix Web. analyze uses cargo metadata to inspect the resolved graph, estimate its critical path and parallel waves, identify duplicate versions and broad feature sets, and report hardware, toolchain, linker, and cache information. A JSON mode makes the report consumable by other tools, including Anar IDE.",
+      },
+      {
+        title: "Fingerprint the inputs before reusing artifacts",
+        body: "A domain-separated SHA-256 key includes the exact rustc identity, Cargo version, target, build profile, resolved dependency versions and features, preset settings, flags, and relevant environment variables. Entries retain the input list so cache decisions can be explained. CARGO_TARGET_DIR is intentionally excluded because the target directory is an output location controlled by the reuse strategy.",
+      },
+      {
+        title: "Reuse compatible dependencies in two ways",
+        body: "The default strategy points compatible projects at a shared Cargo target directory, letting Cargo's own fingerprints decide which dependencies are fresh. Portable entries instead materialize a cached profile directory into the project's target directory using hard links, with copies as a fallback. The cache has a configurable size limit and LRU eviction; build-script policy can warn about or refuse sharing for risky graphs.",
+      },
+      {
+        title: "Tune the invocation, then measure it",
+        body: "build and run apply presets through Cargo --config arguments rather than rewriting Cargo.toml. Linker detection prefers mold or lld where applicable and retains the system linker on unsupported targets. benchmark compares cargo-clean, cargo-warm-registry, rusturbo-clean, rusturbo-warm, and rusturbo-shared, producing JSON and Markdown reports. Linux /proc sampling records process-tree resource metrics alongside timing and application-readiness measurements.",
+      },
+    ],
+    stack: [
+      { group: "CLI and configuration", items: ["Rust 2021 (1.74+)", "clap", "serde / serde_json", "toml", "anyhow"] },
+      { group: "Graph and cache", items: ["cargo_metadata", "SHA-256 via sha2", "rayon", "Shared Cargo target directories", "Portable artifact entries + LRU eviction"] },
+      { group: "Build integration", items: ["Cargo argv-based subprocesses", "mold / lld detection", "Optional sccache", "Actix Web profile preset"] },
+      { group: "Evidence and distribution", items: ["Five-scenario benchmark harness", "JSON and Markdown reports", "Linux /proc resource sampling", "Cross-platform CI", "Cargo installation and npm binary installer"] },
+    ],
+    engineering: [
+      "Cargo remains the authority on artifact freshness. Rusturbo changes the target directory and supplies compatible cached artifacts; it does not patch Cargo's fingerprint files to manufacture a cache hit.",
+      "Presets are per-invocation --config arguments, not persistent edits to the project's manifest. They tune dependency debug information and dev codegen settings without changing optimization levels; --dry-run exposes the commands and environment, and --explain exposes cache reasoning.",
+      "Build scripts can capture host-specific libraries and environment. The configurable strict policy refuses sharing for such graphs instead of assuming a dependency name and version are enough for safe reuse.",
+      "Graph analysis reports critical paths, concurrency, and RAM-aware job recommendations. These reports should not be confused with replacing Cargo's scheduler or guaranteeing that every available core improves the build.",
+      "Benchmarks separate an empty cache from a warm cache and a fresh project reusing another project's dependencies. Results are machine-specific; remote cache servers, prebuilt dependency distribution, and distributed compilation are documented roadmap items, not shipped capabilities.",
+      "The v0.1.2 changelog records Windows-driven CLI fixes: Cargo arguments precede the program-argument separator, forwarded program arguments use build-then-execute with exit-code propagation, and the installable workspace excludes demo binaries to keep cargo install unambiguous.",
+    ],
+    facts: [
+      { label: "Package version", value: "0.1.2 (manifest and changelog)" },
+      { label: "License", value: "MIT" },
+      { label: "Organization", value: "the-golden-army" },
+      { label: "Requires", value: "Rust 1.74+ and Cargo" },
+      { label: "Configuration", value: "rusturbo.toml" },
+      { label: "Cache scope", value: "Local cross-project dependency artifacts" },
+      { label: "Benchmark reports", value: "JSON + Markdown" },
+    ],
   },
-
   {
     slug: "anar-ide",
     tagline: "A Rust-focused desktop editor: a thin React interface over a Rust-first workspace, language, and build core.",
