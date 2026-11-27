@@ -1,0 +1,14 @@
+[package]
+name = "the-factory"
+version = "1.0.0"
+edition = "2021"
+description = "the-factory — Personal Engineering & Technical Leadership Workstation in pure Rust + Actix Web"
+authors = ["Nour Yahyaoui"]
+
+[dependencies]
+# Pure-Rust Actix Web feature set (skips C zstd-sys for fast, low-memory builds on Render)
+actix-web = { version = "4", default-features = false, features = ["macros", "http2", "unicode"] }
+
+[profile.release]
+opt-level = 3
+strip = true
