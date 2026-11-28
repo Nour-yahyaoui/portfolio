@@ -23,6 +23,54 @@ export interface ProjectDetail {
 
 export const projectDetails: ProjectDetail[] = [
   {
+    slug: "actix-icons",
+    tagline: "One canonical SVG collection, delivered to Rust, JavaScript, and plain HTML without runtime dependencies.",
+    overview: [
+      "I built Actix Icons as a multi-platform distribution and tooling system around a curated collection of 2,144 distinct icons in 25 categories. Canonical SVG artwork and provenance metadata drive the Rust SDK, JavaScript formats, direct SVG assets, and searchable static gallery. The collection includes Lucide outlines, Feather brand marks, and credited filled adaptations; the upstream artwork is not a claim of original authorship.",
+      "The repository labels version 1.0.0 a release candidate, not yet published. Local packages, Git checkouts, and self-hosted assets are the supported ways to try it now; public registry publication, CDN URLs, and a hosted gallery have not been verified. Despite its name, Actix Icons is not affiliated with the Actix web framework.",
+    ],
+    howItWorks: [
+      {
+        title: "Validate the artwork and its provenance",
+        body: "Each canonical icon has a 24-by-24 SVG and a metadata record containing categories, tags, style, and upstream provenance. Validation checks geometry, allowed elements and attributes, unique names, aliases, notices, and consistency between files and metadata. Aliases such as home for house do not inflate the distinct-icon count.",
+      },
+      {
+        title: "Generate SDKs from one source",
+        body: "The reproducible pipeline emits Rust include_str assets, typed functions and a sorted registry; JavaScript registries and per-icon modules; flat SVG paths; TypeScript declarations; and gallery catalogs. Generated outputs are committed so downstream Rust users do not need Python or Node. CI checks for stale generated files instead of allowing SDKs to drift apart.",
+      },
+      {
+        title: "Choose the integration and payload",
+        body: "Rust consumers can use typed icons functions or exact-name dynamic lookup in a dependency-free, no_std crate with allocation-free access. JavaScript consumers get ESM, CommonJS, and a browser global. The complete entry includes the full collection; individual icon modules plus the standalone renderer, or direct SVGs, provide selective loading. Plain HTML can use a self-hosted script and data-icon attributes without a framework or build step.",
+      },
+      {
+        title: "Explore, copy, and render accessibly",
+        body: "The static gallery filters names, tags, categories, and styles, offers size and theme controls, and supports copying SVG, HTML, Rust, or JavaScript and downloading individual SVGs. DOM-rendered unlabeled icons default to decorative ARIA settings; labels give them an accessible name and image role. Repeated replacement calls skip rendered SVGs, and titles are inserted as text rather than HTML.",
+      },
+    ],
+    stack: [
+      { group: "Canonical collection", items: ["SVG", "JSON metadata", "Pinned Lucide and Feather provenance", "ISC/MIT notices"] },
+      { group: "Rust SDK", items: ["Rust 1.70+", "no_std", "Compile-time include_str assets", "Typed accessors and binary-search lookup", "Zero dependencies"] },
+      { group: "Web SDK", items: ["JavaScript ESM / CommonJS / IIFE", "TypeScript declarations", "Per-icon modules", "Standalone DOM renderer", "Zero runtime dependencies"] },
+      { group: "Generation and validation", items: ["Python 3.10+", "Node.js 20+ build tooling", "esbuild", "Playwright", "Rust and JavaScript package-consumer checks"] },
+    ],
+    engineering: [
+      "Canonical SVGs and metadata are the source of truth. One asset and one metadata record generate the SDK exports and catalogs rather than requiring manual edits across languages.",
+      "The SVG allowlist excludes scripts, external resources, and embedded raster data, and validates the repository's constrained asset format. It is deliberately not advertised as a general-purpose sanitizer for untrusted SVG uploads.",
+      "The Rust full registry and JavaScript full entry make the entire collection reachable. Selective web imports avoid shipping everything; Rust linker elimination remains build dependent rather than a promised zero-cost guarantee.",
+      "Accessibility behavior distinguishes decorative artwork from labeled images and respects explicit ARIA choices. Raw SVG strings still need appropriate accessibility in the host view, and icon-only controls need a name on their button or link.",
+      "Package checks inspect real npm and Cargo archives, compare assets against the source, and run isolated JavaScript, TypeScript, and Rust consumers. These checks validate prepared packages without claiming they have been published.",
+      "Upstream notices ship with both release packages. Lucide and Feather provenance stays explicit, aliases are excluded from distinct counts, and brand trademarks remain with their respective owners.",
+    ],
+    facts: [
+      { label: "Release status", value: "1.0.0 release candidate · not yet published" },
+      { label: "Distinct icons", value: "2,144" },
+      { label: "Categories", value: "25" },
+      { label: "Runtime dependencies", value: "None (Rust and JavaScript)" },
+      { label: "Code license", value: "MIT" },
+      { label: "Artwork licenses", value: "ISC / MIT with upstream attribution" },
+    ],
+  },
+  {
     slug: "bidi-kit",
     tagline: "Arabic inside English, French inside Arabic — with punctuation, numbers, and fonts that behave.",
     overview: [

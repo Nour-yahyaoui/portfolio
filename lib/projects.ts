@@ -8,6 +8,29 @@ import type { Project } from "./types";
  */
 export const projects: Project[] = [
   {
+    slug: "actix-icons",
+    title: "Actix Icons — Multi-Platform SVG Library",
+    description:
+      "A curated library of 2,144 distinct icons across 25 categories, generated from canonical SVGs into a dependency-free Rust crate, JavaScript packages, plain-HTML assets, and a searchable static gallery. Typed Rust access, selective JavaScript imports, accessibility-aware DOM rendering, and reproducible package checks keep one collection consistent across platforms.",
+    featured: true,
+    status: "Release candidate · not yet published",
+    version: "1.0.0 RC",
+    tags: ["Rust", "JavaScript", "TypeScript declarations", "SVG", "no_std", "Accessibility", "Code generation"],
+    highlights: [
+      "2,144 distinct icons · 25 categories · canonical SVG source",
+      "Dependency-free Rust and JavaScript distributions",
+      "Searchable gallery, selective imports, and package-consumer checks",
+    ],
+    mainTag: "Cross-platform UI tooling",
+    code: "https://github.com/Nour-yahyaoui/actix-icons",
+    note: "Library code: MIT · Curated Lucide/Feather artwork with retained ISC/MIT notices · Not affiliated with the Actix web framework",
+    links: [
+      { label: "Source code", href: "https://github.com/Nour-yahyaoui/actix-icons", variant: "primary" },
+      { label: "Documentation", href: "https://github.com/Nour-yahyaoui/actix-icons#readme", variant: "secondary" },
+      { label: "Architecture", href: "https://github.com/Nour-yahyaoui/actix-icons/blob/main/docs/ARCHITECTURE.md", variant: "quiet" },
+    ],
+  },
+  {
     slug: "bidi-kit",
     title: "Bidi Kit — Arabic & Mixed-Direction Text Toolkit",
     description:
